@@ -1,0 +1,735 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Suites and luxury accommodations at ONYX. Discover private rooms, villas, butler service, and tailored hospitality."
+    />
+    <title>Suites & Accommodations | ONYX Resort Hotel & Gaming</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="responsible-strip" aria-label="Responsible gaming notice">
+      <span>Gaming for guests 21 years old and above only</span>
+      <span>Gambling can be addictive. Know when to stop.</span>
+      <a href="https://www.NPGH.ph">NPGH: (02) 8248-9568</a>
+    </div>
+
+    <header class="site-header" id="top">
+      <a class="brand" href="index.html" aria-label="ONYX home">
+        <img src="assets/onyx-logo.png" alt="ONYX logo" />
+        <span>
+          <strong>ONYX</strong>
+          <small>Resort Hotel & Gaming</small>
+        </span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="siteNav">
+        Menu
+      </button>
+      <nav class="site-nav" id="siteNav" aria-label="Main navigation">
+        <a class="is-active" href="stay.html">Stay</a>
+        <a href="dining.html">Dining</a>
+        <a href="casino.html">Gaming</a>
+        <a href="events.html">Events</a>
+        <a href="responsible.html">Responsible Gaming</a>
+      </nav>
+      <a class="header-action" href="reserve.html">Reserve</a>
+    </header>
+
+    <main>
+      <!-- ONYX Advertising Showcase Reel: Pure Cinematic Video & Photo Slideshow (No Text / No Buttons) -->
+      <section class="stay-ad-slideshow" id="stayAdSlideshow" aria-label="ONYX Resort &amp; Villa Advertising Showcase">
+        <div class="ad-slideshow__viewport">
+          <!-- Slide 1: Resort Hotel Film Tour -->
+          <div class="ad-slide is-active" data-index="0" data-type="video">
+            <video
+              class="ad-slide__media ad-slide__video"
+              src="assets/stay/hotel-preview.mp4"
+              poster="assets/stay/resort-hotel-hero.jpg"
+              autoplay
+              muted
+              playsinline
+            ></video>
+            <div class="ad-slide__glow"></div>
+          </div>
+
+          <!-- Slide 2: Resort Hotel Dusk Panorama -->
+          <div class="ad-slide" data-index="1" data-type="photo">
+            <img
+              class="ad-slide__media ad-slide__img"
+              src="assets/stay/resort-hotel-hero.jpg"
+              alt="ONYX Resort Hotel &amp; Reflection Pools"
+            />
+            <div class="ad-slide__glow"></div>
+          </div>
+
+          <!-- Slide 3: Garden Villa & Pavilion Film -->
+          <div class="ad-slide" data-index="2" data-type="video">
+            <video
+              class="ad-slide__media ad-slide__video"
+              src="assets/stay/villa-preview.mp4"
+              poster="assets/stay/villa-pool.jpg"
+              autoplay
+              muted
+              playsinline
+            ></video>
+            <div class="ad-slide__glow"></div>
+          </div>
+
+          <!-- Slide 4: Private Garden Villa Plunge Pool -->
+          <div class="ad-slide" data-index="3" data-type="photo">
+            <img
+              class="ad-slide__media ad-slide__img"
+              src="assets/stay/villa-pool.jpg"
+              alt="Private Garden Villa Plunge Pool"
+            />
+            <div class="ad-slide__glow"></div>
+          </div>
+
+          <!-- Slide 5: Skyline Master Residence -->
+          <div class="ad-slide" data-index="4" data-type="photo">
+            <img
+              class="ad-slide__media ad-slide__img"
+              src="assets/stay/skyline-suite.jpg"
+              alt="Skyline Master Residence Sanctuary"
+            />
+            <div class="ad-slide__glow"></div>
+          </div>
+
+          <!-- Slide 6: Royal Penthouse Sky Wing -->
+          <div class="ad-slide" data-index="5" data-type="photo">
+            <img
+              class="ad-slide__media ad-slide__img"
+              src="assets/suites/royal-2.jpg"
+              alt="Royal Penthouse Sky Wing"
+            />
+            <div class="ad-slide__glow"></div>
+          </div>
+        </div>
+
+        <!-- Subtle Minimalist Slide Indicators -->
+        <div class="ad-slideshow__nav" aria-label="Slideshow progress">
+          <div class="ad-progress-bar">
+            <div class="ad-progress-fill" id="adProgressFill"></div>
+          </div>
+          <div class="ad-slide-indicators" id="adIndicators">
+            <button type="button" class="ad-indicator is-active" data-slide="0" aria-label="Advertisement Slide 1: Resort Film"></button>
+            <button type="button" class="ad-indicator" data-slide="1" aria-label="Advertisement Slide 2: Resort Grounds"></button>
+            <button type="button" class="ad-indicator" data-slide="2" aria-label="Advertisement Slide 3: Villa Film"></button>
+            <button type="button" class="ad-indicator" data-slide="3" aria-label="Advertisement Slide 4: Villa Pool"></button>
+            <button type="button" class="ad-indicator" data-slide="4" aria-label="Advertisement Slide 5: Skyline Residence"></button>
+            <button type="button" class="ad-indicator" data-slide="5" aria-label="Advertisement Slide 6: Royal Penthouse"></button>
+          </div>
+        </div>
+
+        <!-- Hover Navigation Paddles -->
+        <button type="button" class="ad-nav-paddle ad-nav-paddle--prev" id="adPaddlePrev" aria-label="Previous advertisement slide">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
+        <button type="button" class="ad-nav-paddle ad-nav-paddle--next" id="adPaddleNext" aria-label="Next advertisement slide">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+      </section>
+
+      <section class="section stay-options-section" id="suites" aria-labelledby="stayOptionsTitle">
+        <div class="section__header" style="margin-bottom: 28px;">
+          <p class="eyebrow">Accommodation Pillars &bull; Three Distinct Options</p>
+          <h2 id="stayOptionsTitle">Three Distinct Ways to Stay at ONYX</h2>
+          <p class="stay-options-intro">
+            From high-elevation stillness in our luxury hotels to sovereign secluded villas and the complete world of our grand resort estate, choose the living experience calibrated to your desires.
+          </p>
+        </div>
+
+        <!-- 3 Pillars Quick Tabs -->
+        <div class="stay-pillar-tabs" role="tablist" aria-label="Filter Stay Options">
+          <button type="button" class="stay-pillar-btn is-active" data-filter="all" role="tab" aria-selected="true">
+            <span>All 3 Options</span>
+          </button>
+          <button type="button" class="stay-pillar-btn" data-filter="hotels" role="tab" aria-selected="false">
+            <span class="pillar-tab-num">01</span>
+            <span>The Hotels</span>
+          </button>
+          <button type="button" class="stay-pillar-btn" data-filter="villas" role="tab" aria-selected="false">
+            <span class="pillar-tab-num">02</span>
+            <span>The Villas</span>
+          </button>
+          <button type="button" class="stay-pillar-btn" data-filter="resort" role="tab" aria-selected="false">
+            <span class="pillar-tab-num">03</span>
+            <span>The Resort</span>
+          </button>
+        </div>
+
+        <div class="stay-showcase-list" id="stayOptionsGrid">
+          <!-- Option 1: The Hotels (Photo Left / Details Right) -->
+          <article class="stay-showcase-card" data-category="hotels" id="showcase-hotels">
+            <!-- Photo Showcase Column (Left) -->
+            <div class="stay-showcase-gallery" data-gallery="hotels">
+              <div class="stay-gallery__viewport">
+                <img
+                  class="stay-gallery__main-img"
+                  src="assets/suites/premier-1.jpg"
+                  alt="The Luxury Hotels - Skyline Towers Master Bedroom"
+                  loading="lazy"
+                />
+                <div class="stay-gallery__overlay-gradient"></div>
+                <span class="stay-badge-pillar">Option 01 &bull; The Hotels</span>
+                <span class="stay-gallery__counter">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="3" width="18" height="18" rx="2" />
+                    <circle cx="8.5" cy="8.5" r="1.5" />
+                    <polyline points="21 15 16 10 5 21" />
+                  </svg>
+                  <span class="counter-text">1 / 4 Views</span>
+                </span>
+                <button type="button" class="stay-gallery__paddle stay-gallery__paddle--prev" aria-label="Previous view of The Luxury Hotels">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                  </svg>
+                </button>
+                <button type="button" class="stay-gallery__paddle stay-gallery__paddle--next" aria-label="Next view of The Luxury Hotels">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg>
+                </button>
+              </div>
+
+              <!-- Interactive Multi-Angle Photo Selector (Bai Hotel Style) -->
+              <div class="stay-gallery__thumbs" role="tablist" aria-label="Photo views for The Luxury Hotels">
+                <button
+                  type="button"
+                  class="stay-thumb-btn is-active"
+                  data-src="assets/suites/premier-1.jpg"
+                  data-alt="Skyline Master Bedroom"
+                  data-index="0"
+                  aria-label="View 1: Skyline Master Bedroom"
+                >
+                  <img src="assets/suites/premier-1.jpg" alt="Master Bedroom Thumbnail" loading="lazy" />
+                  <span class="thumb-label">Master Bed</span>
+                </button>
+                <button
+                  type="button"
+                  class="stay-thumb-btn"
+                  data-src="assets/suites/premier-2.jpg"
+                  data-alt="Italian Onyx Marble Bathroom"
+                  data-index="1"
+                  aria-label="View 2: Italian Onyx Marble Bathroom"
+                >
+                  <img src="assets/suites/premier-2.jpg" alt="Onyx Bath Thumbnail" loading="lazy" />
+                  <span class="thumb-label">Onyx Bath</span>
+                </button>
+                <button
+                  type="button"
+                  class="stay-thumb-btn"
+                  data-src="assets/stay/skyline-suite.jpg"
+                  data-alt="High-Elevation Panoramic Sanctuary"
+                  data-index="2"
+                  aria-label="View 3: High-Elevation Panoramic Sanctuary"
+                >
+                  <img src="assets/stay/skyline-suite.jpg" alt="Skyline Sanctuary Thumbnail" loading="lazy" />
+                  <span class="thumb-label">Skyline Vista</span>
+                </button>
+                <button
+                  type="button"
+                  class="stay-thumb-btn"
+                  data-src="assets/suites/premier-3.jpg"
+                  data-alt="Executive Salon &amp; Private Bar"
+                  data-index="3"
+                  aria-label="View 4: Executive Salon &amp; Private Bar"
+                >
+                  <img src="assets/suites/premier-3.jpg" alt="Executive Salon Thumbnail" loading="lazy" />
+                  <span class="thumb-label">Salon &amp; Bar</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Content Column (Right) -->
+            <div class="stay-showcase-info">
+              <div class="stay-info__header">
+                <p class="stay-info__eyebrow">Option 01 &bull; High-Rise Sanctuaries</p>
+                <h3 class="stay-info__title">The Luxury Hotels</h3>
+                <p class="stay-info__subtitle">Skyline Towers &bull; 85 &ndash; 180 sq.m</p>
+              </div>
+              <p class="stay-info__description">
+                High-elevation architectural sanctuaries featuring panoramic skyline vistas, custom onyx-clad Italian marble bathrooms, and acoustic studio seclusion.
+              </p>
+              <div class="stay-actions-wrap">
+                <button type="button" class="button button--primary stay-details-trigger" data-stay-idx="0">
+                  Reserve Hotel Suite &rarr;
+                </button>
+                <button type="button" class="button button--secondary stay-inquire-trigger" data-stay-idx="0">
+                  Inquire &amp; Details
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Option 2: The Villas (Alternating Layout: Details Left / Photo Right, matching Bai Hotel) -->
+          <article class="stay-showcase-card stay-showcase-card--reversed" data-category="villas" id="showcase-villas">
+            <!-- Content Column (Left on Desktop, Below Photo on Mobile) -->
+            <div class="stay-showcase-info">
+              <div class="stay-info__header">
+                <p class="stay-info__eyebrow">Option 02 &bull; Secluded Ground Sanctuaries</p>
+                <h3 class="stay-info__title">The Private Villas</h3>
+                <p class="stay-info__subtitle">Garden &amp; Plunge Pavilions &bull; 140 &ndash; 260 sq.m</p>
+              </div>
+              <p class="stay-info__description">
+                Secluded ground-level sanctuaries framed by verdant botanical gardens with private heated plunge pools, teak terraces, and dedicated butler care.
+              </p>
+              <div class="stay-actions-wrap">
+                <button type="button" class="button button--primary stay-details-trigger" data-stay-idx="1">
+                  Reserve Private Villa &rarr;
+                </button>
+                <button type="button" class="button button--secondary stay-inquire-trigger" data-stay-idx="1">
+                  Inquire &amp; Details
+                </button>
+              </div>
+            </div>
+
+            <!-- Photo Showcase Column (Right on Desktop, Above Content on Mobile) -->
+            <div class="stay-showcase-gallery" data-gallery="villas">
+              <div class="stay-gallery__viewport">
+                <img
+                  class="stay-gallery__main-img"
+                  src="assets/stay/villa-pool.jpg"
+                  alt="The Private Villas - Private Heated Plunge Pool &amp; Garden Deck"
+                  loading="lazy"
+                />
+                <div class="stay-gallery__overlay-gradient"></div>
+                <span class="stay-badge-pillar">Option 02 &bull; The Villas</span>
+                <span class="stay-gallery__counter">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="3" width="18" height="18" rx="2" />
+                    <circle cx="8.5" cy="8.5" r="1.5" />
+                    <polyline points="21 15 16 10 5 21" />
+                  </svg>
+                  <span class="counter-text">1 / 4 Views</span>
+                </span>
+                <button type="button" class="stay-gallery__paddle stay-gallery__paddle--prev" aria-label="Previous view of The Private Villas">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                  </svg>
+                </button>
+                <button type="button" class="stay-gallery__paddle stay-gallery__paddle--next" aria-label="Next view of The Private Villas">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg>
+                </button>
+              </div>
+
+              <!-- Interactive Multi-Angle Photo Selector -->
+              <div class="stay-gallery__thumbs" role="tablist" aria-label="Photo views for The Private Villas">
+                <button
+                  type="button"
+                  class="stay-thumb-btn is-active"
+                  data-src="assets/stay/villa-pool.jpg"
+                  data-alt="Private Heated Plunge Pool"
+                  data-index="0"
+                  aria-label="View 1: Private Heated Plunge Pool"
+                >
+                  <img src="assets/stay/villa-pool.jpg" alt="Plunge Pool Thumbnail" loading="lazy" />
+                  <span class="thumb-label">Plunge Pool</span>
+                </button>
+                <button
+                  type="button"
+                  class="stay-thumb-btn"
+                  data-src="assets/suites/garden-1.jpg"
+                  data-alt="Garden Pavilion Living Salon"
+                  data-index="1"
+                  aria-label="View 2: Garden Pavilion Living Salon"
+                >
+                  <img src="assets/suites/garden-1.jpg" alt="Garden Living Thumbnail" loading="lazy" />
+                  <span class="thumb-label">Pavilion Living</span>
+                </button>
+                <button
+                  type="button"
+                  class="stay-thumb-btn"
+                  data-src="assets/suites/garden-2.jpg"
+                  data-alt="Outdoor Garden Soaking Tub"
+                  data-index="2"
+                  aria-label="View 3: Outdoor Garden Soaking Tub"
+                >
+                  <img src="assets/suites/garden-2.jpg" alt="Outdoor Tub Thumbnail" loading="lazy" />
+                  <span class="thumb-label">Outdoor Tub</span>
+                </button>
+                <button
+                  type="button"
+                  class="stay-thumb-btn"
+                  data-src="assets/suites/garden-3.jpg"
+                  data-alt="Verdant Botanical Veranda"
+                  data-index="3"
+                  aria-label="View 4: Verdant Botanical Veranda"
+                >
+                  <img src="assets/suites/garden-3.jpg" alt="Botanical Veranda Thumbnail" loading="lazy" />
+                  <span class="thumb-label">Botanical Courtyard</span>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Option 3: The Resort (Photo Left / Details Right) -->
+          <article class="stay-showcase-card" data-category="resort" id="showcase-resort">
+            <!-- Photo Showcase Column (Left) -->
+            <div class="stay-showcase-gallery" data-gallery="resort">
+              <div class="stay-gallery__viewport">
+                <img
+                  class="stay-gallery__main-img"
+                  src="assets/stay/resort-hotel-hero.jpg"
+                  alt="The Grand Resort - Oceanfront Reflection Lagoons &amp; Facade"
+                  loading="lazy"
+                />
+                <div class="stay-gallery__overlay-gradient"></div>
+                <span class="stay-badge-pillar">Option 03 &bull; The Resort</span>
+                <span class="stay-gallery__counter">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="3" width="18" height="18" rx="2" />
+                    <circle cx="8.5" cy="8.5" r="1.5" />
+                    <polyline points="21 15 16 10 5 21" />
+                  </svg>
+                  <span class="counter-text">1 / 4 Views</span>
+                </span>
+                <button type="button" class="stay-gallery__paddle stay-gallery__paddle--prev" aria-label="Previous view of The Grand Resort">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                  </svg>
+                </button>
+                <button type="button" class="stay-gallery__paddle stay-gallery__paddle--next" aria-label="Next view of The Grand Resort">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg>
+                </button>
+              </div>
+
+              <!-- Interactive Multi-Angle Photo Selector -->
+              <div class="stay-gallery__thumbs" role="tablist" aria-label="Photo views for The Grand Resort">
+                <button
+                  type="button"
+                  class="stay-thumb-btn is-active"
+                  data-src="assets/stay/resort-hotel-hero.jpg"
+                  data-alt="Grand Facade &amp; Reflection Lagoons"
+                  data-index="0"
+                  aria-label="View 1: Grand Facade &amp; Reflection Lagoons"
+                >
+                  <img src="assets/stay/resort-hotel-hero.jpg" alt="Resort Facade Thumbnail" loading="lazy" />
+                  <span class="thumb-label">Grand Lagoon</span>
+                </button>
+                <button
+                  type="button"
+                  class="stay-thumb-btn"
+                  data-src="assets/stay/resort-grounds.jpg"
+                  data-alt="Dusk Reflection Grounds"
+                  data-index="1"
+                  aria-label="View 2: Dusk Reflection Grounds"
+                >
+                  <img src="assets/stay/resort-grounds.jpg" alt="Resort Grounds Thumbnail" loading="lazy" />
+                  <span class="thumb-label">Dusk Grounds</span>
+                </button>
+                <button
+                  type="button"
+                  class="stay-thumb-btn"
+                  data-src="assets/suites/royal-1.jpg"
+                  data-alt="Royal Presidential Living Salon"
+                  data-index="2"
+                  aria-label="View 3: Royal Presidential Living Salon"
+                >
+                  <img src="assets/suites/royal-1.jpg" alt="Royal Salon Thumbnail" loading="lazy" />
+                  <span class="thumb-label">Presidential Salon</span>
+                </button>
+                <button
+                  type="button"
+                  class="stay-thumb-btn"
+                  data-src="assets/suites/royal-2.jpg"
+                  data-alt="Ocean Horizon Sky Veranda"
+                  data-index="3"
+                  aria-label="View 4: Ocean Horizon Sky Veranda"
+                >
+                  <img src="assets/suites/royal-2.jpg" alt="Sky Veranda Thumbnail" loading="lazy" />
+                  <span class="thumb-label">Ocean Veranda</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Content Column (Right) -->
+            <div class="stay-showcase-info">
+              <div class="stay-info__header">
+                <p class="stay-info__eyebrow">Option 03 &bull; Sovereign Destination Living</p>
+                <h3 class="stay-info__title">The Grand Resort</h3>
+                <p class="stay-info__subtitle">Master Estate &amp; Grounds &bull; 260 &ndash; 380 sq.m</p>
+              </div>
+              <p class="stay-info__description">
+                The pinnacle of ONYX destination living with expansive multi-room master estates, heated oceanfront reflection lagoons, and salon priv&eacute; privileges.
+              </p>
+              <div class="stay-actions-wrap">
+                <button type="button" class="button button--primary stay-details-trigger" data-stay-idx="2">
+                  Reserve Resort Estate &rarr;
+                </button>
+                <button type="button" class="button button--secondary stay-inquire-trigger" data-stay-idx="2">
+                  Inquire &amp; Details
+                </button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" style="background: var(--linen); padding-block: 80px;">
+        <div class="section__header">
+          <p class="eyebrow">Hospitality Standards</p>
+          <h2>Included in every stay at ONYX</h2>
+        </div>
+        <div class="grid-4col" style="margin-top: 36px;">
+          <div style="background: var(--ivory); padding: 24px; border-radius: 6px; border: 1px solid rgba(23,20,22,0.08);">
+            <h4 style="margin: 0 0 8px; font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.35rem; color: var(--ink);">24-Hour VIP Concierge</h4>
+            <p style="margin: 0; font-size: 0.88rem; color: var(--smoke);">Chauffeured transfers, table reservations, and personalized itinerary management.</p>
+          </div>
+          <div style="background: var(--ivory); padding: 24px; border-radius: 6px; border: 1px solid rgba(23,20,22,0.08);">
+            <h4 style="margin: 0 0 8px; font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.35rem; color: var(--ink);">In-Suite Dining</h4>
+            <p style="margin: 0; font-size: 0.88rem; color: var(--smoke);">Full course degustation menus delivered by dedicated white-glove service staff.</p>
+          </div>
+          <div style="background: var(--ivory); padding: 24px; border-radius: 6px; border: 1px solid rgba(23,20,22,0.08);">
+            <h4 style="margin: 0 0 8px; font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.35rem; color: var(--ink);">Spa Access</h4>
+            <p style="margin: 0; font-size: 0.88rem; color: var(--smoke);">Complimentary thermal circuit, sauna, and hydrotherapy pool access for all suite guests.</p>
+          </div>
+          <div style="background: var(--ivory); padding: 24px; border-radius: 6px; border: 1px solid rgba(23,20,22,0.08);">
+            <h4 style="margin: 0 0 8px; font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.35rem; color: var(--ink);">Discreet Security</h4>
+            <p style="margin: 0; font-size: 0.88rem; color: var(--smoke);">Seamless floor keycard isolation, private arrival bays, and confidential guest rosters.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="contact-band" aria-labelledby="stayContact">
+        <div>
+          <p class="eyebrow">Tailored Stays</p>
+          <h2 id="stayContact">Let our reservations concierge curate your visit.</h2>
+        </div>
+        <div class="contact-actions">
+          <a class="button button--primary" href="reserve.html">Book Online</a>
+          <a class="button button--secondary" href="tel:+63200000000">Direct Line</a>
+        </div>
+      </section>
+
+      <!-- Stay Details & Reservation / Inquiry Pop-up Modal -->
+      <div class="stay-details-modal" id="stayDetailsModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="stayModalTitle">
+        <div class="stay-details-modal__backdrop" id="stayModalBackdrop"></div>
+        <div class="stay-details-modal__dialog">
+          <button type="button" class="stay-details-modal__close" id="stayModalClose" aria-label="Close details" title="Close (Esc)">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+
+          <!-- Modal Header -->
+          <div class="stay-modal-header">
+            <div class="stay-modal-badge" id="stayModalBadge">Option 01 &bull; The Hotels</div>
+            <h2 class="stay-modal-title" id="stayModalTitle">The Luxury Hotels</h2>
+            <p class="stay-modal-subtitle" id="stayModalSubtitle">Skyline Towers &bull; 85 &ndash; 180 sq.m &bull; Levels 40&ndash;58</p>
+          </div>
+
+          <!-- Modal Main Body Grid: Details & Pricing Left / Fill-up Form Right -->
+          <div class="stay-modal-grid">
+            <!-- Left: Pricing & Specifications -->
+            <div class="stay-modal-details-col">
+              <!-- Price Banner -->
+              <div class="stay-modal-rate-card">
+                <div>
+                  <span class="stay-modal-rate-label">Starting Price</span>
+                  <div class="stay-modal-rate-val">
+                    <span id="stayModalPrice">&#8369;28,000</span>
+                    <small id="stayModalPriceUnit">/ night</small>
+                  </div>
+                </div>
+                <div class="stay-modal-rate-badge">&#10003; Best Rate Guaranteed</div>
+              </div>
+
+              <!-- Media Preview -->
+              <div class="stay-modal-preview-box">
+                <img id="stayModalImg" src="assets/suites/premier-1.jpg" alt="Stay Preview" class="stay-modal-img" />
+                <div class="stay-modal-img-caption" id="stayModalCaption">Master Bedroom &bull; Panoramic Skyline</div>
+              </div>
+
+              <!-- Full Description -->
+              <p class="stay-modal-desc" id="stayModalDesc">
+                High-elevation architectural sanctuaries featuring panoramic skyline vistas, custom onyx-clad Italian marble bathrooms, STC 62 acoustic studio seclusion, and an executive workspace tuned for deep contemplation.
+              </p>
+
+              <!-- 6 Specs Grid -->
+              <div class="stay-modal-specs" id="stayModalSpecs">
+                <div class="stay-modal-spec-item">
+                  <span class="stay-modal-spec-label">Experience</span>
+                  <span class="stay-modal-spec-val" id="specVal0">High-Rise Tower Suites</span>
+                </div>
+                <div class="stay-modal-spec-item">
+                  <span class="stay-modal-spec-label">Occupancy</span>
+                  <span class="stay-modal-spec-val" id="specVal1">2 Adults</span>
+                </div>
+                <div class="stay-modal-spec-item">
+                  <span class="stay-modal-spec-label">Bed Type</span>
+                  <span class="stay-modal-spec-val" id="specVal2">Custom King &bull; 800-thread Frette</span>
+                </div>
+                <div class="stay-modal-spec-item">
+                  <span class="stay-modal-spec-label">Acoustics</span>
+                  <span class="stay-modal-spec-val" id="specVal3">STC 62 Studio Seclusion</span>
+                </div>
+                <div class="stay-modal-spec-item">
+                  <span class="stay-modal-spec-label">Bath</span>
+                  <span class="stay-modal-spec-val" id="specVal4">Onyx Marble Soaking Tub</span>
+                </div>
+                <div class="stay-modal-spec-item">
+                  <span class="stay-modal-spec-label">Service</span>
+                  <span class="stay-modal-spec-val" id="specVal5">24/7 White-Glove In-Room</span>
+                </div>
+              </div>
+
+              <!-- Inclusions & Tags -->
+              <div class="stay-modal-tags-wrap">
+                <span class="stay-modal-tags-title">Key Highlights &amp; Inclusions:</span>
+                <div class="tag-list" id="stayModalTags">
+                  <span class="tag-pill">Skyline Vista</span>
+                  <span class="tag-pill">Onyx Bath</span>
+                  <span class="tag-pill">Nespresso Bar</span>
+                  <span class="tag-pill">Soundproofed</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: Reservation & Inquiry Fill-Up Form -->
+            <div class="stay-modal-form-col">
+              <div class="stay-modal-form-card" id="stayFormCard">
+                <div class="stay-form-header">
+                  <h3>Reserve or Inquire</h3>
+                  <p>Fill out the details below. Our reservation concierge liaison will confirm your booking within 15 minutes.</p>
+                </div>
+
+                <form id="stayReserveForm" class="stay-reserve-form">
+                  <div class="stay-form-group">
+                    <label for="stayFormAccommodation">Selected Accommodation</label>
+                    <select id="stayFormAccommodation" name="accommodation" required class="stay-form-input">
+                      <option value="The Luxury Hotels">Option 01 &bull; The Luxury Hotels (From &#8369;28,000/night)</option>
+                      <option value="The Private Villas">Option 02 &bull; The Private Villas (From &#8369;46,000/night)</option>
+                      <option value="The Grand Resort">Option 03 &bull; The Grand Resort (From &#8369;78,000/night)</option>
+                    </select>
+                  </div>
+
+                  <div class="stay-form-row">
+                    <div class="stay-form-group">
+                      <label for="stayFormCheckIn">Check-In Date</label>
+                      <input type="date" id="stayFormCheckIn" name="checkin" required class="stay-form-input" />
+                    </div>
+                    <div class="stay-form-group">
+                      <label for="stayFormCheckOut">Check-Out Date</label>
+                      <input type="date" id="stayFormCheckOut" name="checkout" required class="stay-form-input" />
+                    </div>
+                  </div>
+
+                  <div class="stay-form-group">
+                    <label for="stayFormGuests">Number of Guests</label>
+                    <select id="stayFormGuests" name="guests" class="stay-form-input">
+                      <option value="1 Adult">1 Adult</option>
+                      <option value="2 Adults" selected>2 Adults</option>
+                      <option value="3 Adults">3 Adults</option>
+                      <option value="4+ Adults / Family">4+ Adults / Family</option>
+                    </select>
+                  </div>
+
+                  <div class="stay-form-group">
+                    <label for="stayFormName">Full Name</label>
+                    <input type="text" id="stayFormName" name="name" required placeholder="e.g. Lord Julian Vance" class="stay-form-input" />
+                  </div>
+
+                  <div class="stay-form-row">
+                    <div class="stay-form-group">
+                      <label for="stayFormEmail">Email Address</label>
+                      <input type="email" id="stayFormEmail" name="email" required placeholder="name@domain.com" class="stay-form-input" />
+                    </div>
+                    <div class="stay-form-group">
+                      <label for="stayFormPhone">Phone / Mobile</label>
+                      <input type="tel" id="stayFormPhone" name="phone" required placeholder="+63 900 000 0000" class="stay-form-input" />
+                    </div>
+                  </div>
+
+                  <div class="stay-form-group">
+                    <label for="stayFormNotes">Special Requests / Inquiries (Optional)</label>
+                    <textarea id="stayFormNotes" name="notes" rows="2" placeholder="Airport chauffeur pickup, dietary preferences, high-floor preference..." class="stay-form-input"></textarea>
+                  </div>
+
+                  <button type="submit" class="button button--primary stay-form-submit-btn">
+                    Submit Reservation &amp; Inquiry Request &rarr;
+                  </button>
+                </form>
+
+                <!-- Confirmation Success Card -->
+                <div id="stayFormSuccess" class="stay-form-success" style="display: none;">
+                  <div class="stay-success-icon">&#10003;</div>
+                  <h3>Request Received</h3>
+                  <p class="stay-success-lead">
+                    Thank you, <strong id="successGuestName">Guest</strong>. Your reservation inquiry for <strong id="successAccommodation">The Luxury Hotels</strong> has been received.
+                  </p>
+                  <div class="stay-success-ref-box">
+                    <span>Confirmation Code</span>
+                    <strong id="successRefCode">ONYX-STAY-8829</strong>
+                  </div>
+                  <p class="stay-success-sub">
+                    A dedicated concierge liaison will contact you via email and phone within 15 minutes to finalize your itinerary and arrival protocols.
+                  </p>
+                  <button type="button" class="button button--secondary" id="stayResetFormBtn" style="margin-top: 10px;">
+                    Submit Another Inquiry
+                  </button>
+                </div>
+
+                <!-- Direct Concierge Help Footer -->
+                <div class="stay-modal-concierge-help">
+                  <span>Need immediate telephone booking?</span>
+                  <a href="tel:+63200000000" class="stay-help-link">Direct Line: +63 (2) 8000-ONYX</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <a class="brand brand--footer" href="index.html">
+          <img src="assets/onyx-logo.png" alt="ONYX logo" />
+          <span>
+            <strong>ONYX</strong>
+            <small>Resort Hotel & Gaming</small>
+          </span>
+        </a>
+        <p>
+          License numbers, property registration details, and required regulatory seals should
+          be inserted after formal review and approval.
+        </p>
+      </div>
+      <div class="footer-links">
+        <a href="stay.html">Stay &amp; Suites</a>
+        <a href="dining.html">Dining &amp; Lounges</a>
+        <a href="casino.html">Regulated Gaming</a>
+        <a href="events.html">Events &amp; Offers</a>
+        <a href="responsible.html">Responsible Gaming</a>
+        <a href="reserve.html">Reserve Your Stay</a>
+        <a href="https://www.pagcor.ph/regulatory/">PAGCOR Regulatory</a>
+        <a href="https://www.NPGH.ph">National Problem Gambling Helpline</a>
+      </div>
+      <p class="footer-notice">
+        Gaming for 21 years old and above only. Gambling can be addictive. Know when to stop.
+        NPGH Hotline: (02) 8248-9568.
+      </p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Explore ongoing luxury promos, grand raffles, and what's new at ONYX Resort Hotel & Gaming. Win a car, motorcycle, cash jackpot, or experience upcoming grand openings."
+    />
+    <title>Offers, Promos &amp; What's New | ONYX Resort Hotel &amp; Gaming</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="responsible-strip" aria-label="Responsible gaming notice">
+      <span>Gaming for guests 21 years old and above only</span>
+      <span>Gambling can be addictive. Know when to stop.</span>
+      <a href="https://www.NPGH.ph">NPGH: (02) 8248-9568</a>
+    </div>
+
+    <header class="site-header" id="top">
+      <a class="brand" href="index.html" aria-label="ONYX home">
+        <img src="assets/onyx-logo.png" alt="ONYX logo" />
+        <span>
+          <strong>ONYX</strong>
+          <small>Resort Hotel & Gaming</small>
+        </span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="siteNav">
+        Menu
+      </button>
+      <nav class="site-nav" id="siteNav" aria-label="Main navigation">
+        <a href="stay.html">Stay</a>
+        <a href="dining.html">Dining</a>
+        <a href="casino.html">Gaming</a>
+        <a class="is-active" href="events.html">Events &amp; Offers</a>
+        <a href="responsible.html">Responsible Gaming</a>
+      </nav>
+      <a class="header-action" href="reserve.html">Reserve</a>
+    </header>
+
+    <main>
+      <!-- Hero Banner & Filter Tabs -->
+      <section class="events-page-hero">
+        <div class="events-page-hero__content">
+          <p class="eyebrow">Exclusive Privileges &bull; Upcoming Debuts</p>
+          <h1>Offers, Promos &amp; What's New</h1>
+          <p class="events-page-hero__lead">
+            Explore active grand luxury raffles, patron privileges, and upcoming seasonal debuts at ONYX.
+          </p>
+          <div class="events-filter-bar" role="tablist" aria-label="Filter Events and Offers">
+            <button type="button" class="events-filter-btn is-active" data-filter="all" role="tab" aria-selected="true">
+              All Happenings
+            </button>
+            <button type="button" class="events-filter-btn" data-filter="promos" role="tab" aria-selected="false">
+              Ongoing Promos &amp; Offers
+            </button>
+            <button type="button" class="events-filter-btn" data-filter="upcoming" role="tab" aria-selected="false">
+              What's New &amp; Coming Soon
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 1: Ongoing Promos & Offers -->
+      <section class="events-section" id="ongoingPromos" aria-labelledby="eventsPromosHeading" data-category="promos">
+        <div class="section__header">
+          <p class="eyebrow">Grand Drawings &bull; Member Rewards</p>
+          <h2 id="eventsPromosHeading">Ongoing Promos &amp; Offers</h2>
+          <p class="events-section-lead">
+            Win extraordinary prizes. Stay, dine, or play to earn draw tickets and unlock patron privileges.
+          </p>
+        </div>
+
+        <div class="events-grid">
+          <!-- Promo 1: Win a Car -->
+          <article class="events-card" tabindex="0">
+            <div class="events-card__media">
+              <img src="assets/promos/car.jpg" alt="Win a Porsche 911 Turbo Supercar" class="events-card__img" loading="lazy" />
+              <div class="events-card__overlay"></div>
+            </div>
+            <div class="events-card__top">
+              <span class="events-card__badge">
+                <span class="events-card__dot"></span>Win a Car
+              </span>
+              <span class="events-card__date">Quarterly Draw</span>
+            </div>
+            <div class="events-card__bottom">
+              <span class="events-card__tag">Grand Luxury Raffle</span>
+              <h3 class="events-card__title">Porsche 911 Turbo</h3>
+              <p class="events-card__desc">Earn draw tickets with every qualified suite stay, fine dining reservation, or salon session.</p>
+              <span class="events-card__pill">Active Draw &bull; Ongoing Now</span>
+            </div>
+          </article>
+
+          <!-- Promo 2: Win a Motorcycle -->
+          <article class="events-card" tabindex="0">
+            <div class="events-card__media">
+              <img src="assets/promos/bike.jpg" alt="Win a Custom Superbike" class="events-card__img" loading="lazy" />
+              <div class="events-card__overlay"></div>
+            </div>
+            <div class="events-card__top">
+              <span class="events-card__badge">
+                <span class="events-card__dot"></span>Win a Motorcycle
+              </span>
+              <span class="events-card__date">Monthly Draw</span>
+            </div>
+            <div class="events-card__bottom">
+              <span class="events-card__tag">Luxury Ride Raffle</span>
+              <h3 class="events-card__title">Custom Superbike Edition</h3>
+              <p class="events-card__desc">Monthly drawings for high-performance bespoke motorbikes. Exclusive to ONYX patrons.</p>
+              <span class="events-card__pill">Active Draw &bull; Ongoing Now</span>
+            </div>
+          </article>
+
+          <!-- Promo 3: Win Cash Prize -->
+          <article class="events-card" tabindex="0">
+            <div class="events-card__media">
+              <img src="assets/promos/cash.jpg" alt="Win Cash Jackpot" class="events-card__img" loading="lazy" />
+              <div class="events-card__overlay"></div>
+            </div>
+            <div class="events-card__top">
+              <span class="events-card__badge">
+                <span class="events-card__dot"></span>Win Cash Prize
+              </span>
+              <span class="events-card__date">Weekly Draw</span>
+            </div>
+            <div class="events-card__bottom">
+              <span class="events-card__tag">Jackpot Grand Prize</span>
+              <h3 class="events-card__title">&#8369;10,000,000 Cash</h3>
+              <p class="events-card__desc">Weekly cash drawings held every Sunday evening in The Grand Gaming Floor.</p>
+              <span class="events-card__pill">Active Draw &bull; Ongoing Now</span>
+            </div>
+          </article>
+
+          <!-- Promo 4: Weekend Stay & Dine Privilege -->
+          <article class="events-card" tabindex="0">
+            <div class="events-card__media">
+              <img src="assets/stay/villa-pool.jpg" alt="Weekend Stay and Dine Privilege" class="events-card__img" loading="lazy" />
+              <div class="events-card__overlay"></div>
+            </div>
+            <div class="events-card__top">
+              <span class="events-card__badge">
+                <span class="events-card__dot"></span>Resort Credit
+              </span>
+              <span class="events-card__date">Weekend Special</span>
+            </div>
+            <div class="events-card__bottom">
+              <span class="events-card__tag">Patron Privilege</span>
+              <h3 class="events-card__title">&#8369;15,000 Dining Credit</h3>
+              <p class="events-card__desc">Reserve 2 consecutive weekend nights and receive dining credit across Prime 54 and The Bar.</p>
+              <span class="events-card__pill">Active Offer &bull; Limited Slots</span>
+            </div>
+          </article>
+
+          <!-- Promo 5: Salon Privé High-Roller Welcome -->
+          <article class="events-card" tabindex="0">
+            <div class="events-card__media">
+              <img src="assets/gaming/salon-prive.jpg" alt="Salon Prive High-Roller Welcome" class="events-card__img" loading="lazy" />
+              <div class="events-card__overlay"></div>
+            </div>
+            <div class="events-card__top">
+              <span class="events-card__badge">
+                <span class="events-card__dot"></span>Salon Privilege
+              </span>
+              <span class="events-card__date">Private Salon</span>
+            </div>
+            <div class="events-card__bottom">
+              <span class="events-card__tag">Gaming Promotion</span>
+              <h3 class="events-card__title">VIP Tier Match &amp; Bonus</h3>
+              <p class="events-card__desc">Accelerated tier points, private chauffeur escort, and dedicated salon liaison access.</p>
+              <span class="events-card__pill">Active Privilege &bull; Ongoing Now</span>
+            </div>
+          </article>
+
+          <!-- Promo 6: Birthday Indulgence -->
+          <article class="events-card" tabindex="0">
+            <div class="events-card__media">
+              <img src="assets/dining/resto-wagyu.jpg" alt="Birthday Omakase Indulgence" class="events-card__img" loading="lazy" />
+              <div class="events-card__overlay"></div>
+            </div>
+            <div class="events-card__top">
+              <span class="events-card__badge">
+                <span class="events-card__dot"></span>Member Indulgence
+              </span>
+              <span class="events-card__date">Birth Month</span>
+            </div>
+            <div class="events-card__bottom">
+              <span class="events-card__tag">Dining Celebration</span>
+              <h3 class="events-card__title">Birthday Omakase Tasting</h3>
+              <p class="events-card__desc">Complimentary chef tasting menu and grand cru champagne bottle on your birth month.</p>
+              <span class="events-card__pill">Active Offer &bull; Year-Round</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- SECTION 2: What's New & What Will Happen Soon -->
+      <section class="events-section events-section--alt" id="upcomingHappenings" aria-labelledby="eventsUpcomingHeading" data-category="upcoming">
+        <div class="section__header">
+          <p class="eyebrow">What's New &bull; Future Debuts</p>
+          <h2 id="eventsUpcomingHeading">What's New &amp; What Will Happen Soon</h2>
+          <p class="events-section-lead">
+            A preview of forthcoming architectural debuts, high-stakes championships, and seasonal galas shaping the future of ONYX.
+          </p>
+        </div>
+
+        <div class="events-grid">
+          <!-- Upcoming 1: Sky Lounge 360 Opening -->
+          <article class="events-card" tabindex="0">
+            <div class="events-card__media">
+              <img src="assets/gaming/cigar-veranda.jpg" alt="Sky Lounge 360 Rooftop Opening" class="events-card__img" loading="lazy" />
+              <div class="events-card__overlay"></div>
+            </div>
+            <div class="events-card__top">
+              <span class="events-card__badge">
+                <span class="events-card__dot"></span>Opening Soon
+              </span>
+              <span class="events-card__date">Next Month</span>
+            </div>
+            <div class="events-card__bottom">
+              <span class="events-card__tag">New Venue Debut</span>
+              <h3 class="events-card__title">Sky Lounge 360</h3>
+              <p class="events-card__desc">Rooftop panoramic lounge featuring mixology masterclasses, open-air cabanas, and sunset skyline vistas.</p>
+              <span class="events-card__pill">Grand Opening Soon</span>
+            </div>
+          </article>
+
+          <!-- Upcoming 2: 25M Baccarat Invitational -->
+          <article class="events-card" tabindex="0">
+            <div class="events-card__media">
+              <img src="assets/gaming/grand-floor.jpg" alt="25M Baccarat Invitational Championship" class="events-card__img" loading="lazy" />
+              <div class="events-card__overlay"></div>
+            </div>
+            <div class="events-card__top">
+              <span class="events-card__badge">
+                <span class="events-card__dot"></span>What Will Happen Soon
+              </span>
+              <span class="events-card__date">November 2026</span>
+            </div>
+            <div class="events-card__bottom">
+              <span class="events-card__tag">VIP Championship</span>
+              <h3 class="events-card__title">&#8369;25,000,000 Baccarat Invitational</h3>
+              <p class="events-card__desc">An exclusive 3-day high-stakes tournament in Salon Privé with guaranteed international prizes.</p>
+              <span class="events-card__pill">Invitational Registration Open</span>
+            </div>
+          </article>
+
+          <!-- Upcoming 3: Tokyo Masterchef Residency -->
+          <article class="events-card" tabindex="0">
+            <div class="events-card__media">
+              <img src="assets/dining/heaven-vip-salon.jpg" alt="Tokyo Masterchef Residency" class="events-card__img" loading="lazy" />
+              <div class="events-card__overlay"></div>
+            </div>
+            <div class="events-card__top">
+              <span class="events-card__badge">
+                <span class="events-card__dot"></span>Coming Soon
+              </span>
+              <span class="events-card__date">Q4 2026</span>
+            </div>
+            <div class="events-card__bottom">
+              <span class="events-card__tag">Culinary Residency</span>
+              <h3 class="events-card__title">Tokyo Omakase Masterclass</h3>
+              <p class="events-card__desc">A limited 5-evening seasonal residency with rare seafood flown in directly from Toyosu Market.</p>
+              <span class="events-card__pill">Reservations Opening Soon</span>
+            </div>
+          </article>
+
+          <!-- Upcoming 4: Pulse Arena ETG Stadium -->
+          <article class="events-card" tabindex="0">
+            <div class="events-card__media">
+              <img src="assets/gaming/etg-pavilion.jpg" alt="Pulse Arena ETG Stadium" class="events-card__img" loading="lazy" />
+              <div class="events-card__overlay"></div>
+            </div>
+            <div class="events-card__top">
+              <span class="events-card__badge">
+                <span class="events-card__dot"></span>What's New
+              </span>
+              <span class="events-card__date">Launching This Month</span>
+            </div>
+            <div class="events-card__bottom">
+              <span class="events-card__tag">Gaming Floor Expansion</span>
+              <h3 class="events-card__title">Pulse Arena ETG Stadium</h3>
+              <p class="events-card__desc">Multi-terminal electronic baccarat, roulette, and sic bo with massive synchronized 4K displays.</p>
+              <span class="events-card__pill">Now In Soft Launch</span>
+            </div>
+          </article>
+
+          <!-- Upcoming 5: Annual Midnight Golden Gala -->
+          <article class="events-card" tabindex="0">
+            <div class="events-card__media">
+              <img src="assets/experiences/events.jpg" alt="Annual Midnight Golden Gala" class="events-card__img" loading="lazy" />
+              <div class="events-card__overlay"></div>
+            </div>
+            <div class="events-card__top">
+              <span class="events-card__badge">
+                <span class="events-card__dot"></span>What Will Happen Soon
+              </span>
+              <span class="events-card__date">December 31, 2026</span>
+            </div>
+            <div class="events-card__bottom">
+              <span class="events-card__tag">Annual Celebration</span>
+              <h3 class="events-card__title">Annual Midnight Golden Gala</h3>
+              <p class="events-card__desc">Celebrate the turn of the year with live orchestra, champagne towers, and private fireworks.</p>
+              <span class="events-card__pill">Tickets &amp; Tables Opening Soon</span>
+            </div>
+          </article>
+
+          <!-- Upcoming 6: Armored Maybach Chauffeur Fleet -->
+          <article class="events-card" tabindex="0">
+            <div class="events-card__media">
+              <img src="assets/suites/royal-1.jpg" alt="Armored Maybach Chauffeur Fleet" class="events-card__img" loading="lazy" />
+              <div class="events-card__overlay"></div>
+            </div>
+            <div class="events-card__top">
+              <span class="events-card__badge">
+                <span class="events-card__dot"></span>What's New
+              </span>
+              <span class="events-card__date">Now Available</span>
+            </div>
+            <div class="events-card__bottom">
+              <span class="events-card__tag">Concierge Fleet</span>
+              <h3 class="events-card__title">Armored Maybach Airport Escort</h3>
+              <p class="events-card__desc">Discreet tarmac-to-suite luxury transfers with private liaison escort for distinguished guests.</p>
+              <span class="events-card__pill">Available Daily</span>
+            </div>
+          </article>
+        </div>
+
+        <!-- How to Enter & Participate Guide -->
+        <div class="events-entry-guide">
+          <div style="text-align: center; max-width: 680px; margin: 0 auto;">
+            <p class="eyebrow" style="color: var(--pale-gold);">How to Qualify &bull; Simple Participation</p>
+            <h3 style="font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(1.8rem, 3vw, 2.5rem); color: #ffffff; margin: 4px 0 10px;">
+              Four Pathways to Extraordinary Rewards
+            </h3>
+            <p style="font-size: 0.92rem; color: rgba(251, 247, 239, 0.85); margin: 0;">
+              Every experience at ONYX elevates your rewards tier and earns automatic entries into our signature draws.
+            </p>
+          </div>
+
+          <div class="events-entry-steps">
+            <div class="events-entry-step">
+              <span class="events-step-num">01</span>
+              <div>
+                <h4>Stay</h4>
+                <p>Each night reserved in any hotel suite or residence awards 5 raffle draw entries automatically.</p>
+              </div>
+            </div>
+            <div class="events-entry-step">
+              <span class="events-step-num">02</span>
+              <div>
+                <h4>Dine</h4>
+                <p>Every &#8369;5,000 spend across Prime 54, The Bar, or Heaven VIP generates 2 raffle vouchers.</p>
+              </div>
+            </div>
+            <div class="events-entry-step">
+              <span class="events-step-num">03</span>
+              <div>
+                <h4>Play</h4>
+                <p>Regulated gaming floor turnover generates instant raffle vouchers and tournament eligibility.</p>
+              </div>
+            </div>
+            <div class="events-entry-step">
+              <span class="events-step-num">04</span>
+              <div>
+                <h4>Inquire</h4>
+                <p>Connect with your dedicated concierge liaison for invitation RSVPs and private table bookings.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Inquiry Section -->
+      <section class="section" id="inquiry" style="padding-block: 72px; background: #0b0a0e;">
+        <div class="highlight-box" style="max-width: 1080px; margin: 0 auto; text-align: center;">
+          <p class="eyebrow" style="color: var(--pale-gold);">Concierge Inquiries</p>
+          <h3 style="font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(2rem, 3.5vw, 3rem); color: #ffffff;">
+            Connect with our Private Client Team
+          </h3>
+          <p style="max-width: 640px; margin: 0 auto; color: rgba(251, 247, 239, 0.85); font-size: 0.95rem;">
+            For tournament registrations, raffle ticket balances, or private table reservations for upcoming debuts, our liaisons are at your service.
+          </p>
+          <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin-top: 24px;">
+            <a class="button button--primary" href="mailto:events@onyx.example">Email Events Liaison</a>
+            <a class="button button--ghost" href="tel:+63280000000">Call (02) 8000-0000</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <a class="brand brand--footer" href="index.html">
+          <img src="assets/onyx-logo.png" alt="ONYX logo" />
+          <span>
+            <strong>ONYX</strong>
+            <small>Resort Hotel & Gaming</small>
+          </span>
+        </a>
+        <p>
+          License numbers, property registration details, and required regulatory seals should
+          be inserted after formal review and approval.
+        </p>
+      </div>
+      <div class="footer-links">
+        <a href="stay.html">Stay &amp; Suites</a>
+        <a href="dining.html">Dining &amp; Lounges</a>
+        <a href="casino.html">Regulated Gaming</a>
+        <a href="events.html">Events &amp; Offers</a>
+        <a href="responsible.html">Responsible Gaming</a>
+        <a href="reserve.html">Reserve Your Stay</a>
+        <a href="https://www.pagcor.ph/regulatory/">PAGCOR Regulatory</a>
+        <a href="https://www.NPGH.ph">National Problem Gambling Helpline</a>
+      </div>
+      <p class="footer-notice">
+        Gaming for 21 years old and above only. Gambling can be addictive. Know when to stop.
+        NPGH Hotline: (02) 8248-9568.
+      </p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

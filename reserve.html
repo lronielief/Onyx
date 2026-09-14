@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Reserve your suite at ONYX. Seamless online reservation inquiry with dedicated VIP concierge assistance."
+    />
+    <title>Reserve Your Stay | ONYX Resort Hotel & Gaming</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="responsible-strip" aria-label="Responsible gaming notice">
+      <span>Gaming for guests 21 years old and above only</span>
+      <span>Gambling can be addictive. Know when to stop.</span>
+      <a href="https://www.NPGH.ph">NPGH: (02) 8248-9568</a>
+    </div>
+
+    <header class="site-header" id="top">
+      <a class="brand" href="index.html" aria-label="ONYX home">
+        <img src="assets/onyx-logo.png" alt="ONYX logo" />
+        <span>
+          <strong>ONYX</strong>
+          <small>Resort Hotel & Gaming</small>
+        </span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="siteNav">
+        Menu
+      </button>
+      <nav class="site-nav" id="siteNav" aria-label="Main navigation">
+        <a href="stay.html">Stay</a>
+        <a href="dining.html">Dining</a>
+        <a href="casino.html">Gaming</a>
+        <a href="events.html">Events</a>
+        <a href="responsible.html">Responsible Gaming</a>
+      </nav>
+      <a class="header-action" href="reserve.html" style="background: var(--gold); border-color: var(--gold); color: var(--ink);">Reserve</a>
+    </header>
+
+    <main>
+      <section class="page-hero">
+        <div class="page-hero__content">
+          <p class="eyebrow">Reservations</p>
+          <h1>Plan Your Stay at ONYX</h1>
+          <p class="page-hero__lead">
+            Select your preferred dates and suite accommodations.
+            Our VIP Reservations Concierge personally verifies every booking to ensure all individual preferences are honored.
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="reservation-grid">
+          <!-- Form Panel -->
+          <div class="reservation-panel">
+            <h2 style="font-family: 'Cormorant Garamond', Georgia, serif; font-size: 2.2rem; color: var(--ink); margin: 0 0 8px;">Reservation Inquiry</h2>
+            <p style="color: var(--smoke); font-size: 0.95rem; margin: 0 0 28px;">
+              Complete the details below. No upfront payment required; our concierge will contact you to finalize confirmation.
+            </p>
+
+            <form id="reservePageForm">
+              <div class="form-grid">
+                <div class="form-field">
+                  <label for="arrival">Arrival Date *</label>
+                  <input type="date" id="arrival" name="arrival" required />
+                </div>
+                <div class="form-field">
+                  <label for="departure">Departure Date *</label>
+                  <input type="date" id="departure" name="departure" required />
+                </div>
+              </div>
+
+              <div class="form-grid">
+                <div class="form-field">
+                  <label for="suite">Suite Selection *</label>
+                  <select id="suite" name="suite" required>
+                    <option value="Premier Suite">Premier Suite (85 sq.m &bull; City View)</option>
+                    <option value="Garden Villa">Garden Villa (140 sq.m &bull; Private Courtyard)</option>
+                    <option value="Chairman's Suite">Chairman's Suite (260 sq.m &bull; Penthouse)</option>
+                  </select>
+                </div>
+                <div class="form-field">
+                  <label for="guests">Guests *</label>
+                  <select id="guests" name="guests" required>
+                    <option value="1 Adult">1 Adult</option>
+                    <option value="2 Adults" selected>2 Adults</option>
+                    <option value="3 Adults">3 Adults</option>
+                    <option value="4 Adults">4 Adults</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-grid">
+                <div class="form-field">
+                  <label for="fullName">Full Name *</label>
+                  <input type="text" id="fullName" name="fullName" placeholder="e.g. Eleanor Vance" required />
+                </div>
+                <div class="form-field">
+                  <label for="email">Email Address *</label>
+                  <input type="email" id="email" name="email" placeholder="e.g. eleanor@example.com" required />
+                </div>
+              </div>
+
+              <div class="form-grid">
+                <div class="form-field">
+                  <label for="phone">Phone / WhatsApp *</label>
+                  <input type="tel" id="phone" name="phone" placeholder="+63 900 000 0000" required />
+                </div>
+                <div class="form-field">
+                  <label for="arrivalPreference">Airport Transfer</label>
+                  <select id="arrivalPreference" name="arrivalPreference">
+                    <option value="None">Not needed</option>
+                    <option value="Chauffeured Sedan">Chauffeured Mercedes-Maybach</option>
+                    <option value="VIP Van">Executive SUV / Van</option>
+                    <option value="Helipad">Helipad VIP Arrival</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-field" style="margin-bottom: 24px;">
+                <label for="notes">Special Requests &amp; Preferences</label>
+                <textarea id="notes" name="notes" rows="4" placeholder="Dietary preferences, high-floor preference, anniversary notes, or specific pillow choices..."></textarea>
+              </div>
+
+              <button class="button button--primary" type="submit" style="width: 100%; min-height: 52px; font-size: 1rem;">
+                Submit Reservation Request
+              </button>
+            </form>
+          </div>
+
+          <!-- Live Summary Sidebar -->
+          <aside class="reservation-summary">
+            <h3>Booking Summary</h3>
+            <div class="summary-row">
+              <span>Suite</span>
+              <span id="summarySuite">Premier Suite</span>
+            </div>
+            <div class="summary-row">
+              <span>Dates</span>
+              <span id="summaryDates">Select arrival to departure</span>
+            </div>
+            <div class="summary-row">
+              <span>Guests</span>
+              <span id="summaryGuests">2 Adults</span>
+            </div>
+            <div class="summary-row">
+              <span>Property</span>
+              <span>ONYX Resort Hotel</span>
+            </div>
+
+            <div style="margin-top: 24px; padding-top: 20px; border-top: 1px solid rgba(251,247,239,0.14);">
+              <h4 style="margin: 0 0 12px; font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.25rem; color: var(--pale-gold);">Complimentary Inclusions</h4>
+              <ul style="margin: 0; padding-left: 18px; color: rgba(251,247,239,0.76); font-size: 0.85rem; line-height: 1.6;">
+                <li>Daily artisanal champagne breakfast</li>
+                <li>Complimentary thermal spa circuit access</li>
+                <li>High-speed encrypted fiber Wi-Fi</li>
+                <li>24-hour dedicated butler service on request</li>
+              </ul>
+            </div>
+
+            <div id="summaryStatus"></div>
+
+            <div style="margin-top: 28px; padding: 16px; background: rgba(251,247,239,0.06); border-radius: 6px; border: 1px solid rgba(251,247,239,0.1);">
+              <small style="color: rgba(251,247,239,0.65); display: block; line-height: 1.45;">
+                Need immediate booking assistance? Contact reservations directly at <strong style="color: var(--pale-gold);">reservations@onyx.example</strong> or dial <strong style="color: var(--pale-gold);">+63 (2) 8000-0000</strong>.
+              </small>
+            </div>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <a class="brand brand--footer" href="index.html">
+          <img src="assets/onyx-logo.png" alt="ONYX logo" />
+          <span>
+            <strong>ONYX</strong>
+            <small>Resort Hotel & Gaming</small>
+          </span>
+        </a>
+        <p>
+          License numbers, property registration details, and required regulatory seals should
+          be inserted after formal review and approval.
+        </p>
+      </div>
+      <div class="footer-links">
+        <a href="stay.html">Stay &amp; Suites</a>
+        <a href="dining.html">Dining &amp; Lounges</a>
+        <a href="casino.html">Regulated Gaming</a>
+        <a href="events.html">Events &amp; Offers</a>
+        <a href="responsible.html">Responsible Gaming</a>
+        <a href="reserve.html">Reserve Your Stay</a>
+        <a href="https://www.pagcor.ph/regulatory/">PAGCOR Regulatory</a>
+        <a href="https://www.NPGH.ph">National Problem Gambling Helpline</a>
+      </div>
+      <p class="footer-notice">
+        Gaming for 21 years old and above only. Gambling can be addictive. Know when to stop.
+        NPGH Hotline: (02) 8248-9568.
+      </p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
