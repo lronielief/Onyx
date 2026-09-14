@@ -322,141 +322,262 @@ function initHeroChipsCanvas(canvas, heroSection) {
   window.addEventListener("resize", resize);
   resize();
 
-  // Pre-render 4 luxury casino chips to off-screen canvases:
-  // Both front face AND thick textured rim cylinder edge
-  const chipFaceCanvases = [];
-  const chipEdgeCanvases = [];
-  const CHIP_SIZE = 140; // larger, ultra-crisp resolution
+  // Pre-render 4 ultra-crisp high-resolution casino chip faces (220px)
+  const CHIP_SIZE = 220;
   const chipConfigs = [
-    { rim: "#18141a", rimDark: "#0c0a0e", stripe: "#f2d581", ring: "#d8bd7a", center: "#100d14", text: "25,000", valColor: "#f2d581" },
-    { rim: "#441219", rimDark: "#23060b", stripe: "#f2d581", ring: "#d8bd7a", center: "#20080c", text: "5,000", valColor: "#ffffff" },
-    { rim: "#102c1e", rimDark: "#08170f", stripe: "#d8bd7a", ring: "#f2d581", center: "#08170e", text: "10,000", valColor: "#ffffff" },
-    { rim: "#c79631", rimDark: "#7a5814", stripe: "#171416", ring: "#f2d581", center: "#1c1712", text: "50,000", valColor: "#f2d581" }
+    { rim: "#1a161f", rimDark: "#0c0a0e", stripe: "#f2d581", ring: "#d8bd7a", center: "#120e16", text: "$25,000", valColor: "#f2d581" },
+    { rim: "#4a121d", rimDark: "#22060b", stripe: "#f2d581", ring: "#d8bd7a", center: "#22070c", text: "$5,000", valColor: "#ffffff" },
+    { rim: "#113020", rimDark: "#08170f", stripe: "#d8bd7a", ring: "#f2d581", center: "#091c13", text: "$10,000", valColor: "#ffffff" },
+    { rim: "#b88a2e", rimDark: "#6b4c14", stripe: "#171416", ring: "#f2d581", center: "#241a10", text: "$50,000", valColor: "#f2d581" }
   ];
 
-  chipConfigs.forEach(cfg => {
-    // 1. FRONT FACE CANVAS
-    const fc = document.createElement("canvas");
-    fc.width = CHIP_SIZE;
-    fc.height = CHIP_SIZE;
-    const fCtx = fc.getContext("2d");
+  const chipFaceCanvases = chipConfigs.map(cfg => {
+    const c = document.createElement("canvas");
+    c.width = CHIP_SIZE;
+    c.height = CHIP_SIZE;
+    const g = c.getContext("2d");
     const cx = CHIP_SIZE / 2;
     const cy = CHIP_SIZE / 2;
     const r = CHIP_SIZE / 2 - 4;
 
-    // Outer base rim circle with metallic gradient
-    fCtx.save();
-    fCtx.beginPath();
-    fCtx.arc(cx, cy, r, 0, Math.PI * 2);
-    fCtx.fillStyle = cfg.rim;
-    fCtx.fill();
-    fCtx.lineWidth = 3;
-    fCtx.strokeStyle = "rgba(255, 255, 255, 0.35)";
-    fCtx.stroke();
+    // Outer rim base
+    g.save();
+    g.beginPath();
+    g.arc(cx, cy, r, 0, Math.PI * 2);
+    g.fillStyle = cfg.rim;
+    g.fill();
+    g.lineWidth = 2.5;
+    g.strokeStyle = "rgba(255, 255, 255, 0.4)";
+    g.stroke();
 
-    // 8 radial edge inserts / stripes
-    fCtx.fillStyle = cfg.stripe;
-    for (let i = 0; i < 8; i++) {
-      const angle = (i * Math.PI * 2) / 8;
-      fCtx.save();
-      fCtx.translate(cx, cy);
-      fCtx.rotate(angle);
-      fCtx.fillRect(-9, -r, 18, 20);
-      fCtx.restore();
+    // 6 distinct casino edge stripes / inserts with inner step notches
+    g.fillStyle = cfg.stripe;
+    for (let i = 0; i < 6; i++) {
+      const a = (i * Math.PI * 2) / 6;
+      g.save();
+      g.translate(cx, cy);
+      g.rotate(a);
+      g.fillRect(-14, -r, 28, 26);
+      g.fillStyle = cfg.rim;
+      g.fillRect(-7, -r + 18, 14, 8);
+      g.restore();
     }
 
-    // Inner concentric gold metallic ring
-    fCtx.beginPath();
-    fCtx.arc(cx, cy, r - 18, 0, Math.PI * 2);
-    fCtx.lineWidth = 4;
-    fCtx.strokeStyle = cfg.ring;
-    fCtx.stroke();
+    // Molded concentric gold track
+    g.beginPath();
+    g.arc(cx, cy, r - 26, 0, Math.PI * 2);
+    g.lineWidth = 3.5;
+    g.strokeStyle = cfg.ring;
+    g.stroke();
 
-    // Center inlay medallion disc
-    fCtx.beginPath();
-    fCtx.arc(cx, cy, r - 26, 0, Math.PI * 2);
-    const radGrad = fCtx.createRadialGradient(cx - 8, cy - 8, 3, cx, cy, r - 26);
+    // Inlay medallion disc
+    const inR = r - 36;
+    g.beginPath();
+    g.arc(cx, cy, inR, 0, Math.PI * 2);
+    const radGrad = g.createRadialGradient(cx - 10, cy - 10, 4, cx, cy, inR);
     radGrad.addColorStop(0, cfg.center);
-    radGrad.addColorStop(1, "#030204");
-    fCtx.fillStyle = radGrad;
-    fCtx.fill();
-    fCtx.lineWidth = 2;
-    fCtx.strokeStyle = cfg.ring;
-    fCtx.stroke();
+    radGrad.addColorStop(1, "#030205");
+    g.fillStyle = radGrad;
+    g.fill();
+    g.lineWidth = 2;
+    g.strokeStyle = "rgba(242, 213, 129, 0.8)";
+    g.stroke();
 
-    // Brand text "ONYX" and denomination
-    fCtx.textAlign = "center";
-    fCtx.textBaseline = "middle";
-    fCtx.fillStyle = "#f2d581";
-    fCtx.font = "bold 15px 'Cormorant Garamond', Georgia, serif";
-    fCtx.fillText("ONYX", cx, cy - 16);
+    // Medallion text: ONYX branding, Denomination, and Spade
+    g.textAlign = "center";
+    g.textBaseline = "middle";
+    g.fillStyle = "#f2d581";
+    g.font = "bold 20px 'Cormorant Garamond', Georgia, serif";
+    g.fillText("ONYX", cx, cy - 23);
 
-    fCtx.fillStyle = cfg.valColor;
-    fCtx.font = "bold 18px 'Inter', sans-serif";
-    fCtx.fillText(cfg.text, cx, cy + 3);
+    g.fillStyle = cfg.valColor;
+    g.font = "bold 24px 'Inter', sans-serif";
+    g.fillText(cfg.text, cx, cy + 3);
 
-    fCtx.fillStyle = "rgba(216, 189, 122, 0.9)";
-    fCtx.font = "13px sans-serif";
-    fCtx.fillText("♠", cx, cy + 21);
+    g.fillStyle = "rgba(216, 189, 122, 0.95)";
+    g.font = "18px sans-serif";
+    g.fillText("♠", cx, cy + 28);
 
-    fCtx.restore();
-    chipFaceCanvases.push(fc);
-
-    // 2. EDGE CYLINDER CANVAS (used for extruded 3D thickness)
-    const ec = document.createElement("canvas");
-    ec.width = CHIP_SIZE;
-    ec.height = CHIP_SIZE;
-    const eCtx = ec.getContext("2d");
-
-    eCtx.save();
-    eCtx.beginPath();
-    eCtx.arc(cx, cy, r, 0, Math.PI * 2);
-    eCtx.fillStyle = cfg.rimDark;
-    eCtx.fill();
-
-    // Stripes on the edge
-    eCtx.fillStyle = cfg.stripe;
-    for (let i = 0; i < 8; i++) {
-      const angle = (i * Math.PI * 2) / 8;
-      eCtx.save();
-      eCtx.translate(cx, cy);
-      eCtx.rotate(angle);
-      eCtx.fillRect(-9, -r, 18, 12);
-      eCtx.restore();
-    }
-    eCtx.restore();
-    chipEdgeCanvases.push(ec);
+    g.restore();
+    return c;
   });
 
-  // Initialize falling chips
-  const CHIP_COUNT = 32;
+  // Staged Chip Architecture: 18 curated chips across 3 lanes
+  // - Left Flank (7 chips): Frames the left side of the screen
+  // - Right Flank (7 chips): Frames the right side of the screen
+  // - Ambient Background (4 chips): Floats softly behind center text
   const chips = [];
+  const TOTAL_CHIPS = 18;
 
-  function spawnChip(randomY) {
-    // Substantial size: scale 0.65 to 1.15 (actual size ~90px to ~160px across!)
-    const scale = Math.random() * 0.45 + 0.65;
+  function spawnChip(index, isFirstCascade) {
+    const laneType = index < 7 ? "left" : index < 14 ? "right" : "bg";
+    const w = width || 1200;
+    const h = height || 700;
+
+    let x = 0;
+    let scale = 1.0;
+    let alpha = 1.0;
+    let vy = 3.0;
+
+    if (laneType === "left") {
+      // Left flank framing: 2% to 32% screen width
+      x = Math.random() * (w * 0.30) + (w * 0.02);
+      scale = Math.random() * 0.35 + 0.85; // 0.85 to 1.20 (~80px to ~115px)
+      alpha = Math.random() * 0.15 + 0.85;
+      vy = (Math.random() * 1.0 + 2.8) * (scale * 1.05);
+    } else if (laneType === "right") {
+      // Right flank framing: 68% to 98% screen width
+      x = Math.random() * (w * 0.30) + (w * 0.68);
+      scale = Math.random() * 0.35 + 0.85; // 0.85 to 1.20
+      alpha = Math.random() * 0.15 + 0.85;
+      vy = (Math.random() * 1.0 + 2.8) * (scale * 1.05);
+    } else {
+      // Ambient background depth layer: 30% to 70% width, smaller & soft
+      x = Math.random() * (w * 0.40) + (w * 0.30);
+      scale = Math.random() * 0.15 + 0.52; // 0.52 to 0.67
+      alpha = Math.random() * 0.2 + 0.45;  // soft atmospheric presence
+      vy = (Math.random() * 0.6 + 1.8) * scale;
+    }
+
+    // Staggered cascade entrance from top (smooth continuous rain)
+    const startY = isFirstCascade
+      ? -(Math.random() * (h * 0.75) + 30)
+      : -(Math.random() * 180 + 90);
+
     return {
-      x: Math.random() * (width || 1000),
-      y: randomY ? Math.random() * (height || 600) : -(Math.random() * 220 + 90),
-      scale: scale,
-      vy: (Math.random() * 1.5 + 2.0) * (scale * 1.2),
-      vx: (Math.random() - 0.5) * 0.7,
-      angleZ: Math.random() * Math.PI * 2,
-      vAngleZ: (Math.random() - 0.5) * 0.025,
-      angleY: Math.random() * Math.PI * 2,
-      vAngleY: Math.random() * 0.035 + 0.015,
-      wobblePhase: Math.random() * Math.PI * 2,
-      wobbleSpeed: Math.random() * 0.025 + 0.012,
-      type: Math.floor(Math.random() * 4),
-      alpha: Math.random() * 0.2 + 0.8
+      x,
+      y: startY,
+      laneType,
+      scale,
+      alpha,
+      vy,
+      vx: (Math.random() - 0.5) * 0.3,
+      pitch: Math.random() * Math.PI * 2,
+      vPitch: Math.random() * 0.016 + 0.012,
+      roll: Math.random() * Math.PI * 2,
+      vRoll: (Math.random() - 0.5) * 0.01,
+      spin: Math.random() * Math.PI * 2,
+      vSpin: Math.random() * 0.02 + 0.01,
+      type: Math.floor(Math.random() * 4)
     };
   }
 
   function initChips() {
     chips.length = 0;
-    for (let i = 0; i < CHIP_COUNT; i++) {
-      chips.push(spawnChip(true));
+    for (let i = 0; i < TOTAL_CHIPS; i++) {
+      chips.push(spawnChip(i, true));
     }
+  }
+
+  function draw3DChip(chip) {
+    const R = 44 * chip.scale;
+    const T = 13 * chip.scale; // Thick, chunky 3D rim depth
+    const cosT = Math.cos(chip.pitch);
+    const sinT = Math.sin(chip.pitch);
+    const frontIsCloser = cosT >= 0;
+
+    const rx = R;
+    const ry = Math.max(1.8, Math.abs(cosT) * R);
+    const dy = sinT * T;
+
+    const yNear = frontIsCloser ? -dy / 2 : dy / 2;
+    const yFar = frontIsCloser ? dy / 2 : -dy / 2;
+    const rimIsDown = yFar > yNear;
+
+    const cfg = chipConfigs[chip.type];
+
+    ctx.save();
+    ctx.translate(chip.x, chip.y);
+    ctx.rotate(chip.roll);
+    ctx.globalAlpha = chip.alpha;
+
+    // Soft 3D contact shadow
+    ctx.save();
+    ctx.beginPath();
+    ctx.ellipse(0, Math.max(yNear, yFar) + 8 * chip.scale, rx * 1.05, ry * 1.05, 0, 0, Math.PI * 2);
+    ctx.fillStyle = "rgba(0, 0, 0, 0.32)";
+    ctx.fill();
+    ctx.restore();
+
+    // 1. Far Ellipse (Back of cylinder)
+    ctx.beginPath();
+    ctx.ellipse(0, yFar, rx, ry, 0, 0, Math.PI * 2);
+    ctx.fillStyle = cfg.rimDark;
+    ctx.fill();
+
+    // 2. Continuous Solid 3D Cylinder Rim Wall
+    if (Math.abs(yFar - yNear) > 0.4) {
+      ctx.beginPath();
+      if (rimIsDown) {
+        ctx.moveTo(-rx, yNear);
+        ctx.lineTo(-rx, yFar);
+        ctx.ellipse(0, yFar, rx, ry, 0, Math.PI, 0, true);
+        ctx.lineTo(rx, yNear);
+        ctx.ellipse(0, yNear, rx, ry, 0, 0, Math.PI, false);
+      } else {
+        ctx.moveTo(-rx, yNear);
+        ctx.lineTo(-rx, yFar);
+        ctx.ellipse(0, yFar, rx, ry, 0, Math.PI, 0, false);
+        ctx.lineTo(rx, yNear);
+        ctx.ellipse(0, yNear, rx, ry, 0, 0, Math.PI, true);
+      }
+      ctx.closePath();
+
+      // Smooth metallic cylinder lighting gradient
+      const rimGrad = ctx.createLinearGradient(-rx, 0, rx, 0);
+      rimGrad.addColorStop(0.0, cfg.rimDark);
+      rimGrad.addColorStop(0.25, cfg.rim);
+      rimGrad.addColorStop(0.5, cfg.stripe);
+      rimGrad.addColorStop(0.75, cfg.rim);
+      rimGrad.addColorStop(1.0, cfg.rimDark);
+      ctx.fillStyle = rimGrad;
+      ctx.fill();
+
+      // 3. Crisp Rim Stripes (Edge notches wrapping the cylinder)
+      for (let i = 0; i < 6; i++) {
+        const stripeAngle = (i * Math.PI * 2) / 6 + chip.spin;
+        const stripeX = Math.cos(stripeAngle) * rx;
+        const stripeZ = Math.sin(stripeAngle);
+
+        if (stripeZ > -0.15) {
+          const w = (rx * 0.28) * Math.max(0.25, Math.abs(stripeZ));
+          ctx.save();
+          ctx.beginPath();
+          if (rimIsDown) {
+            ctx.rect(stripeX - w / 2, Math.min(yNear, yFar), w, Math.abs(yFar - yNear) + ry * 0.4);
+          } else {
+            ctx.rect(stripeX - w / 2, Math.min(yNear, yFar) - ry * 0.4, w, Math.abs(yFar - yNear) + ry * 0.4);
+          }
+          ctx.fillStyle = cfg.stripe;
+          ctx.globalAlpha = chip.alpha * 0.95 * Math.max(0.35, stripeZ);
+          ctx.fill();
+          ctx.restore();
+        }
+      }
+    }
+
+    // 4. Near Face (High-DPI Chip Face)
+    ctx.save();
+    ctx.translate(0, yNear);
+    ctx.scale(1, ry / rx);
+    ctx.drawImage(chipFaceCanvases[chip.type], -rx, -rx, rx * 2, rx * 2);
+
+    // Specular sheen sweep when turning towards the light
+    if (Math.abs(cosT) > 0.15 && Math.abs(cosT) < 0.92) {
+      const sheenGrad = ctx.createLinearGradient(-rx, -rx, rx, rx);
+      sheenGrad.addColorStop(0, "rgba(255, 255, 255, 0)");
+      sheenGrad.addColorStop(0.48, "rgba(242, 213, 129, 0)");
+      sheenGrad.addColorStop(0.52, "rgba(255, 245, 210, 0.42)");
+      sheenGrad.addColorStop(0.56, "rgba(242, 213, 129, 0)");
+      sheenGrad.addColorStop(1, "rgba(255, 255, 255, 0)");
+      ctx.fillStyle = sheenGrad;
+      ctx.beginPath();
+      ctx.arc(0, 0, rx, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    ctx.restore();
+
+    ctx.restore();
   }
 
   function loop() {
@@ -467,65 +588,17 @@ function initHeroChipsCanvas(canvas, heroSection) {
       const chip = chips[i];
 
       chip.y += chip.vy;
-      chip.x += chip.vx + Math.sin(chip.wobblePhase) * 0.7;
-      chip.wobblePhase += chip.wobbleSpeed;
-      chip.angleZ += chip.vAngleZ;
-      chip.angleY += chip.vAngleY;
+      chip.x += chip.vx;
+      chip.pitch += chip.vPitch;
+      chip.roll += chip.vRoll;
+      chip.spin += chip.vSpin;
 
-      // Recycle chip when fallen off screen
-      if (chip.y > height + 120) {
-        Object.assign(chip, spawnChip(false));
+      // Recycle off-screen chips smoothly
+      if (chip.y > height + 130) {
+        Object.assign(chip, spawnChip(i, false));
       }
 
-      const cosY = Math.cos(chip.angleY);
-      const sinY = Math.sin(chip.angleY);
-
-      // NEVER razor-thin: clamp minimum face width ratio to 0.28
-      const faceWidthScale = Math.max(0.28, Math.abs(cosY));
-
-      // Chunky physical thickness: 18px extruded 3D cylinder depth
-      const thicknessPx = 18 * chip.scale;
-      const edgeSteps = 7;
-
-      ctx.save();
-      ctx.globalAlpha = chip.alpha;
-
-      // 1. Draw chunky extruded 3D side edge slices
-      if (Math.abs(sinY) > 0.15) {
-        const edgeDir = Math.sign(sinY);
-        const maxOffset = edgeDir * thicknessPx * Math.abs(sinY);
-
-        for (let s = edgeSteps; s >= 1; s--) {
-          const t = s / edgeSteps;
-          const offX = maxOffset * t * Math.cos(chip.angleZ + Math.PI / 2);
-          const offY = maxOffset * t * Math.sin(chip.angleZ + Math.PI / 2);
-
-          ctx.save();
-          ctx.translate(chip.x + offX, chip.y + offY);
-          ctx.scale(chip.scale, chip.scale);
-          ctx.rotate(chip.angleZ);
-          ctx.scale(faceWidthScale, 1);
-          ctx.drawImage(chipEdgeCanvases[chip.type], -CHIP_SIZE / 2, -CHIP_SIZE / 2);
-          ctx.restore();
-        }
-      }
-
-      // 2. Draw front face of the chip
-      ctx.save();
-      ctx.translate(chip.x, chip.y);
-      ctx.scale(chip.scale, chip.scale);
-      ctx.rotate(chip.angleZ);
-      ctx.scale(faceWidthScale, 1);
-      ctx.drawImage(chipFaceCanvases[chip.type], -CHIP_SIZE / 2, -CHIP_SIZE / 2);
-
-      // Metallic rim specular sheen when edge-on
-      if (Math.abs(cosY) < 0.35) {
-        ctx.fillStyle = "rgba(242, 213, 129, 0.55)";
-        ctx.fillRect(-10, -CHIP_SIZE / 2, 20, CHIP_SIZE);
-      }
-
-      ctx.restore();
-      ctx.restore();
+      draw3DChip(chip);
     }
 
     rafId = requestAnimationFrame(loop);
