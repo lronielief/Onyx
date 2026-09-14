@@ -301,6 +301,119 @@ if (reservePageForm) {
 })();
 
 /* ==========================================================================
+   Hero Section 10-Second Highlights Animation Loop
+   Every 10 seconds:
+   1. The hero text smoothly vanishes (opacity 0, blur, slight lift).
+   2. The Ace card flips in 3D to reveal the Company Highlights.
+   3. The highlights stay featured for ~3.6s, cycling through pillar spotlights.
+   4. The card flips back to normal and the hero text returns to normal.
+   5. Repeats continuously every 10 seconds in a seamless loop.
+   ========================================================================== */
+(function initHeroHighlightsLoop() {
+  const heroContent = document.querySelector(".hero__content");
+  const playingCard = document.querySelector("#playingCard");
+  const cardContainer = document.querySelector("#cardContainer");
+  const heroStage = document.querySelector("#heroStage");
+
+  if (!heroContent || !playingCard) return;
+
+  const highlightItems = document.querySelectorAll(".card-highlight-item");
+  let currentHighlightIndex = 0;
+  let isUserInteracting = false;
+  let cycleTimeout = null;
+  let resetTimeout = null;
+  let touchTimeout = null;
+
+  const CYCLE_INTERVAL = 10000;     // 10 seconds total loop
+  const VANISH_DELAY = 5800;        // At 5.8s, text vanishes and card flips
+  const HIGHLIGHTS_DURATION = 3600; // Remains flipped showing highlights for 3.6s
+
+  function flipToHighlights() {
+    if (isUserInteracting || document.hidden) return;
+
+    // 1. Text vanishes smoothly
+    heroContent.classList.add("is-vanished");
+
+    // 2. Card flips to show company highlights
+    playingCard.classList.add("is-flipped", "is-auto-flipped");
+    if (heroStage) heroStage.classList.add("has-flipped-card");
+
+    // 3. Highlight the active company pillar
+    if (highlightItems.length > 0) {
+      highlightItems.forEach((el, idx) => {
+        el.classList.toggle("is-active", idx === currentHighlightIndex);
+      });
+      currentHighlightIndex = (currentHighlightIndex + 1) % highlightItems.length;
+    }
+
+    // 4. Return to normal after duration
+    resetTimeout = setTimeout(() => {
+      restoreNormal();
+    }, HIGHLIGHTS_DURATION);
+  }
+
+  function restoreNormal() {
+    // Card flips back to normal
+    playingCard.classList.remove("is-flipped", "is-auto-flipped");
+    if (heroStage) heroStage.classList.remove("has-flipped-card");
+
+    // Text returns to normal
+    heroContent.classList.remove("is-vanished");
+  }
+
+  function startLoop() {
+    stopLoop();
+    cycleTimeout = setTimeout(function tick() {
+      flipToHighlights();
+      cycleTimeout = setTimeout(tick, CYCLE_INTERVAL);
+    }, VANISH_DELAY);
+  }
+
+  function stopLoop() {
+    if (cycleTimeout) clearTimeout(cycleTimeout);
+    if (resetTimeout) clearTimeout(resetTimeout);
+    if (touchTimeout) clearTimeout(touchTimeout);
+  }
+
+  // Pause loop if user hovers over hero content (e.g. clicking buttons) or card
+  heroContent.addEventListener("mouseenter", () => {
+    isUserInteracting = true;
+  });
+  heroContent.addEventListener("mouseleave", () => {
+    isUserInteracting = false;
+  });
+
+  if (cardContainer) {
+    cardContainer.addEventListener("mouseenter", () => {
+      isUserInteracting = true;
+    });
+    cardContainer.addEventListener("mouseleave", () => {
+      isUserInteracting = false;
+    });
+
+    cardContainer.addEventListener("touchstart", () => {
+      isUserInteracting = true;
+      if (touchTimeout) clearTimeout(touchTimeout);
+      touchTimeout = setTimeout(() => {
+        isUserInteracting = false;
+      }, 6000);
+    }, { passive: true });
+  }
+
+  // Handle visibility changes so background tabs don't desynchronize
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+      stopLoop();
+      restoreNormal();
+    } else {
+      startLoop();
+    }
+  });
+
+  startLoop();
+})();
+
+/* ==========================================================================
    Curated Experiences Carousel (Side-Scroll Navigation)
    ========================================================================== */
 (function initExperienceCarousel() {

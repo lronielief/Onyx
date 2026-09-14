@@ -344,6 +344,18 @@ select {
   position: relative;
   z-index: 2;
   max-width: 740px;
+  transition:
+    opacity 0.75s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.75s cubic-bezier(0.4, 0, 0.2, 1),
+    filter 0.75s ease;
+  will-change: opacity, transform, filter;
+}
+
+.hero__content.is-vanished {
+  opacity: 0;
+  transform: translateY(-16px) scale(0.98);
+  filter: blur(5px);
+  pointer-events: none;
 }
 
 /* ==========================================================================
@@ -565,57 +577,157 @@ select {
   justify-content: center;
 }
 
-.card-front__inner-frame {
+/* --------------------------------------------------------------------------
+   Company Highlights on Flipped Card Face
+   -------------------------------------------------------------------------- */
+.card-highlights-body {
   width: 100%;
   height: 100%;
-  border: 1px solid rgba(199, 150, 49, 0.32);
+}
+
+.card-highlights-frame {
+  width: 100%;
+  height: 100%;
+  border: 1px solid rgba(199, 150, 49, 0.36);
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 24px 16px 16px;
+  justify-content: space-between;
+  align-items: stretch;
+  padding: 16px 14px 12px;
   position: relative;
+  background: radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.96), rgba(246, 240, 228, 0.94));
+  box-sizing: border-box;
 }
 
-.card-front__inner-frame::before {
+.card-highlights-frame::before {
   position: absolute;
   inset: 4px;
-  border: 1px solid rgba(199, 150, 49, 0.16);
+  border: 1px solid rgba(199, 150, 49, 0.2);
   border-radius: 6px;
   content: "";
   pointer-events: none;
 }
 
-.card-front__logo-wrap {
-  position: relative;
-  width: min(100%, 225px);
-  aspect-ratio: 1;
+.card-highlights-header {
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
-  border-radius: 12px;
+  gap: 10px;
+  text-align: left;
+  padding-inline: 4px;
 }
 
-.card-front__logo {
-  width: 100%;
-  height: 100%;
+.card-highlights-emblem {
+  width: 32px;
+  height: 32px;
   object-fit: contain;
-  filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.3)) drop-shadow(0 0 18px rgba(199, 150, 49, 0.45));
+  filter: drop-shadow(0 2px 6px rgba(199, 150, 49, 0.4));
+  flex-shrink: 0;
 }
 
-.card-front__title-badge {
-  margin-top: 8px;
-  padding: 5px 14px;
-  background: rgba(23, 20, 22, 0.06);
-  border: 1px solid rgba(199, 150, 49, 0.38);
-  border-radius: 20px;
-  font-size: 0.72rem;
-  font-weight: 900;
+.card-highlights-headings {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-highlights-kicker {
+  font-size: 0.62rem;
+  font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.18em;
+  color: var(--gold);
+  line-height: 1.1;
+}
+
+.card-highlights-title {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.18rem;
+  font-weight: 700;
   color: var(--ink);
+  margin: 1px 0 0;
+  line-height: 1.1;
+  letter-spacing: 0.02em;
+}
+
+.card-highlights-divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(199, 150, 49, 0.45), transparent);
+  margin: 4px 0 6px;
+}
+
+.card-highlights-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+  justify-content: center;
+}
+
+.card-highlight-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  padding: 5px 8px;
+  border-radius: 7px;
+  background: rgba(23, 20, 22, 0.03);
+  border: 1px solid rgba(199, 150, 49, 0.18);
+  transition: background 0.35s ease, border-color 0.35s ease, transform 0.35s ease;
+}
+
+.card-highlight-item.is-active {
+  background: rgba(199, 150, 49, 0.14);
+  border-color: rgba(199, 150, 49, 0.75);
+  transform: translateX(3px);
+  box-shadow: 0 2px 8px rgba(199, 150, 49, 0.15);
+}
+
+.card-highlight-pip {
+  color: var(--gold);
+  font-size: 0.68rem;
+  margin-top: 2px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.card-highlight-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  line-height: 1.2;
+}
+
+.card-highlight-name {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: 0.01em;
+}
+
+.card-highlight-sub {
+  font-size: 0.68rem;
+  color: #4a4440;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.card-highlights-footer {
+  margin-top: 6px;
+  display: flex;
+  justify-content: center;
+}
+
+.card-highlights-seal {
+  font-size: 0.62rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--ink);
+  background: rgba(199, 150, 49, 0.14);
+  padding: 4px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(199, 150, 49, 0.42);
 }
 
 /* Light sheen / specular sweep across gold */
@@ -4875,8 +4987,38 @@ a.feature-card:hover .feature-card__cta,
     height: 105px;
   }
 
-  .card-front__logo-wrap {
-    width: min(100%, 180px);
+  .card-highlights-frame {
+    padding: 12px 10px 8px;
+  }
+
+  .card-highlights-emblem {
+    width: 26px;
+    height: 26px;
+  }
+
+  .card-highlights-title {
+    font-size: 1.05rem;
+  }
+
+  .card-highlights-list {
+    gap: 4px;
+  }
+
+  .card-highlight-item {
+    padding: 4px 6px;
+  }
+
+  .card-highlight-name {
+    font-size: 0.74rem;
+  }
+
+  .card-highlight-sub {
+    font-size: 0.62rem;
+  }
+
+  .card-highlights-seal {
+    font-size: 0.58rem;
+    padding: 3px 8px;
   }
 
   .hero h1 {
