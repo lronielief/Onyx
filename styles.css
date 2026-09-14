@@ -832,13 +832,10 @@ select {
   }
 }
 
-.eyebrow {
-  margin: 0 0 12px;
-  color: var(--gold);
-  font-size: 0.76rem;
-  font-weight: 900;
-  letter-spacing: 0;
-  text-transform: uppercase;
+.eyebrow,
+.stay-info__eyebrow,
+.menu-card__kicker {
+  display: none !important;
 }
 
 .hero h1,
@@ -4069,8 +4066,16 @@ a.feature-card:hover .feature-card__cta,
 .stay-actions-wrap {
   display: flex;
   align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
+  gap: 12px;
+  flex-wrap: nowrap;
+}
+
+.stay-actions-wrap .button {
+  white-space: nowrap;
+  padding: 10px 18px;
+  font-size: 0.86rem;
+  letter-spacing: 0.03em;
+  flex-shrink: 0;
 }
 
 /* Responsive Breakdown for Bai-Style Showcases */
@@ -4111,10 +4116,16 @@ a.feature-card:hover .feature-card__cta,
 
   .stay-actions-wrap {
     width: 100%;
+    flex-wrap: nowrap;
+    gap: 8px;
   }
 
   .stay-actions-wrap .button {
-    flex: 1;
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 10px 8px;
+    font-size: 0.78rem;
+    white-space: nowrap;
     text-align: center;
   }
 }
@@ -5969,6 +5980,25 @@ a.feature-card:hover .feature-card__cta,
   justify-content: center;
   gap: 14px;
   flex-wrap: wrap;
+}
+
+.menu-card__actions .button--secondary {
+  background: rgba(251, 247, 239, 0.08);
+  border: 1.5px solid rgba(216, 189, 122, 0.65);
+  color: #ffffff !important;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+  transition: all 0.25s ease;
+}
+
+.menu-card__actions .button--secondary:hover,
+.menu-card__actions .button--secondary:focus-visible {
+  background: rgba(216, 189, 122, 0.22);
+  border-color: #f2d581;
+  color: #ffffff !important;
+  box-shadow: 0 6px 20px rgba(216, 189, 122, 0.35);
+  transform: translateY(-1px);
 }
 
 .menu-card__note {
