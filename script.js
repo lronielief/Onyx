@@ -563,7 +563,7 @@ if (reservePageForm) {
     });
   });
 
-  // Open VIP Concierge Chat buttons throughout page
+  // Open Concierge Chat buttons throughout page
   document.addEventListener("click", (e) => {
     const btn = e.target.closest(".open-concierge-chat");
     if (!btn) return;
@@ -576,7 +576,7 @@ if (reservePageForm) {
 })();
 
 /* ==========================================================================
-   VIP Concierge Chat Support Engine (Accessible & Visual Enhancements)
+   Concierge Chat Support Engine (Accessible & Visual Enhancements)
    ========================================================================== */
 (function initChatSupport() {
   if (document.querySelector("#chatWidget")) return;
@@ -592,15 +592,14 @@ if (reservePageForm) {
   widget.id = "chatWidget";
   widget.className = `chat-widget ${isLightSaved ? "is-light" : ""}`;
   widget.innerHTML = `
-    <div class="chat-widget__window" id="chatWindow" role="region" aria-label="ONYX VIP Concierge Live Chat">
+    <div class="chat-widget__window" id="chatWindow" role="region" aria-label="ONYX Concierge Live Chat">
       <div class="chat-widget__header">
         <div class="chat-widget__header-info">
           <div class="chat-widget__header-avatar" aria-hidden="true">O</div>
           <div>
             <div class="chat-widget__header-title">ONYX Concierge</div>
             <div class="chat-widget__header-subtitle">
-              <span class="chat-widget__status-dot" aria-hidden="true"></span>
-              <span>Live VIP Support • Online</span>
+              <span>Live Support &bull; Online</span>
             </div>
           </div>
         </div>
@@ -631,10 +630,8 @@ if (reservePageForm) {
         </button>
       </form>
     </div>
-    <button type="button" class="chat-widget__trigger" id="chatTrigger" aria-label="Open ONYX VIP Concierge Chat" aria-expanded="false">
-      <span class="chat-widget__status-dot" aria-hidden="true"></span>
+    <button type="button" class="chat-widget__trigger" id="chatTrigger" aria-label="Open ONYX Chat" aria-expanded="false">
       <svg class="chat-widget__trigger-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17L4 17.17V4h16v12z"/></svg>
-      <span class="chat-widget__trigger-label">VIP Concierge</span>
     </button>
   `;
 
@@ -786,7 +783,7 @@ if (reservePageForm) {
     if (!hasGreeted) {
       hasGreeted = true;
       appendMessage(
-        "Welcome to ONYX. I am your VIP Concierge. How may our Private Client Services assist your stay, dining, or gaming arrangements this evening?",
+        "Welcome to ONYX. How may our Private Client Services assist your stay, dining, or gaming arrangements this evening?",
         "bot"
       );
     }
@@ -921,8 +918,8 @@ if (reservePageForm) {
     },
     {
       suit: "♣",
-      tier: "ACE • VIP CONCIERGE",
-      title: "VIP Concierge",
+      tier: "ACE • CONCIERGE SERVICES",
+      title: "Concierge Services",
       subtitle: "Dr. Alessandra Rossi • Milan",
       desc: "“From arranging our private tarmac chauffeur transfer to orchestrating a bespoke private dinner on our terrace with 2 hours notice, the ONYX Concierge liaisons operate with unmatched elegance.”",
       area: "5.0 / 5.0 Rating",
