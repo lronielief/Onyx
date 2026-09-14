@@ -1,0 +1,847 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="ONYX Resort Hotel & Gaming, an elegant resort experience with responsible gaming information for guests 21 and above."
+    />
+    <title>ONYX Resort Hotel & Gaming</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="age-gate" id="ageGate" role="dialog" aria-modal="true" aria-labelledby="ageTitle">
+      <div class="age-gate__panel">
+        <img src="assets/onyx-logo.png" alt="ONYX logo" class="age-gate__logo" />
+        <p class="eyebrow">Restricted content</p>
+        <h2 id="ageTitle">Confirm you are 21 years old or above</h2>
+        <p>
+          This website includes information about a gaming venue in the Philippines.
+          Access is intended only for guests who are legally allowed to enter gaming areas.
+        </p>
+        <div class="age-gate__actions">
+          <button class="button button--primary" id="confirmAge" type="button">I am 21 or above</button>
+          <a class="button button--secondary" href="https://www.pagcor.ph/regulatory/responsible-gaming.php">Leave site</a>
+        </div>
+        <p class="age-gate__note">Gambling can be addictive. Know when to stop.</p>
+      </div>
+    </div>
+
+    <div class="responsible-strip" aria-label="Responsible gaming notice">
+      <span>Gaming for guests 21 years old and above only</span>
+      <span>Gambling can be addictive. Know when to stop.</span>
+      <a href="https://www.NPGH.ph">NPGH: (02) 8248-9568</a>
+    </div>
+
+    <header class="site-header" id="top">
+      <a class="brand" href="index.html" aria-label="ONYX home">
+        <img src="assets/onyx-logo.png" alt="ONYX logo" />
+        <span>
+          <strong>ONYX</strong>
+          <small>Resort Hotel & Gaming</small>
+        </span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="siteNav">
+        Menu
+      </button>
+      <nav class="site-nav" id="siteNav" aria-label="Main navigation">
+        <a href="stay.html">Stay</a>
+        <a href="dining.html">Dining</a>
+        <a href="casino.html">Gaming</a>
+        <a href="events.html">Events</a>
+        <a href="responsible.html">Responsible Gaming</a>
+      </nav>
+      <a class="header-action" href="reserve.html">Reserve</a>
+    </header>
+
+    <main>
+      <section class="hero hero--cinematic" id="heroSection" aria-labelledby="heroTitle">
+        <canvas class="hero__particles" id="heroParticles" aria-hidden="true"></canvas>
+        <div class="hero__ambient-glow" aria-hidden="true"></div>
+
+        <div class="hero__content">
+          <p class="eyebrow">Resort hotel and gaming</p>
+          <h1 id="heroTitle">ONYX</h1>
+          <p class="hero__subtitle">
+            A composed luxury retreat with private suites, calm dining rooms, wellness spaces,
+            and a regulated gaming salon for verified adult guests.
+          </p>
+          <div class="hero__actions">
+            <a class="button button--primary" href="reserve.html">Plan your stay</a>
+            <a class="button button--ghost" href="responsible.html">Responsible gaming</a>
+          </div>
+        </div>
+
+        <div class="hero__stage" id="heroStage">
+          <div class="hero__stage-halo" aria-hidden="true"></div>
+
+          <div class="playing-card-container" id="cardContainer">
+            <div class="playing-card" id="playingCard" role="region" aria-label="Interactive Ace of ONYX playing card">
+              <!-- Card Back -->
+              <div class="playing-card__face playing-card__face--back">
+                <div class="card-back__border-pattern"></div>
+                <div class="card-back__inner-frame">
+                  <div class="card-back__lattice"></div>
+                  <div class="card-back__medallion">
+                    <img src="assets/onyx-emblem.png" alt="ONYX crest" class="card-back__emblem" />
+                    <span class="card-back__brand">ONYX</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card Front (Flipped Face: The Ace of Spades with ONYX Logo Center) -->
+              <div class="playing-card__face playing-card__face--front">
+                <div class="card-corner card-corner--tl">
+                  <span class="card-corner__val">A</span>
+                  <span class="card-corner__suit">&spades;</span>
+                </div>
+                <div class="card-corner card-corner--br">
+                  <span class="card-corner__val">A</span>
+                  <span class="card-corner__suit">&spades;</span>
+                </div>
+
+                <div class="card-front__body">
+                  <div class="card-front__inner-frame">
+                    <div class="card-front__logo-wrap">
+                      <img src="assets/onyx-logo.png" alt="ONYX Ace Logo" class="card-front__logo" />
+                      <div class="hero__logo-sheen" aria-hidden="true"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="booking-band" id="booking" aria-label="Reservation inquiry">
+        <form class="booking-form" id="bookingForm">
+          <label>
+            <span>Arrival</span>
+            <input type="date" name="arrival" required />
+          </label>
+          <label>
+            <span>Nights</span>
+            <select name="nights">
+              <option>1 night</option>
+              <option>2 nights</option>
+              <option>3 nights</option>
+              <option>4 nights</option>
+              <option>5+ nights</option>
+            </select>
+          </label>
+          <label>
+            <span>Suite type</span>
+            <select name="suite">
+              <option>Premier Suite</option>
+              <option>Garden Villa</option>
+              <option>Chairman's Suite</option>
+            </select>
+          </label>
+          <label>
+            <span>Guests</span>
+            <select name="guests">
+              <option>2 adults</option>
+              <option>1 adult</option>
+              <option>3 adults</option>
+              <option>4 adults</option>
+            </select>
+          </label>
+          <button class="button button--primary" type="submit">Check availability</button>
+        </form>
+        <p class="booking-message" id="bookingMessage" role="status" aria-live="polite"></p>
+      </section>
+
+      <!-- Exclusive Offers & Grand Raffle Promos Section -->
+      <section class="section section--marketing" id="promos" aria-labelledby="promosTitle">
+        <div class="marketing-intro-wrap">
+          <div class="marketing-header">
+            <h2 id="promosTitle" class="marketing-title">
+              Grand Luxury Raffle
+            </h2>
+            <p class="marketing-lead">
+              Win extraordinary prizes. Stay, dine, or play to earn draw tickets.
+            </p>
+          </div>
+
+          <!-- 3 Grand Raffle Prize Cards (Images & Simple Words Only) -->
+          <div class="promo-prizes-grid">
+            <!-- Prize 1: Win a Car -->
+            <article class="promo-prize-card">
+              <div class="promo-prize-card__media">
+                <img src="assets/promos/car.jpg" alt="Win a Porsche 911 Supercar" class="promo-prize-card__img" loading="lazy" />
+                <div class="promo-prize-card__overlay"></div>
+              </div>
+              <div class="promo-prize-card__top">
+                <span class="promo-prize-card__badge">
+                  <span class="promo-badge-dot"></span>WIN A CAR
+                </span>
+              </div>
+              <div class="promo-prize-card__bottom">
+                <span class="promo-prize-tag">Grand Prize</span>
+                <h3 class="promo-prize-title">Porsche 911 Turbo</h3>
+                <span class="promo-draw-pill">Quarterly Draw</span>
+              </div>
+            </article>
+
+            <!-- Prize 2: Win a Motorcycle -->
+            <article class="promo-prize-card">
+              <div class="promo-prize-card__media">
+                <img src="assets/promos/bike.jpg" alt="Win a Custom Superbike" class="promo-prize-card__img" loading="lazy" />
+                <div class="promo-prize-card__overlay"></div>
+              </div>
+              <div class="promo-prize-card__top">
+                <span class="promo-prize-card__badge">
+                  <span class="promo-badge-dot"></span>WIN A MOTORCYCLE
+                </span>
+              </div>
+              <div class="promo-prize-card__bottom">
+                <span class="promo-prize-tag">Luxury Ride</span>
+                <h3 class="promo-prize-title">Custom Superbike</h3>
+                <span class="promo-draw-pill">Monthly Draw</span>
+              </div>
+            </article>
+
+            <!-- Prize 3: Win Cash Prize -->
+            <article class="promo-prize-card">
+              <div class="promo-prize-card__media">
+                <img src="assets/promos/cash.jpg" alt="Win Cash Jackpot" class="promo-prize-card__img" loading="lazy" />
+                <div class="promo-prize-card__overlay"></div>
+              </div>
+              <div class="promo-prize-card__top">
+                <span class="promo-prize-card__badge">
+                  <span class="promo-badge-dot"></span>WIN CASH PRIZE
+                </span>
+              </div>
+              <div class="promo-prize-card__bottom">
+                <span class="promo-prize-tag">Jackpot Draw</span>
+                <h3 class="promo-prize-title">&#8369;10,000,000 Cash</h3>
+                <span class="promo-draw-pill">Weekly Draw</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section experience-carousel-wrapper" id="stay" aria-label="Resort highlights">
+        <div class="experience-carousel-header">
+          <div class="experience-carousel-header__info">
+            <p class="eyebrow">Discover ONYX</p>
+            <h3 class="experience-carousel-header__title">Curated Experiences</h3>
+          </div>
+          <div class="experience-carousel-controls" aria-label="Carousel navigation">
+            <span class="carousel-counter" id="carouselCounter" aria-live="polite">01 / 06</span>
+            <div class="carousel-nav-group">
+              <button type="button" class="carousel-nav-btn carousel-nav-btn--prev" id="carouselBtnPrev" aria-label="Previous experiences" title="Previous experiences" disabled>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="19" y1="12" x2="5" y2="12"></line>
+                  <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+              </button>
+              <button type="button" class="carousel-nav-btn carousel-nav-btn--next" id="carouselBtnNext" aria-label="Next experiences" title="Next experiences">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="experience-carousel-track-container">
+          <button type="button" class="carousel-side-arrow carousel-side-arrow--left" id="carouselSideLeft" aria-label="Scroll left" title="Scroll left" disabled>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="19" y1="12" x2="5" y2="12"></line>
+              <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+          </button>
+
+          <div class="experience-grid experience-grid--carousel" id="experienceCarousel" role="region" aria-label="Experiences Carousel" tabindex="0">
+            <!-- 1. Suites -->
+            <a class="feature-card feature-card--experience" href="stay.html" aria-label="Suites - Explore Luxury Accommodations">
+              <div class="feature-card__media">
+                <img src="assets/experiences/suites.jpg" alt="Suites" class="feature-card__img" loading="lazy" />
+                <div class="feature-card__gradient"></div>
+              </div>
+              <div class="feature-card__header-top">
+                <span class="feature-card__summary-word">
+                  <span class="feature-card__word-dot"></span>SUITES
+                </span>
+              </div>
+            </a>
+
+            <!-- 2. Dining -->
+            <a class="feature-card feature-card--experience" id="dining" href="dining.html" aria-label="Dining - Restaurants & Lounges">
+              <div class="feature-card__media">
+                <img src="assets/experiences/dining.jpg" alt="Dining" class="feature-card__img" loading="lazy" />
+                <div class="feature-card__gradient"></div>
+              </div>
+              <div class="feature-card__header-top">
+                <span class="feature-card__summary-word">
+                  <span class="feature-card__word-dot"></span>DINING
+                </span>
+              </div>
+            </a>
+
+            <!-- 3. Gaming -->
+            <a class="feature-card feature-card--experience" id="gaming" href="casino.html" aria-label="Gaming - Regulated Salon Privé">
+              <div class="feature-card__media">
+                <img src="assets/experiences/gaming.jpg" alt="Gaming" class="feature-card__img" loading="lazy" />
+                <div class="feature-card__gradient"></div>
+              </div>
+              <div class="feature-card__header-top">
+                <span class="feature-card__summary-word">
+                  <span class="feature-card__word-dot"></span>GAMING
+                </span>
+              </div>
+            </a>
+
+            <!-- 4. Events -->
+            <a class="feature-card feature-card--experience" href="events.html" aria-label="Events - Private Galas & Celebrations">
+              <div class="feature-card__media">
+                <img src="assets/experiences/events.jpg" alt="Events" class="feature-card__img" loading="lazy" />
+                <div class="feature-card__gradient"></div>
+              </div>
+              <div class="feature-card__header-top">
+                <span class="feature-card__summary-word">
+                  <span class="feature-card__word-dot"></span>EVENTS
+                </span>
+              </div>
+            </a>
+
+            <!-- 5. Concierge -->
+            <a class="feature-card feature-card--experience" href="reserve.html" aria-label="Concierge - VIP Private Arrival">
+              <div class="feature-card__media">
+                <img src="assets/experiences/concierge.jpg" alt="Concierge" class="feature-card__img" loading="lazy" />
+                <div class="feature-card__gradient"></div>
+              </div>
+              <div class="feature-card__header-top">
+                <span class="feature-card__summary-word">
+                  <span class="feature-card__word-dot"></span>CONCIERGE
+                </span>
+              </div>
+            </a>
+
+            <!-- 6. Well-Being -->
+            <a class="feature-card feature-card--experience" href="responsible.html" aria-label="Well-Being - Safeguards & Wellness">
+              <div class="feature-card__media">
+                <img src="assets/experiences/wellness.jpg" alt="Well-Being" class="feature-card__img" loading="lazy" />
+                <div class="feature-card__gradient"></div>
+              </div>
+              <div class="feature-card__header-top">
+                <span class="feature-card__summary-word">
+                  <span class="feature-card__word-dot"></span>WELL-BEING
+                </span>
+              </div>
+            </a>
+          </div>
+
+          <button type="button" class="carousel-side-arrow carousel-side-arrow--right" id="carouselSideRight" aria-label="Scroll right" title="Scroll right">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </button>
+        </div>
+
+        <div class="carousel-progress" id="carouselDots" role="tablist" aria-label="Experience slide selection"></div>
+      </section>
+
+      <!-- Inquiries Contact Band -->
+      <section class="contact-band" aria-labelledby="contactTitle">
+        <div>
+          <p class="eyebrow">Inquiries</p>
+          <h2 id="contactTitle">Plan a stay with grace and clarity.</h2>
+        </div>
+        <div class="contact-actions">
+          <a class="button button--primary" href="mailto:reservations@onyx.example">Email reservations</a>
+          <a class="button button--secondary" href="tel:+63200000000">Call concierge</a>
+        </div>
+      </section>
+
+      <!-- Second to Last Section: 3D Interactive Deck - Guest Feedback & What Guests Love Most -->
+      <section class="section suite-deck-section" id="acclaim" aria-labelledby="acclaimTitle">
+        <div class="suite-deck__header">
+          <div>
+            <p class="eyebrow">Guest Acclaim &bull; Patron Reflections</p>
+            <h2 id="acclaimTitle">What Guests Love Most About ONYX</h2>
+            <p class="suite-deck__subtitle">
+              Press the top card of the deck to flip and deal verified guest reflections to the table. Click any dealt card to return it.
+            </p>
+          </div>
+
+          <!-- Feedback Quick Tabs -->
+          <div class="suite-deck__pills" role="tablist" aria-label="Select Feedback to Deal">
+            <button type="button" class="suite-pill is-active" data-index="0" role="tab" aria-selected="true">
+              <span class="suite-pill__suit">&spades;</span> King &bull; The Residences
+            </button>
+            <button type="button" class="suite-pill" data-index="1" role="tab" aria-selected="false">
+              <span class="suite-pill__suit red">&hearts;</span> Queen &bull; Dining &amp; Lounges
+            </button>
+            <button type="button" class="suite-pill" data-index="2" role="tab" aria-selected="false">
+              <span class="suite-pill__suit red">&diams;</span> Jack &bull; Salon Priv&eacute;
+            </button>
+            <button type="button" class="suite-pill" data-index="3" role="tab" aria-selected="false">
+              <span class="suite-pill__suit">&clubs;</span> Ace &bull; VIP Concierge
+            </button>
+          </div>
+        </div>
+
+        <!-- 3D Interactive Dealing Table -->
+        <div class="suite-deck-stage" id="suiteDeckStage">
+          <!-- Left Zone: The Deck Pile -->
+          <div class="suite-deck__zone suite-deck__zone--pile">
+            <div class="suite-deck__zone-label">
+              <span class="suite-deck__zone-tag">SHUFFLED DECK</span>
+              <span class="suite-deck__zone-hint">Click top card to deal &rarr;</span>
+            </div>
+            <div class="suite-deck__pile" id="suitePile" role="region" aria-label="Suite Card Stack">
+              <!-- Card 0: King of Spades - The Residences -->
+              <article class="suite-card" data-index="0" data-stack="0" tabindex="0" role="button" aria-label="Deal King of Spades - The Residences Reflection">
+                <div class="suite-card__inner">
+                  <div class="suite-card__face suite-card__face--back">
+                    <div class="card-filigree"></div>
+                    <div class="card-corner card-corner--tl">
+                      <span class="card-rank">K</span>
+                      <span class="card-suit">&spades;</span>
+                    </div>
+                    <div class="card-corner card-corner--br">
+                      <span class="card-rank">K</span>
+                      <span class="card-suit">&spades;</span>
+                    </div>
+                    <div class="card-back-center">
+                      <div class="card-back-logo-wrap">
+                        <img src="assets/onyx-logo.png" alt="ONYX Logo" class="card-back-logo-img" />
+                      </div>
+                      <div class="card-back-sub">KING OF SPADES</div>
+                      <div class="card-back-deal-cta">
+                        <span>TAP TO DEAL</span>
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="suite-card__face suite-card__face--front">
+                    <div class="card-filigree"></div>
+                    <div class="card-corner card-corner--tl">
+                      <span class="card-rank">K</span>
+                      <span class="card-suit">&spades;</span>
+                    </div>
+                    <div class="card-corner card-corner--br">
+                      <span class="card-rank">K</span>
+                      <span class="card-suit">&spades;</span>
+                    </div>
+                    <div class="card-front-content">
+                      <div class="card-front-header">
+                        <span class="card-badge">VERIFIED SUITE PATRONS</span>
+                        <h3 class="card-title">The Residences</h3>
+                        <p class="card-subtitle">Evelyn &amp; Julian Vance &bull; London</p>
+                      </div>
+                      <p class="card-desc">
+                        &ldquo;The Chairman&rsquo;s Residence is the epitome of quiet luxury. The private terrace at dusk, the butler service that anticipated our arrival, and the acoustic stillness made this our favorite sanctuary.&rdquo;
+                      </p>
+                      <ul class="card-specs">
+                        <li><strong>Rating:</strong> &#9733;&#9733;&#9733;&#9733;&#9733; 5.0 / 5.0</li>
+                        <li><strong>Stayed:</strong> Chairman's Penthouse</li>
+                        <li><strong>Highlight:</strong> STC 62 Acoustic Stillness</li>
+                        <li><strong>Service:</strong> Dedicated Guild Butler</li>
+                      </ul>
+                      <div class="card-actions">
+                        <button type="button" class="card-reserve-btn" data-suite-idx="0" aria-label="Inspect reflection for The Residences">
+                          <span>Inspect Review &rarr;</span>
+                        </button>
+                        <button type="button" class="card-return-btn" aria-label="Return The Residences to Deck">
+                          <span>&larr; Return to Stack</span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Card 1: Queen of Hearts - Dining & Lounges -->
+              <article class="suite-card" data-index="1" data-stack="1" tabindex="0" role="button" aria-label="Deal Queen of Hearts - Dining &amp; Lounges Reflection">
+                <div class="suite-card__inner">
+                  <div class="suite-card__face suite-card__face--back">
+                    <div class="card-filigree"></div>
+                    <div class="card-corner card-corner--tl red">
+                      <span class="card-rank">Q</span>
+                      <span class="card-suit">&hearts;</span>
+                    </div>
+                    <div class="card-corner card-corner--br red">
+                      <span class="card-rank">Q</span>
+                      <span class="card-suit">&hearts;</span>
+                    </div>
+                    <div class="card-back-center">
+                      <div class="card-back-logo-wrap">
+                        <img src="assets/onyx-logo.png" alt="ONYX Logo" class="card-back-logo-img" />
+                      </div>
+                      <div class="card-back-sub">QUEEN OF HEARTS</div>
+                      <div class="card-back-deal-cta">
+                        <span>TAP TO DEAL</span>
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="suite-card__face suite-card__face--front">
+                    <div class="card-filigree"></div>
+                    <div class="card-corner card-corner--tl red">
+                      <span class="card-rank">Q</span>
+                      <span class="card-suit">&hearts;</span>
+                    </div>
+                    <div class="card-corner card-corner--br red">
+                      <span class="card-rank">Q</span>
+                      <span class="card-suit">&hearts;</span>
+                    </div>
+                    <div class="card-front-content">
+                      <div class="card-front-header">
+                        <span class="card-badge">CULINARY CRITIC REVIEW</span>
+                        <h3 class="card-title">Dining &amp; Lounges</h3>
+                        <p class="card-subtitle">Kenjiro Takahashi &bull; Tokyo</p>
+                      </div>
+                      <p class="card-desc">
+                        &ldquo;The omakase at Kintsugi was nothing short of perfection. Rare seasonal seafood flown in directly from Toyosu, paired with an extraordinary vintage sake selection. Attentive service was masterclass.&rdquo;
+                      </p>
+                      <ul class="card-specs">
+                        <li><strong>Rating:</strong> &#9733;&#9733;&#9733;&#9733;&#9733; 5.0 / 5.0</li>
+                        <li><strong>Venue:</strong> Kintsugi 10-Seat Counter</li>
+                        <li><strong>Highlight:</strong> Miyazaki A5 Wagyu &amp; Robata</li>
+                        <li><strong>Sommelier:</strong> Grand Cru Decanting</li>
+                      </ul>
+                      <div class="card-actions">
+                        <button type="button" class="card-reserve-btn" data-suite-idx="1" aria-label="Inspect reflection for Dining &amp; Lounges">
+                          <span>Inspect Review &rarr;</span>
+                        </button>
+                        <button type="button" class="card-return-btn" aria-label="Return Dining to Deck">
+                          <span>&larr; Return to Stack</span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Card 2: Jack of Diamonds - Regulated Gaming Salon Privé -->
+              <article class="suite-card" data-index="2" data-stack="2" tabindex="0" role="button" aria-label="Deal Jack of Diamonds - Regulated Gaming Reflection">
+                <div class="suite-card__inner">
+                  <div class="suite-card__face suite-card__face--back">
+                    <div class="card-filigree"></div>
+                    <div class="card-corner card-corner--tl red">
+                      <span class="card-rank">J</span>
+                      <span class="card-suit">&diams;</span>
+                    </div>
+                    <div class="card-corner card-corner--br red">
+                      <span class="card-rank">J</span>
+                      <span class="card-suit">&diams;</span>
+                    </div>
+                    <div class="card-back-center">
+                      <div class="card-back-logo-wrap">
+                        <img src="assets/onyx-logo.png" alt="ONYX Logo" class="card-back-logo-img" />
+                      </div>
+                      <div class="card-back-sub">JACK OF DIAMONDS</div>
+                      <div class="card-back-deal-cta">
+                        <span>TAP TO DEAL</span>
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="suite-card__face suite-card__face--front">
+                    <div class="card-filigree"></div>
+                    <div class="card-corner card-corner--tl red">
+                      <span class="card-rank">J</span>
+                      <span class="card-suit">&diams;</span>
+                    </div>
+                    <div class="card-corner card-corner--br red">
+                      <span class="card-rank">J</span>
+                      <span class="card-suit">&diams;</span>
+                    </div>
+                    <div class="card-front-content">
+                      <div class="card-front-header">
+                        <span class="card-badge">SALON PRIV&Eacute; MEMBER</span>
+                        <h3 class="card-title">Regulated Gaming</h3>
+                        <p class="card-subtitle">Christian Beaumont &bull; Monaco</p>
+                      </div>
+                      <p class="card-desc">
+                        &ldquo;ONYX has set the new benchmark for private gaming. The European single-zero roulette salon and high-stakes baccarat tables offer complete discretion and world-class composure under PAGCOR oversight.&rdquo;
+                      </p>
+                      <ul class="card-specs">
+                        <li><strong>Rating:</strong> &#9733;&#9733;&#9733;&#9733;&#9733; 5.0 / 5.0</li>
+                        <li><strong>Venue:</strong> Regulated Salon Priv&eacute;</li>
+                        <li><strong>Highlight:</strong> European Single-Zero Roulette</li>
+                        <li><strong>Standard:</strong> Strict Discretion &amp; Age 21+</li>
+                      </ul>
+                      <div class="card-actions">
+                        <button type="button" class="card-reserve-btn" data-suite-idx="2" aria-label="Inspect reflection for Salon Privé">
+                          <span>Inspect Review &rarr;</span>
+                        </button>
+                        <button type="button" class="card-return-btn" aria-label="Return Salon Privé to Deck">
+                          <span>&larr; Return to Stack</span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Card 3: Ace of Clubs - VIP Concierge -->
+              <article class="suite-card" data-index="3" data-stack="3" tabindex="0" role="button" aria-label="Deal Ace of Clubs - VIP Concierge Reflection">
+                <div class="suite-card__inner">
+                  <div class="suite-card__face suite-card__face--back">
+                    <div class="card-filigree"></div>
+                    <div class="card-corner card-corner--tl">
+                      <span class="card-rank">A</span>
+                      <span class="card-suit">&clubs;</span>
+                    </div>
+                    <div class="card-corner card-corner--br">
+                      <span class="card-rank">A</span>
+                      <span class="card-suit">&clubs;</span>
+                    </div>
+                    <div class="card-back-center">
+                      <div class="card-back-logo-wrap">
+                        <img src="assets/onyx-logo.png" alt="ONYX Logo" class="card-back-logo-img" />
+                      </div>
+                      <div class="card-back-sub">ACE OF CLUBS</div>
+                      <div class="card-back-deal-cta">
+                        <span>TAP TO DEAL</span>
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="suite-card__face suite-card__face--front">
+                    <div class="card-filigree"></div>
+                    <div class="card-corner card-corner--tl">
+                      <span class="card-rank">A</span>
+                      <span class="card-suit">&clubs;</span>
+                    </div>
+                    <div class="card-corner card-corner--br">
+                      <span class="card-rank">A</span>
+                      <span class="card-suit">&clubs;</span>
+                    </div>
+                    <div class="card-front-content">
+                      <div class="card-front-header">
+                        <span class="card-badge">EXECUTIVE PATRON</span>
+                        <h3 class="card-title">VIP Concierge</h3>
+                        <p class="card-subtitle">Dr. Alessandra Rossi &bull; Milan</p>
+                      </div>
+                      <p class="card-desc">
+                        &ldquo;From arranging our private tarmac chauffeur transfer to orchestrating a bespoke private dinner on our terrace with 2 hours notice, the ONYX Concierge liaisons operate with unmatched elegance.&rdquo;
+                      </p>
+                      <ul class="card-specs">
+                        <li><strong>Rating:</strong> &#9733;&#9733;&#9733;&#9733;&#9733; 5.0 / 5.0</li>
+                        <li><strong>Service:</strong> Private Arrival Liaison</li>
+                        <li><strong>Highlight:</strong> Maybach Tarmac Chauffeur</li>
+                        <li><strong>Standard:</strong> 24/7 Dedicated Guild Butler</li>
+                      </ul>
+                      <div class="card-actions">
+                        <button type="button" class="card-reserve-btn" data-suite-idx="3" aria-label="Inspect reflection for VIP Concierge">
+                          <span>Inspect Review &rarr;</span>
+                        </button>
+                        <button type="button" class="card-return-btn" aria-label="Return VIP Concierge to Deck">
+                          <span>&larr; Return to Stack</span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <!-- Middle Dealer Flow Indicator -->
+          <div class="suite-deck__divider" aria-hidden="true">
+            <div class="suite-deck__deal-line"></div>
+            <div class="suite-deck__deal-badge">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Right Zone: Dealt Mat -->
+          <div class="suite-deck__zone suite-deck__zone--mat">
+            <div class="suite-deck__zone-label">
+              <span class="suite-deck__zone-tag">DEALER'S MAT &bull; DEALT STACK</span>
+              <span class="suite-deck__zone-hint">&larr; Click top card to return</span>
+            </div>
+            <div class="suite-deck__dealt-mat" id="suiteDealtMat" role="region" aria-label="Dealt Card Area">
+              <div class="suite-deck__mat-placeholder">
+                <div class="suite-deck__mat-crest">&spades;</div>
+                <h4>Dealer's Table Mat</h4>
+                <p>Click reflections from the deck on the left to flip and deal on the table.</p>
+                <span class="suite-deck__mat-btn-hint">Tap left card to deal</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="suite-deck__footer">
+          <div class="suite-deck__live-status" id="suiteDeckStatus" aria-live="polite">
+            Ready to deal. Select guest reflections from the deck to stack on the table.
+          </div>
+          <a class="button button--secondary" href="reserve.html">
+            Reserve Your Experience &rarr;
+          </a>
+        </div>
+      </section>
+
+      <!-- Suite / Reflection Zoom Front View Showcase Modal -->
+      <div class="suite-zoom-modal" id="suiteZoomModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="zoomSuiteTitle">
+        <div class="suite-zoom-modal__backdrop" id="suiteZoomBackdrop"></div>
+        <div class="suite-zoom-modal__dialog">
+          <button type="button" class="suite-zoom-modal__close" id="suiteZoomClose" aria-label="Close reflection showcase" title="Close (Esc)">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+
+          <div class="suite-zoom-card">
+            <!-- Header -->
+            <div class="suite-zoom-header">
+              <div class="suite-zoom-badge">
+                <span class="suite-zoom-suit" id="zoomSuiteSuit">&spades;</span>
+                <span class="suite-zoom-tier" id="zoomSuiteTier">KING &bull; THE RESIDENCES</span>
+              </div>
+              <h2 class="suite-zoom-title" id="zoomSuiteTitle">The Residences</h2>
+              <p class="suite-zoom-subtitle" id="zoomSuiteSubtitle">Evelyn &amp; Julian Vance &bull; London</p>
+            </div>
+
+            <!-- Main Body Grid -->
+            <div class="suite-zoom-body">
+              <!-- Left: Media Viewport & Gallery -->
+              <div class="suite-zoom-media">
+                <div class="suite-zoom-viewport">
+                  <img src="assets/suites/chairman-1.jpg" alt="The Residences Experience" class="suite-zoom-img" id="zoomMainImg" />
+                  <video class="suite-zoom-video" id="zoomMainVideo" controls loop playsinline preload="metadata" style="display: none;">
+                    <source src="assets/suites/suite-preview.mp4" type="video/mp4" />
+                    Your browser does not support HTML5 video.
+                  </video>
+                  <div class="suite-zoom-media-badge" id="zoomMediaCaption">Chairman Penthouse Living Terrace</div>
+                </div>
+
+                <!-- Thumbnails Tabs -->
+                <div class="suite-zoom-thumbs" id="zoomThumbs"></div>
+              </div>
+
+              <!-- Right: Detailed Specifications & Reservation Band -->
+              <div class="suite-zoom-details">
+                <div class="suite-zoom-desc" id="zoomSuiteDesc">
+                  &ldquo;The Chairman&rsquo;s Residence is the epitome of quiet luxury. The private terrace at dusk, the butler service that anticipated our arrival, and the acoustic stillness made this our favorite sanctuary.&rdquo;
+                </div>
+
+                <div class="suite-zoom-specs">
+                  <div class="zoom-spec-item">
+                    <span class="zoom-spec-label">Overall Rating</span>
+                    <strong class="zoom-spec-val" id="zoomSpecArea">&#9733;&#9733;&#9733;&#9733;&#9733; 5.0 / 5.0</strong>
+                  </div>
+                  <div class="zoom-spec-item">
+                    <span class="zoom-spec-label">Experience Area</span>
+                    <strong class="zoom-spec-val" id="zoomSpecBed">Chairman's Penthouse</strong>
+                  </div>
+                  <div class="zoom-spec-item">
+                    <span class="zoom-spec-label">Key Highlight</span>
+                    <strong class="zoom-spec-val" id="zoomSpecBath">STC 62 Acoustic Stillness</strong>
+                  </div>
+                  <div class="zoom-spec-item">
+                    <span class="zoom-spec-label">Service Standard</span>
+                    <strong class="zoom-spec-val" id="zoomSpecService">Dedicated Guild Butler</strong>
+                  </div>
+                </div>
+
+                <div class="suite-zoom-inclusions">
+                  <span class="zoom-tag">&#10003; 100% Verified Guest Review</span>
+                  <span class="zoom-tag">&#10003; 5-Star Hospitality Standard</span>
+                  <span class="zoom-tag">&#10003; 99.4% Privacy &amp; Discretion Score</span>
+                  <span class="zoom-tag">&#10003; Executive Patron Acclaim</span>
+                </div>
+
+                <div class="suite-zoom-rate-band">
+                  <div>
+                    <span class="zoom-rate-label">Verified Guest Acclaim</span>
+                    <div class="zoom-rate-amount" id="zoomSuiteRate">&#9733;&#9733;&#9733;&#9733;&#9733; 5.0 Score</div>
+                  </div>
+                  <a href="stay.html" class="button button--primary suite-zoom-reserve-btn" id="zoomReserveLink">
+                    Explore Experience &rarr;
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Last Section: Responsible Gaming Section -->
+      <section class="compliance-band" id="responsible" aria-labelledby="responsibleTitle">
+        <div>
+          <p class="eyebrow">Responsible gaming</p>
+          <h2 id="responsibleTitle">Hospitality first. Player protection always.</h2>
+          <p>
+            ONYX presents gaming information carefully: no prize promises, no pressure
+            language, no minors, no gambling-equipment visuals, and no suggestion that gaming
+            is a source of income or financial stability.
+          </p>
+          <div style="margin-top: 24px;">
+            <a class="button button--ghost" href="responsible.html">Full Responsible Gaming Policy &rarr;</a>
+          </div>
+        </div>
+        <div class="compliance-list" role="list" aria-label="Responsible gaming safeguards">
+          <div role="listitem">
+            <span>01</span>
+            <p>Gaming areas are for verified guests 21 years old and above only.</p>
+          </div>
+          <div role="listitem">
+            <span>02</span>
+            <p>Restricted-person and self-exclusion checks should be part of venue access.</p>
+          </div>
+          <div role="listitem">
+            <span>03</span>
+            <p>KYC, anti-money laundering, and gaming monitoring requirements are treated as core operations.</p>
+          </div>
+          <div role="listitem">
+            <span>04</span>
+            <p>NPGH support information remains visible for guests and families who need help.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <a class="brand brand--footer" href="index.html">
+          <img src="assets/onyx-logo.png" alt="ONYX logo" />
+          <span>
+            <strong>ONYX</strong>
+            <small>Resort Hotel & Gaming</small>
+          </span>
+        </a>
+        <p>
+          License numbers, property registration details, and required regulatory seals should
+          be inserted after formal review and approval.
+        </p>
+      </div>
+      <div class="footer-links">
+        <a href="stay.html">Stay &amp; Suites</a>
+        <a href="dining.html">Dining &amp; Lounges</a>
+        <a href="casino.html">Regulated Gaming</a>
+        <a href="events.html">Meetings &amp; Events</a>
+        <a href="responsible.html">Responsible Gaming</a>
+        <a href="reserve.html">Reserve Your Stay</a>
+        <a href="https://www.pagcor.ph/regulatory/">PAGCOR Regulatory</a>
+        <a href="https://www.NPGH.ph">National Problem Gambling Helpline</a>
+      </div>
+      <p class="footer-notice">
+        Gaming for 21 years old and above only. Gambling can be addictive. Know when to stop.
+        NPGH Hotline: (02) 8248-9568.
+      </p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

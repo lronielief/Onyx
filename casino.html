@@ -1,0 +1,532 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="The regulated gaming salon at ONYX. Sophisticated table games, electronic salons, and Salon Privé for verified guests 21 and above."
+    />
+    <title>Regulated Gaming Salon | ONYX Resort Hotel & Gaming</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="responsible-strip" aria-label="Responsible gaming notice">
+      <span>Gaming for guests 21 years old and above only</span>
+      <span>Gambling can be addictive. Know when to stop.</span>
+      <a href="https://www.NPGH.ph">NPGH: (02) 8248-9568</a>
+    </div>
+
+    <header class="site-header" id="top">
+      <a class="brand" href="index.html" aria-label="ONYX home">
+        <img src="assets/onyx-logo.png" alt="ONYX logo" />
+        <span>
+          <strong>ONYX</strong>
+          <small>Resort Hotel & Gaming</small>
+        </span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="siteNav">
+        Menu
+      </button>
+      <nav class="site-nav" id="siteNav" aria-label="Main navigation">
+        <a href="stay.html">Stay</a>
+        <a href="dining.html">Dining</a>
+        <a class="is-active" href="casino.html">Gaming</a>
+        <a href="events.html">Events</a>
+        <a href="responsible.html">Responsible Gaming</a>
+      </nav>
+      <a class="header-action" href="reserve.html">Reserve</a>
+    </header>
+
+    <main>
+      <!-- SECTION 1: Top Hero Slideshow & PAGCOR Regulations -->
+      <section class="gaming-hero-slideshow stay-ad-slideshow" id="gamingAdSlideshow" aria-label="ONYX Regulated Gaming Showcase">
+        <div class="ad-slideshow__viewport">
+          <!-- Slide 1: The Grand Gaming Floor -->
+          <div class="ad-slide is-active" data-index="0" data-type="photo">
+            <img class="ad-slide__media ad-slide__img" src="assets/gaming/grand-floor.jpg" alt="The Grand Gaming Floor at ONYX" />
+            <div class="ad-slide__glow"></div>
+          </div>
+
+          <!-- Slide 2: Salon Privé -->
+          <div class="ad-slide" data-index="1" data-type="photo">
+            <img class="ad-slide__media ad-slide__img" src="assets/gaming/salon-prive.jpg" alt="Salon Privé Baccarat Salon" />
+            <div class="ad-slide__glow"></div>
+          </div>
+
+          <!-- Slide 3: European Single-Zero Roulette Chamber -->
+          <div class="ad-slide" data-index="2" data-type="photo">
+            <img class="ad-slide__media ad-slide__img" src="assets/gaming/roulette-chamber.jpg" alt="European Single-Zero Roulette Chamber" />
+            <div class="ad-slide__glow"></div>
+          </div>
+
+          <!-- Slide 4: Electronic Gaming Pavilion -->
+          <div class="ad-slide" data-index="3" data-type="photo">
+            <img class="ad-slide__media ad-slide__img" src="assets/gaming/etg-pavilion.jpg" alt="Electronic Gaming &amp; Table Terminals" />
+            <div class="ad-slide__glow"></div>
+          </div>
+
+          <!-- Slide 5: Private VIP Cashier & Reception -->
+          <div class="ad-slide" data-index="4" data-type="photo">
+            <img class="ad-slide__media ad-slide__img" src="assets/gaming/vip-cashier.jpg" alt="Private VIP Cashier &amp; Reception" />
+            <div class="ad-slide__glow"></div>
+          </div>
+
+          <!-- Slide 6: Patrons Skyline Veranda -->
+          <div class="ad-slide" data-index="5" data-type="photo">
+            <img class="ad-slide__media ad-slide__img" src="assets/gaming/cigar-veranda.jpg" alt="Patrons Skyline Veranda &amp; Lounge" />
+            <div class="ad-slide__glow"></div>
+          </div>
+        </div>
+
+        <!-- Slideshow Progress & Navigation -->
+        <div class="ad-slideshow__nav" aria-label="Slideshow progress">
+          <div class="ad-progress-bar">
+            <div class="ad-progress-fill" id="gamingProgressFill"></div>
+          </div>
+          <div class="ad-slide-indicators" id="gamingIndicators">
+            <button type="button" class="ad-indicator is-active" data-slide="0" aria-label="Slide 1: Grand Gaming Floor"></button>
+            <button type="button" class="ad-indicator" data-slide="1" aria-label="Slide 2: Salon Privé"></button>
+            <button type="button" class="ad-indicator" data-slide="2" aria-label="Slide 3: Roulette Chamber"></button>
+            <button type="button" class="ad-indicator" data-slide="3" aria-label="Slide 4: Electronic Gaming"></button>
+            <button type="button" class="ad-indicator" data-slide="4" aria-label="Slide 5: VIP Reception"></button>
+            <button type="button" class="ad-indicator" data-slide="5" aria-label="Slide 6: Skyline Veranda"></button>
+          </div>
+        </div>
+
+        <button type="button" class="ad-nav-paddle ad-nav-paddle--prev" id="gamingPaddlePrev" aria-label="Previous slide">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
+        <button type="button" class="ad-nav-paddle ad-nav-paddle--next" id="gamingPaddleNext" aria-label="Next slide">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+      </section>
+
+      <!-- PAGCOR Regulatory Compliance & Player Safeguards Band (Zero penalties / 100% Compliant) -->
+      <section class="gaming-regulation-bar" aria-labelledby="gamingRegHeading">
+        <div class="gaming-regulation-inner">
+          <div class="gaming-reg-header">
+            <div class="gaming-reg-badge">
+              <span class="reg-21-badge">21+</span>
+              <div>
+                <strong id="gamingRegHeading">PAGCOR Regulated Gaming Environment</strong>
+                <small>Hospitality First &bull; Player Protection Always &bull; Know When To Stop</small>
+              </div>
+            </div>
+            <div class="gaming-reg-hotline">
+              <span>National Problem Gambling Helpline (NPGH):</span>
+              <a href="tel:+63282489568" class="hotline-btn">&#9742; (02) 8248-9568</a>
+            </div>
+          </div>
+
+          <div class="gaming-safeguards-grid">
+            <div class="safeguard-item">
+              <span class="safeguard-num">01</span>
+              <div>
+                <h4>Age Verification (Strictly 21+)</h4>
+                <p>Valid government-issued photo ID required. Minors and barred individuals are strictly prohibited from entering.</p>
+              </div>
+            </div>
+            <div class="safeguard-item">
+              <span class="safeguard-num">02</span>
+              <div>
+                <h4>Certified Fair Gaming</h4>
+                <p>All roulette wheels, shufflers, and digital RNG systems are audited and certified under PAGCOR standards.</p>
+              </div>
+            </div>
+            <div class="safeguard-item">
+              <span class="safeguard-num">03</span>
+              <div>
+                <h4>Voluntary Safeguards &amp; Limits</h4>
+                <p>Proactive self-exclusion, reality-check time breaks, and zero credit extension to protect guests.</p>
+              </div>
+            </div>
+            <div class="safeguard-item">
+              <span class="safeguard-num">04</span>
+              <div>
+                <h4>Discreet Professional Care</h4>
+                <p>Dedicated patron liaisons trained in responsible gaming intervention and helpline referrals.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 2: Photos of the Areas -->
+      <section class="section gaming-areas-section" id="areas" aria-labelledby="gamingAreasHeading">
+        <div class="section__header">
+          <h2 id="gamingAreasHeading">The Areas</h2>
+          <p class="gaming-areas-intro">
+            A composed visual look into the private salons, classic gaming tables, and patron retreats at ONYX. Click any photo to expand.
+          </p>
+        </div>
+
+        <div class="gaming-areas-grid">
+          <!-- Area 1: Salon Privé -->
+          <article class="gaming-area-card" tabindex="0" role="button" aria-label="View Salon Privé high-resolution photo" data-full-src="assets/gaming/salon-prive.jpg" data-title="Salon Privé" data-sub="High-Limit Baccarat &bull; VIP Suites">
+            <div class="gaming-area-card__media">
+              <img class="gaming-area-card__img" src="assets/gaming/salon-prive.jpg" alt="Salon Privé Private High-Limit Baccarat" loading="lazy" />
+              <span class="gaming-area-card__zoom-badge">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg>
+                Expand
+              </span>
+            </div>
+            <div class="gaming-area-card__info">
+              <h3 class="gaming-area-card__title">Salon Privé</h3>
+              <p class="gaming-area-card__sub">High-Limit Baccarat &bull; VIP Suites</p>
+            </div>
+          </article>
+
+          <!-- Area 2: European Roulette Chamber -->
+          <article class="gaming-area-card" tabindex="0" role="button" aria-label="View European Roulette Chamber high-resolution photo" data-full-src="assets/gaming/roulette-chamber.jpg" data-title="Roulette Chamber" data-sub="European Single-Zero &bull; Mahogany Wheel">
+            <div class="gaming-area-card__media">
+              <img class="gaming-area-card__img" src="assets/gaming/roulette-chamber.jpg" alt="European Single-Zero Roulette Chamber" loading="lazy" />
+              <span class="gaming-area-card__zoom-badge">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg>
+                Expand
+              </span>
+            </div>
+            <div class="gaming-area-card__info">
+              <h3 class="gaming-area-card__title">Roulette Chamber</h3>
+              <p class="gaming-area-card__sub">European Single-Zero &bull; Mahogany Wheel</p>
+            </div>
+          </article>
+
+          <!-- Area 3: Electronic Gaming Pavilion -->
+          <article class="gaming-area-card" tabindex="0" role="button" aria-label="View Electronic Gaming Pavilion high-resolution photo" data-full-src="assets/gaming/etg-pavilion.jpg" data-title="Electronic Pavilion" data-sub="Multi-Terminal ETG &bull; Touchscreen Reels">
+            <div class="gaming-area-card__media">
+              <img class="gaming-area-card__img" src="assets/gaming/etg-pavilion.jpg" alt="Electronic Gaming Pavilion and ETG Terminals" loading="lazy" />
+              <span class="gaming-area-card__zoom-badge">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg>
+                Expand
+              </span>
+            </div>
+            <div class="gaming-area-card__info">
+              <h3 class="gaming-area-card__title">Electronic Pavilion</h3>
+              <p class="gaming-area-card__sub">Multi-Terminal ETG &bull; Touchscreen Reels</p>
+            </div>
+          </article>
+
+          <!-- Area 4: The Grand Gaming Floor -->
+          <article class="gaming-area-card" tabindex="0" role="button" aria-label="View The Grand Gaming Floor high-resolution photo" data-full-src="assets/gaming/grand-floor.jpg" data-title="The Grand Floor" data-sub="Baccarat, Blackjack &bull; 24/7 Table Gaming">
+            <div class="gaming-area-card__media">
+              <img class="gaming-area-card__img" src="assets/gaming/grand-floor.jpg" alt="The Grand Gaming Floor Table Games" loading="lazy" />
+              <span class="gaming-area-card__zoom-badge">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg>
+                Expand
+              </span>
+            </div>
+            <div class="gaming-area-card__info">
+              <h3 class="gaming-area-card__title">The Grand Floor</h3>
+              <p class="gaming-area-card__sub">Baccarat, Blackjack &bull; 24/7 Table Gaming</p>
+            </div>
+          </article>
+
+          <!-- Area 5: Private VIP Cashier & Services -->
+          <article class="gaming-area-card" tabindex="0" role="button" aria-label="View VIP Cashier and Reception Lounge high-resolution photo" data-full-src="assets/gaming/vip-cashier.jpg" data-title="VIP Reception &amp; Cashier" data-sub="Discreet Transactions &bull; Dedicated Liaison">
+            <div class="gaming-area-card__media">
+              <img class="gaming-area-card__img" src="assets/gaming/vip-cashier.jpg" alt="Discreet VIP Cashier and Reception Lounge" loading="lazy" />
+              <span class="gaming-area-card__zoom-badge">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg>
+                Expand
+              </span>
+            </div>
+            <div class="gaming-area-card__info">
+              <h3 class="gaming-area-card__title">VIP Reception &amp; Cashier</h3>
+              <p class="gaming-area-card__sub">Discreet Transactions &bull; Dedicated Liaison</p>
+            </div>
+          </article>
+
+          <!-- Area 6: Skyline Cigar & Patron Veranda -->
+          <article class="gaming-area-card" tabindex="0" role="button" aria-label="View Skyline Cigar and Patron Veranda high-resolution photo" data-full-src="assets/gaming/cigar-veranda.jpg" data-title="Skyline Veranda" data-sub="Patron Open-Air Lounge &bull; Sunset Vistas">
+            <div class="gaming-area-card__media">
+              <img class="gaming-area-card__img" src="assets/gaming/cigar-veranda.jpg" alt="Skyline Cigar &amp; Patron Veranda Lounge" loading="lazy" />
+              <span class="gaming-area-card__zoom-badge">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg>
+                Expand
+              </span>
+            </div>
+            <div class="gaming-area-card__info">
+              <h3 class="gaming-area-card__title">Skyline Veranda</h3>
+              <p class="gaming-area-card__sub">Patron Open-Air Lounge &bull; Sunset Vistas</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- SECTION 3: The Games & Certified Technology Providers -->
+      <section class="section gaming-brands-section" id="games" aria-labelledby="gamingBrandsHeading">
+        <div class="section__header">
+          <p class="eyebrow">Games &amp; Certified Systems</p>
+          <h2 id="gamingBrandsHeading">Featured Games &amp; Manufacturers</h2>
+          <p class="gaming-brands-intro">
+            World-class electronic table game platforms, automated roulette systems, and iconic Asian progressive titles certified under PAGCOR standards.
+          </p>
+        </div>
+
+        <!-- Horizontal Moving Logo Marquee (One Line, Moving) -->
+        <div class="gaming-marquee-container" aria-label="Certified Game Manufacturers and Platform Partners">
+          <div class="gaming-marquee-track">
+            <!-- Group 1 -->
+            <div class="gaming-marquee-group">
+              <!-- 1. Game Radar -->
+              <div class="gaming-marquee-card">
+                <div class="gaming-marquee-logo-box">
+                  <img src="assets/logos/game-radar.svg" alt="Game Radar logo" class="gaming-marquee-logo-img" />
+                </div>
+                <h3 class="gaming-marquee-name">Game Radar</h3>
+                <span class="gaming-marquee-tag">Terminal Systems</span>
+              </div>
+
+              <!-- 2. Interblock -->
+              <div class="gaming-marquee-card">
+                <div class="gaming-marquee-logo-box">
+                  <img src="assets/logos/interblock.png" alt="Interblock Gaming logo" class="gaming-marquee-logo-img" />
+                </div>
+                <h3 class="gaming-marquee-name">Interblock</h3>
+                <span class="gaming-marquee-tag">Luxury ETG Tables</span>
+              </div>
+
+              <!-- 3. LT Game -->
+              <div class="gaming-marquee-card">
+                <div class="gaming-marquee-logo-box">
+                  <img src="assets/logos/lt-game.png" alt="LT Game logo" class="gaming-marquee-logo-img" />
+                </div>
+                <h3 class="gaming-marquee-name">LT Game</h3>
+                <span class="gaming-marquee-tag">Live Multi-Game</span>
+              </div>
+
+              <!-- 4. FaFaFa -->
+              <div class="gaming-marquee-card">
+                <div class="gaming-marquee-logo-box">
+                  <img src="assets/logos/fafafa.png" alt="FaFaFa Slots logo" class="gaming-marquee-logo-img" />
+                </div>
+                <h3 class="gaming-marquee-name">FaFaFa&trade;</h3>
+                <span class="gaming-marquee-tag">Progressive Reels</span>
+              </div>
+
+              <!-- 5. Aristocrat Gaming -->
+              <div class="gaming-marquee-card">
+                <div class="gaming-marquee-logo-box">
+                  <img src="assets/logos/aristocrat.svg" alt="Aristocrat Leisure logo" class="gaming-marquee-logo-img" />
+                </div>
+                <h3 class="gaming-marquee-name">Aristocrat</h3>
+                <span class="gaming-marquee-tag">Verified Platform</span>
+              </div>
+
+              <!-- 6. Light & Wonder -->
+              <div class="gaming-marquee-card">
+                <div class="gaming-marquee-logo-box">
+                  <img src="assets/logos/light-and-wonder.svg" alt="Light & Wonder logo" class="gaming-marquee-logo-img" />
+                </div>
+                <h3 class="gaming-marquee-name">Light &amp; Wonder</h3>
+                <span class="gaming-marquee-tag">Global Certified</span>
+              </div>
+
+              <!-- 7. IGT -->
+              <div class="gaming-marquee-card">
+                <div class="gaming-marquee-logo-box">
+                  <img src="assets/logos/igt.png" alt="International Game Technology IGT logo" class="gaming-marquee-logo-img" />
+                </div>
+                <h3 class="gaming-marquee-name">IGT</h3>
+                <span class="gaming-marquee-tag">Certified Hardware</span>
+              </div>
+
+              <!-- 8. Konami Gaming -->
+              <div class="gaming-marquee-card">
+                <div class="gaming-marquee-logo-box">
+                  <img src="assets/logos/konami.svg" alt="Konami Gaming logo" class="gaming-marquee-logo-img" />
+                </div>
+                <h3 class="gaming-marquee-name">Konami</h3>
+                <span class="gaming-marquee-tag">Certified Systems</span>
+              </div>
+
+              <!-- 9. Novomatic -->
+              <div class="gaming-marquee-card">
+                <div class="gaming-marquee-logo-box">
+                  <img src="assets/logos/novomatic.png" alt="Novomatic logo" class="gaming-marquee-logo-img" />
+                </div>
+                <h3 class="gaming-marquee-name">Novomatic</h3>
+                <span class="gaming-marquee-tag">European Standard</span>
+              </div>
+
+              <!-- 10. Aruze Gaming -->
+              <div class="gaming-marquee-card">
+                <div class="gaming-marquee-logo-box">
+                  <img src="assets/logos/aruze.png" alt="Aruze Gaming logo" class="gaming-marquee-logo-img" />
+                </div>
+                <h3 class="gaming-marquee-name">Aruze Gaming</h3>
+                <span class="gaming-marquee-tag">GLI Certified</span>
+              </div>
+            </div>
+
+            <!-- Group 2 (Identical duplicate for seamless continuous infinite marquee loop) -->
+            <div class="gaming-marquee-group" aria-hidden="true">
+              <!-- 1. Game Radar -->
+              <div class="gaming-marquee-card">
+                <div class="gaming-marquee-logo-box">
+                  <img src="assets/logos/game-radar.svg" alt="Game Radar logo" class="gaming-marquee-logo-img" />
+                </div>
+                <h3 class="gaming-marquee-name">Game Radar</h3>
+                <span class="gaming-marquee-tag">Terminal Systems</span>
+              </div>
+
+              <!-- 2. Interblock -->
+              <div class="gaming-marquee-card">
+                <div class="gaming-marquee-logo-box">
+                  <img src="assets/logos/interblock.png" alt="Interblock Gaming logo" class="gaming-marquee-logo-img" />
+                </div>
+                <h3 class="gaming-marquee-name">Interblock</h3>
+                <span class="gaming-marquee-tag">Luxury ETG Tables</span>
+              </div>
+
+              <!-- 3. LT Game -->
+              <div class="gaming-marquee-card">
+                <div class="gaming-marquee-logo-box">
+                  <img src="assets/logos/lt-game.png" alt="LT Game logo" class="gaming-marquee-logo-img" />
+                </div>
+                <h3 class="gaming-marquee-name">LT Game</h3>
+                <span class="gaming-marquee-tag">Live Multi-Game</span>
+              </div>
+
+              <!-- 4. FaFaFa -->
+              <div class="gaming-marquee-card">
+                <div class="gaming-marquee-logo-box">
+                  <img src="assets/logos/fafafa.png" alt="FaFaFa Slots logo" class="gaming-marquee-logo-img" />
+                </div>
+                <h3 class="gaming-marquee-name">FaFaFa&trade;</h3>
+                <span class="gaming-marquee-tag">Progressive Reels</span>
+              </div>
+
+              <!-- 5. Aristocrat Gaming -->
+              <div class="gaming-marquee-card">
+                <div class="gaming-marquee-logo-box">
+                  <img src="assets/logos/aristocrat.svg" alt="Aristocrat Leisure logo" class="gaming-marquee-logo-img" />
+                </div>
+                <h3 class="gaming-marquee-name">Aristocrat</h3>
+                <span class="gaming-marquee-tag">Verified Platform</span>
+              </div>
+
+              <!-- 6. Light & Wonder -->
+              <div class="gaming-marquee-card">
+                <div class="gaming-marquee-logo-box">
+                  <img src="assets/logos/light-and-wonder.svg" alt="Light & Wonder logo" class="gaming-marquee-logo-img" />
+                </div>
+                <h3 class="gaming-marquee-name">Light &amp; Wonder</h3>
+                <span class="gaming-marquee-tag">Global Certified</span>
+              </div>
+
+              <!-- 7. IGT -->
+              <div class="gaming-marquee-card">
+                <div class="gaming-marquee-logo-box">
+                  <img src="assets/logos/igt.png" alt="International Game Technology IGT logo" class="gaming-marquee-logo-img" />
+                </div>
+                <h3 class="gaming-marquee-name">IGT</h3>
+                <span class="gaming-marquee-tag">Certified Hardware</span>
+              </div>
+
+              <!-- 8. Konami Gaming -->
+              <div class="gaming-marquee-card">
+                <div class="gaming-marquee-logo-box">
+                  <img src="assets/logos/konami.svg" alt="Konami Gaming logo" class="gaming-marquee-logo-img" />
+                </div>
+                <h3 class="gaming-marquee-name">Konami</h3>
+                <span class="gaming-marquee-tag">Certified Systems</span>
+              </div>
+
+              <!-- 9. Novomatic -->
+              <div class="gaming-marquee-card">
+                <div class="gaming-marquee-logo-box">
+                  <img src="assets/logos/novomatic.png" alt="Novomatic logo" class="gaming-marquee-logo-img" />
+                </div>
+                <h3 class="gaming-marquee-name">Novomatic</h3>
+                <span class="gaming-marquee-tag">European Standard</span>
+              </div>
+
+              <!-- 10. Aruze Gaming -->
+              <div class="gaming-marquee-card">
+                <div class="gaming-marquee-logo-box">
+                  <img src="assets/logos/aruze.png" alt="Aruze Gaming logo" class="gaming-marquee-logo-img" />
+                </div>
+                <h3 class="gaming-marquee-name">Aruze Gaming</h3>
+                <span class="gaming-marquee-tag">GLI Certified</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Certified Technical Standards Guarantee Banner -->
+        <div class="gaming-standards-banner">
+          <div class="gaming-standards-text">
+            <p>
+              <strong>PAGCOR GLI-11 &amp; GLI-12 Technical Certification:</strong> All electronic gaming terminals, random number generators (RNG), progressive jackpot links, and shufflers deployed across ONYX are manufactured by accredited global suppliers and certified by licensed international testing laboratories under PAGCOR regulatory oversight.
+            </p>
+          </div>
+          <a class="button button--ghost" href="responsible.html" style="font-size: 0.8rem; padding: 10px 18px; white-space: nowrap;">
+            Responsible Gaming Policy &rarr;
+          </a>
+        </div>
+      </section>
+
+      <!-- Area Photo Lightbox Modal -->
+      <div class="gaming-lightbox-modal" id="gamingAreaModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="gamingModalTitle">
+        <div class="gaming-lightbox-modal__backdrop" id="gamingModalBackdrop"></div>
+        <div class="gaming-lightbox-modal__dialog">
+          <button type="button" class="gaming-lightbox-modal__close" id="gamingModalClose" aria-label="Close photo" title="Close (Esc)">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+          <img id="gamingModalImg" src="assets/gaming/salon-prive.jpg" alt="Gaming Area Large View" class="gaming-lightbox-modal__img" />
+          <div class="gaming-lightbox-modal__footer">
+            <h3 class="gaming-lightbox-modal__title" id="gamingModalTitle">Salon Privé</h3>
+            <p class="gaming-lightbox-modal__sub" id="gamingModalSub">High-Limit Baccarat &bull; VIP Suites</p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <a class="brand brand--footer" href="index.html">
+          <img src="assets/onyx-logo.png" alt="ONYX logo" />
+          <span>
+            <strong>ONYX</strong>
+            <small>Resort Hotel & Gaming</small>
+          </span>
+        </a>
+        <p>
+          License numbers, property registration details, and required regulatory seals should
+          be inserted after formal review and approval.
+        </p>
+      </div>
+      <div class="footer-links">
+        <a href="stay.html">Stay &amp; Suites</a>
+        <a href="dining.html">Dining &amp; Lounges</a>
+        <a href="casino.html">Regulated Gaming</a>
+        <a href="events.html">Meetings &amp; Events</a>
+        <a href="responsible.html">Responsible Gaming</a>
+        <a href="reserve.html">Reserve Your Stay</a>
+        <a href="https://www.pagcor.ph/regulatory/">PAGCOR Regulatory</a>
+        <a href="https://www.NPGH.ph">National Problem Gambling Helpline</a>
+      </div>
+      <p class="footer-notice">
+        Gaming for 21 years old and above only. Gambling can be addictive. Know when to stop.
+        NPGH Hotline: (02) 8248-9568.
+      </p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

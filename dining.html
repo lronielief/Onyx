@@ -1,0 +1,831 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Culinary excellence and restoration at ONYX. Explore fine dining restaurants, bespoke cocktail lounges, and private wellness spa rituals."
+    />
+    <title>Dining & Wellness | ONYX Resort Hotel & Gaming</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="responsible-strip" aria-label="Responsible gaming notice">
+      <span>Gaming for guests 21 years old and above only</span>
+      <span>Gambling can be addictive. Know when to stop.</span>
+      <a href="https://www.NPGH.ph">NPGH: (02) 8248-9568</a>
+    </div>
+
+    <header class="site-header" id="top">
+      <a class="brand" href="index.html" aria-label="ONYX home">
+        <img src="assets/onyx-logo.png" alt="ONYX logo" />
+        <span>
+          <strong>ONYX</strong>
+          <small>Resort Hotel & Gaming</small>
+        </span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="siteNav">
+        Menu
+      </button>
+      <nav class="site-nav" id="siteNav" aria-label="Main navigation">
+        <a href="stay.html">Stay</a>
+        <a class="is-active" href="dining.html">Dining</a>
+        <a href="casino.html">Gaming</a>
+        <a href="events.html">Events</a>
+        <a href="responsible.html">Responsible Gaming</a>
+      </nav>
+      <a class="header-action" href="reserve.html">Reserve</a>
+    </header>
+
+    <main>
+      <!-- ONYX Dining Cinema: Pure Looping Food Video (No Text / No Buttons) -->
+      <section class="dining-hero-video" id="diningHeroVideo" aria-label="ONYX Culinary &amp; Food Video Reel">
+        <div class="dining-hero-video__viewport">
+          <video
+            class="dining-hero-video__media"
+            autoplay
+            muted
+            loop
+            playsinline
+            poster="assets/dining/resto-dish.jpg"
+          >
+            <source src="assets/dining/food-loop.mp4" type="video/mp4" />
+            <source src="assets/dining/food-loop.webm" type="video/webm" />
+          </video>
+          <div class="dining-hero-video__glow"></div>
+        </div>
+      </section>
+
+      <!-- TOP SECTION: Whole Luxury Menu Style Folio (BAR, RESTO, HEAVEN VIP) -->
+      <section class="section dining-menu-section" id="diningMenuFolio" aria-labelledby="diningMenuHeading">
+        <div class="section__header" style="margin-bottom: 32px;">
+          <p class="eyebrow">The Culinary Portfolios</p>
+          <h2 id="diningMenuHeading">Curated Menus &bull; BAR, RESTO &amp; HEAVEN</h2>
+          <p class="dining-menu-intro">
+            Select a destination below to open its bespoke menu portfolio &mdash; crafted by master chefs, certified sommeliers, and world-class mixologists.
+          </p>
+        </div>
+
+        <!-- Venue Navigation Switcher Tabs -->
+        <div class="dining-menu-tabs" role="tablist" aria-label="Select Dining Menu">
+          <button
+            type="button"
+            class="dining-menu-tab is-active"
+            data-venue="bar"
+            role="tab"
+            aria-selected="true"
+            aria-controls="menu-bar"
+          >
+            <span class="menu-tab-icon">🍸</span>
+            <div class="menu-tab-text">
+              <strong class="menu-tab-name">BAR</strong>
+              <small class="menu-tab-sub">Cocktails, Malts &amp; Bites</small>
+            </div>
+          </button>
+          <button
+            type="button"
+            class="dining-menu-tab"
+            data-venue="resto"
+            role="tab"
+            aria-selected="false"
+            aria-controls="menu-resto"
+          >
+            <span class="menu-tab-icon">🥩</span>
+            <div class="menu-tab-text">
+              <strong class="menu-tab-name">RESTO</strong>
+              <small class="menu-tab-sub">Prime 54 &amp; Charcoal Grill</small>
+            </div>
+          </button>
+          <button
+            type="button"
+            class="dining-menu-tab"
+            data-venue="heaven"
+            role="tab"
+            aria-selected="false"
+            aria-controls="menu-heaven"
+          >
+            <span class="menu-tab-icon">👑</span>
+            <div class="menu-tab-text">
+              <strong class="menu-tab-name">HEAVEN</strong>
+              <small class="menu-tab-sub">VIP Resto &bull; Degustation</small>
+            </div>
+          </button>
+        </div>
+
+        <!-- The Menu Folio Book Presentation -->
+        <div class="dining-menu-book">
+          <!-- 1. BAR MENU -->
+          <article class="dining-menu-card is-active" id="menu-bar" data-venue="bar" role="tabpanel">
+            <div class="menu-card__border-frame">
+              <div class="menu-card__corner menu-card__corner--tl">&#10022;</div>
+              <div class="menu-card__corner menu-card__corner--tr">&#10022;</div>
+              <div class="menu-card__corner menu-card__corner--bl">&#10022;</div>
+              <div class="menu-card__corner menu-card__corner--br">&#10022;</div>
+
+              <header class="menu-card__header">
+                <div class="menu-card__emblem-wrap">
+                  <img src="assets/onyx-emblem.png" alt="ONYX Emblem" class="menu-card__emblem" />
+                </div>
+                <p class="menu-card__kicker">Destination 01 &bull; Cocktail Salon &amp; Lounge</p>
+                <h3 class="menu-card__title">THE OBSIDIAN BAR</h3>
+                <p class="menu-card__meta">
+                  <span>5:00 PM &ndash; 2:00 AM Daily</span>
+                  <span>&bull;</span>
+                  <span>Live Jazz Nightly</span>
+                  <span>&bull;</span>
+                  <span>Age 21+</span>
+                </p>
+                <div class="menu-divider-filigree"><span>&#9824;</span></div>
+              </header>
+
+              <div class="menu-card__content">
+                <!-- Course / Section 1 -->
+                <div class="menu-section">
+                  <h4 class="menu-section__heading">Signature Bespoke Mixology</h4>
+                  <p class="menu-section__desc">Artisanal infusions, hand-carved crystal ice, and smoked spirits.</p>
+                  
+                  <ul class="menu-items-list">
+                    <li class="menu-item">
+                      <div class="menu-item__header">
+                        <span class="menu-item__name">The Obsidian Smoked Old Fashioned</span>
+                        <span class="menu-item__leader"></span>
+                        <span class="menu-item__price">&#8369;950</span>
+                      </div>
+                      <p class="menu-item__desc">WhistlePig 12yr rye, black walnut bitters, charred applewood smoke, 24k edible gold flake.</p>
+                      <span class="menu-item__tag">Signature</span>
+                    </li>
+                    <li class="menu-item">
+                      <div class="menu-item__header">
+                        <span class="menu-item__name">Velvet Empress</span>
+                        <span class="menu-item__leader"></span>
+                        <span class="menu-item__price">&#8369;880</span>
+                      </div>
+                      <p class="menu-item__desc">Empress 1908 botanical indigo gin, Japanese yuzu cordial, French elderflower liqueur, brut champagne.</p>
+                    </li>
+                    <li class="menu-item">
+                      <div class="menu-item__header">
+                        <span class="menu-item__name">Midnight Truffle Negroni</span>
+                        <span class="menu-item__leader"></span>
+                        <span class="menu-item__price">&#8369;1,100</span>
+                      </div>
+                      <p class="menu-item__desc">Perigord black truffle-infused London dry gin, bitter Campari, Carpano Antica vermouth, orange blossom.</p>
+                      <span class="menu-item__tag">Chef's Selection</span>
+                    </li>
+                    <li class="menu-item">
+                      <div class="menu-item__header">
+                        <span class="menu-item__name">Hokkaido Yuzu &amp; White Peach Highball</span>
+                        <span class="menu-item__leader"></span>
+                        <span class="menu-item__price">&#8369;820</span>
+                      </div>
+                      <p class="menu-item__desc">Hibiki Japanese Harmony, carbonated mountain mineral spring water, fresh Kochi yuzu peel.</p>
+                    </li>
+                  </ul>
+                </div>
+
+                <!-- Course / Section 2 -->
+                <div class="menu-section">
+                  <h4 class="menu-section__heading">Cellar Reserve &bull; Rare Spirits</h4>
+                  <p class="menu-section__desc">Priced per dram (45ml) &bull; Served in hand-blown crystal.</p>
+                  
+                  <ul class="menu-items-list">
+                    <li class="menu-item">
+                      <div class="menu-item__header">
+                        <span class="menu-item__name">The Macallan 25 Year Sherry Oak</span>
+                        <span class="menu-item__leader"></span>
+                        <span class="menu-item__price">&#8369;8,500</span>
+                      </div>
+                      <p class="menu-item__desc">Rich dried fruits, wood smoke, chocolate ginger, and lingering spice.</p>
+                    </li>
+                    <li class="menu-item">
+                      <div class="menu-item__header">
+                        <span class="menu-item__name">Louis XIII de R&eacute;my Martin</span>
+                        <span class="menu-item__leader"></span>
+                        <span class="menu-item__price">&#8369;16,000</span>
+                      </div>
+                      <p class="menu-item__desc">Grande Champagne Premier Cru blend of up to 1,200 eaux-de-vie. Tableside crystal decanter pour.</p>
+                      <span class="menu-item__tag">Ultra Rare</span>
+                    </li>
+                    <li class="menu-item">
+                      <div class="menu-item__header">
+                        <span class="menu-item__name">Yamazaki 18 Year Japanese Single Malt</span>
+                        <span class="menu-item__leader"></span>
+                        <span class="menu-item__price">&#8369;7,200</span>
+                      </div>
+                      <p class="menu-item__desc">Mizunara oak nuances, candied blackberry, and velvety dark chocolate finish.</p>
+                    </li>
+                    <li class="menu-item">
+                      <div class="menu-item__header">
+                        <span class="menu-item__name">Dom P&eacute;rignon Vintage 2013 Brut Champagne</span>
+                        <span class="menu-item__leader"></span>
+                        <span class="menu-item__price">&#8369;24,000</span>
+                      </div>
+                      <p class="menu-item__desc">Bottle (750ml). Ripe stone fruit, toasted brioche, and pristine saline minerality.</p>
+                    </li>
+                  </ul>
+                </div>
+
+                <!-- Course / Section 3 -->
+                <div class="menu-section">
+                  <h4 class="menu-section__heading">Artisanal Bar Bites &bull; Caviar &amp; Tapas</h4>
+                  <p class="menu-section__desc">Gourmet evening accompaniments prepared by the robata kitchen.</p>
+                  
+                  <ul class="menu-items-list">
+                    <li class="menu-item">
+                      <div class="menu-item__header">
+                        <span class="menu-item__name">Gillardeau Sp&eacute;ciales No. 2 Oysters (6 pcs)</span>
+                        <span class="menu-item__leader"></span>
+                        <span class="menu-item__price">&#8369;1,800</span>
+                      </div>
+                      <p class="menu-item__desc">Chilled on sea salt, shallot mignonette, yuzu citrus pearls, Oscietra caviar dollop.</p>
+                      <span class="menu-item__tag">Raw Bar</span>
+                    </li>
+                    <li class="menu-item">
+                      <div class="menu-item__header">
+                        <span class="menu-item__name">A5 Miyazaki Wagyu Brioche Sliders (3 pcs)</span>
+                        <span class="menu-item__leader"></span>
+                        <span class="menu-item__price">&#8369;1,450</span>
+                      </div>
+                      <p class="menu-item__desc">Seared Japanese Wagyu patties, black truffle emulsion, caramelized shallot jam, aged gruy&egrave;re.</p>
+                    </li>
+                    <li class="menu-item">
+                      <div class="menu-item__header">
+                        <span class="menu-item__name">48-Month Jam&oacute;n Ib&eacute;rico de Bellota</span>
+                        <span class="menu-item__leader"></span>
+                        <span class="menu-item__price">&#8369;1,950</span>
+                      </div>
+                      <p class="menu-item__desc">Hand-carved tableside, crispy Catalan pan con tomate, cold-pressed olive oil.</p>
+                    </li>
+                    <li class="menu-item">
+                      <div class="menu-item__header">
+                        <span class="menu-item__name">Triple-Cooked Truffle &amp; Pecorino Fries</span>
+                        <span class="menu-item__leader"></span>
+                        <span class="menu-item__price">&#8369;650</span>
+                      </div>
+                      <p class="menu-item__desc">Hand-cut Russet potatoes, shaved black truffle, 24-month Pecorino Romano, roasted garlic aioli.</p>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <footer class="menu-card__footer">
+                <div class="menu-card__actions">
+                  <a class="button button--primary" href="mailto:dining@onyx.example?subject=Table%20Reservation%20-%20The%20Obsidian%20Bar">Reserve Bar Table</a>
+                  <a class="button button--secondary" href="tel:+63280000000">Direct Line &bull; (02) 8000-0000</a>
+                </div>
+                <p class="menu-card__note">Cocktail seating walk-ins welcomed based on capacity. Lounge banquettes recommend advance reservations.</p>
+              </footer>
+            </div>
+          </article>
+
+          <!-- 2. RESTO MENU -->
+          <article class="dining-menu-card" id="menu-resto" data-venue="resto" role="tabpanel">
+            <div class="menu-card__border-frame">
+              <div class="menu-card__corner menu-card__corner--tl">&#10022;</div>
+              <div class="menu-card__corner menu-card__corner--tr">&#10022;</div>
+              <div class="menu-card__corner menu-card__corner--bl">&#10022;</div>
+              <div class="menu-card__corner menu-card__corner--br">&#10022;</div>
+
+              <header class="menu-card__header">
+                <div class="menu-card__emblem-wrap">
+                  <img src="assets/onyx-emblem.png" alt="ONYX Emblem" class="menu-card__emblem" />
+                </div>
+                <p class="menu-card__kicker">Destination 02 &bull; Flagship Fine Dining</p>
+                <h3 class="menu-card__title">PRIME 54 &bull; CHARCOAL RESTO</h3>
+                <p class="menu-card__meta">
+                  <span>Lunch: 12:00 PM &ndash; 2:30 PM</span>
+                  <span>&bull;</span>
+                  <span>Dinner: 6:00 PM &ndash; 11:30 PM</span>
+                  <span>&bull;</span>
+                  <span>Smart Casual</span>
+                </p>
+                <div class="menu-divider-filigree"><span>&#9824;</span></div>
+              </header>
+
+              <div class="menu-card__content">
+                <!-- Course / Section 1 -->
+                <div class="menu-section">
+                  <h4 class="menu-section__heading">Entr&eacute;es &bull; Raw Bar &amp; Starters</h4>
+                  <p class="menu-section__desc">Delicate oceanic arrivals and classical French-Japanese culinary techniques.</p>
+                  
+                  <ul class="menu-items-list">
+                    <li class="menu-item">
+                      <div class="menu-item__header">
+                        <span class="menu-item__name">Hokkaido Scallop Crudo</span>
+                        <span class="menu-item__leader"></span>
+                        <span class="menu-item__price">&#8369;1,450</span>
+                      </div>
+                      <p class="menu-item__desc">Royal Oscietra caviar, white shoyu ponzu, compressed Granny Smith apple, chive oil.</p>
+                      <span class="menu-item__tag">Raw Bar</span>
+                    </li>
+                    <li class="menu-item">
+                      <div class="menu-item__header">
+                        <span class="menu-item__name">Foie Gras Po&ecirc;l&eacute;</span>
+                        <span class="menu-item__leader"></span>
+                        <span class="menu-item__price">&#8369;1,650</span>
+                      </div>
+                      <p class="menu-item__desc">Pan-seared Rougi&eacute; duck liver, caramelized mission fig, toasted brioche feuillet&eacute;e, vintage port reduction.</p>
+                      <span class="menu-item__tag">Signature</span>
+                    </li>
+                    <li class="menu-item">
+                      <div class="menu-item__header">
+                        <span class="menu-item__name">King Crab &amp; Hass Avocado G&acirc;teau</span>
+                        <span class="menu-item__leader"></span>
+                        <span class="menu-item__price">&#8369;1,550</span>
+                      </div>
+                      <p class="menu-item__desc">Alaskan red king crab meat, layered avocado mousse, yuzu kosho emulsion, micro herbs.</p>
+                    </li>
+                    <li class="menu-item">
+                      <div class="menu-item__header">
+                        <span class="menu-item__name">Bluefin Tuna Otoro Tartare</span>
+                        <span class="menu-item__leader"></span>
+                        <span class="menu-item__price">&#8369;1,380</span>
+                      </div>
+                      <p class="menu-item__desc">Fatty tuna belly, smoked dashi gelee, pickled daikon radish, crispy seaweed tuile.</p>
+                    </li>
+                  </ul>
+                </div>
+
+                <!-- Course / Section 2 -->
+                <div class="menu-section">
+                  <h4 class="menu-section__heading">Prime Heritage Cuts &bull; Binchotan Grill</h4>
+                  <p class="menu-section__desc">Seared over white Japanese charcoal for unmatched smoky caramelization.</p>
+                  
+                  <ul class="menu-items-list">
+                    <li class="menu-item">
+                      <div class="menu-item__header">
+                        <span class="menu-item__name">Miyazaki A5 Wagyu Tenderloin (200g)</span>
+                        <span class="menu-item__leader"></span>
+                        <span class="menu-item__price">&#8369;6,800</span>
+                      </div>
+                      <p class="menu-item__desc">Highest BMS 11 grade, binchotan sear, freshly grated Shizuoka wasabi, black garlic beef jus.</p>
+                      <span class="menu-item__tag">Chef's Pick</span>
+                    </li>
+                    <li class="menu-item">
+                      <div class="menu-item__header">
+                        <span class="menu-item__name">45-Day Dry-Aged Prime Tomahawk (1.2kg)</span>
+                        <span class="menu-item__leader"></span>
+                        <span class="menu-item__price">&#8369;9,500</span>
+                      </div>
+                      <p class="menu-item__desc">Heritage Angus ribeye carved tableside, smoked roasted marrow bone, vintage green peppercorn bordelaise.</p>
+                      <span class="menu-item__tag">Serves 2-3</span>
+                    </li>
+                    <li class="menu-item">
+                      <div class="menu-item__header">
+                        <span class="menu-item__name">Glac&eacute; Chilean Glacier Sea Bass</span>
+                        <span class="menu-item__leader"></span>
+                        <span class="menu-item__price">&#8369;3,200</span>
+                      </div>
+                      <p class="menu-item__desc">Sweet saikyo miso marinade, charred baby bok choy, dashi bouillon, ginger threads.</p>
+                    </li>
+                    <li class="menu-item">
+                      <div class="menu-item__header">
+                        <span class="menu-item__name">Roasted French Challans Duck Breast</span>
+                        <span class="menu-item__leader"></span>
+                        <span class="menu-item__price">&#8369;2,450</span>
+                      </div>
+                      <p class="menu-item__desc">Crispy skin, spiced damson plum reduction, silky parsnip mousseline, duck crackling.</p>
+                    </li>
+                  </ul>
+                </div>
+
+                <!-- Course / Section 3 -->
+                <div class="menu-section">
+                  <h4 class="menu-section__heading">Accompaniments &amp; Patisserie</h4>
+                  <p class="menu-section__desc">Refined tableside sides and dessert finales.</p>
+                  
+                  <ul class="menu-items-list">
+                    <li class="menu-item">
+                      <div class="menu-item__header">
+                        <span class="menu-item__name">Robuchon-Style Potato Mousseline</span>
+                        <span class="menu-item__leader"></span>
+                        <span class="menu-item__price">&#8369;580</span>
+                      </div>
+                      <p class="menu-item__desc">Whipped Ratte potatoes, French cultured butter, Fleur de Sel de Gu&eacute;rande.</p>
+                    </li>
+                    <li class="menu-item">
+                      <div class="menu-item__header">
+                        <span class="menu-item__name">Robata Charred Asparagus with Truffle Butter</span>
+                        <span class="menu-item__leader"></span>
+                        <span class="menu-item__price">&#8369;620</span>
+                      </div>
+                      <p class="menu-item__desc">Jumbo green spears, black truffle compound butter, cured egg yolk shavings.</p>
+                    </li>
+                    <li class="menu-item">
+                      <div class="menu-item__header">
+                        <span class="menu-item__name">Valrhona Guanaja 70% Dark Chocolate Sphere</span>
+                        <span class="menu-item__leader"></span>
+                        <span class="menu-item__price">&#8369;850</span>
+                      </div>
+                      <p class="menu-item__desc">Flamb&eacute;ed tableside with warm smoked vanilla bean ganache over salted butter caramel gelato.</p>
+                      <span class="menu-item__tag">Signature</span>
+                    </li>
+                    <li class="menu-item">
+                      <div class="menu-item__header">
+                        <span class="menu-item__name">Kintsugi Gold Leaf Grand Marnier Souffl&eacute;</span>
+                        <span class="menu-item__leader"></span>
+                        <span class="menu-item__price">&#8369;920</span>
+                      </div>
+                      <p class="menu-item__desc">Light baked souffl&eacute;, edible 24k gold leaf gilding, blood orange sorbet, vanilla Anglaise.</p>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <footer class="menu-card__footer">
+                <div class="menu-card__actions">
+                  <a class="button button--primary" href="mailto:dining@onyx.example?subject=Table%20Reservation%20-%20Prime%2054%20Resto">Reserve Resto Table</a>
+                  <a class="button button--secondary" href="tel:+63280000000">Table Bookings &bull; (02) 8000-0000</a>
+                </div>
+                <p class="menu-card__note">Private dining rooms available for 8 to 18 guests. Advance booking recommended for dinner seatings.</p>
+              </footer>
+            </div>
+          </article>
+
+          <!-- 3. HEAVEN VIP RESTO MENU -->
+          <article class="dining-menu-card" id="menu-heaven" data-venue="heaven" role="tabpanel">
+            <div class="menu-card__border-frame menu-card__border-frame--vip">
+              <div class="menu-card__corner menu-card__corner--tl">&#10022;</div>
+              <div class="menu-card__corner menu-card__corner--tr">&#10022;</div>
+              <div class="menu-card__corner menu-card__corner--bl">&#10022;</div>
+              <div class="menu-card__corner menu-card__corner--br">&#10022;</div>
+
+              <header class="menu-card__header">
+                <div class="menu-card__emblem-wrap">
+                  <img src="assets/onyx-emblem.png" alt="ONYX Emblem" class="menu-card__emblem" />
+                </div>
+                <p class="menu-card__kicker">Destination 03 &bull; Sovereign Private Dining</p>
+                <h3 class="menu-card__title">HEAVEN &bull; VIP RESTO</h3>
+                <p class="menu-card__meta">
+                  <span class="vip-text-glow">Levels 56&ndash;58 Sky Salons</span>
+                  <span>&bull;</span>
+                  <span>Private Degustation Only</span>
+                  <span>&bull;</span>
+                  <span>100% Confidential Isolation</span>
+                </p>
+                <div class="menu-divider-filigree"><span>&#9819;</span></div>
+              </header>
+
+              <div class="menu-card__content">
+                <!-- Course / Section 1: The Degustation -->
+                <div class="menu-section menu-section--vip">
+                  <div class="vip-course-header">
+                    <div>
+                      <h4 class="menu-section__heading" style="color: var(--gold); margin-bottom: 4px;">The Sovereign 8-Course Imperial Degustation</h4>
+                      <p class="menu-section__desc" style="margin: 0;">Curated personally by the Executive Chef &bull; Served in your private Sky Salon.</p>
+                    </div>
+                    <div class="vip-pricing-badge">
+                      <span class="vip-price">&#8369;18,500 <small>/ guest</small></span>
+                      <span class="vip-pairing">With Grand Cru Sommelier Cellar Pairing: &#8369;28,000</span>
+                    </div>
+                  </div>
+                  
+                  <ul class="menu-items-list menu-items-list--courses">
+                    <li class="menu-item menu-item--course">
+                      <span class="course-num">Course I &bull; Genesis</span>
+                      <div class="menu-item__header">
+                        <span class="menu-item__name">Royal Oscietra Caviar &amp; Langoustine Tartare</span>
+                        <span class="menu-item__leader"></span>
+                        <span class="course-pairing">Dom P&eacute;rignon Brut 2013</span>
+                      </div>
+                      <p class="menu-item__desc">New Zealand scampi tartare, citrus yuzu gel, 24k edible gold leaf crisp.</p>
+                    </li>
+                    <li class="menu-item menu-item--course">
+                      <span class="course-num">Course II &bull; Earth</span>
+                      <div class="menu-item__header">
+                        <span class="menu-item__name">P&eacute;rigord Black Winter Truffle &amp; Golden Egg</span>
+                        <span class="menu-item__leader"></span>
+                        <span class="course-pairing">Meursault 1er Cru 2020</span>
+                      </div>
+                      <p class="menu-item__desc">Slow-poached organic pasture egg, 36-month Parmigiano Reggiano velout&eacute;, tableside truffle shavings.</p>
+                    </li>
+                    <li class="menu-item menu-item--course">
+                      <span class="course-num">Course III &bull; Ocean</span>
+                      <div class="menu-item__header">
+                        <span class="menu-item__name">Brittany Blue Lobster Medallion</span>
+                        <span class="menu-item__leader"></span>
+                        <span class="course-pairing">Puligny-Montrachet 2019</span>
+                      </div>
+                      <p class="menu-item__desc">Butter-poached blue lobster, saffron bisque foam, Hokkaido sea urchin emulsion, Australian finger lime.</p>
+                    </li>
+                    <li class="menu-item menu-item--course">
+                      <span class="course-num">Course IV &bull; Intermezzo</span>
+                      <div class="menu-item__header">
+                        <span class="menu-item__name">Sudachi Citrus Granit&eacute; &amp; Cristal Gelee</span>
+                        <span class="menu-item__leader"></span>
+                        <span class="course-pairing">Palate Restoration</span>
+                      </div>
+                      <p class="menu-item__desc">Wild Japanese sudachi citrus granite, Louis Roederer Cristal champagne essence.</p>
+                    </li>
+                    <li class="menu-item menu-item--course">
+                      <span class="course-num">Course V &bull; Pinnacle</span>
+                      <div class="menu-item__header">
+                        <span class="menu-item__name">Hyogo Prefecture Kobe Beef A5 BMS 12</span>
+                        <span class="menu-item__leader"></span>
+                        <span class="course-pairing">Ch&acirc;teau Margaux 2010</span>
+                      </div>
+                      <p class="menu-item__desc">Charred over binchotan white oak, braised Matsutake mushroom, 40-year vintage Bordeaux reduction.</p>
+                    </li>
+                    <li class="menu-item menu-item--course">
+                      <span class="course-num">Course VI &bull; Terroir</span>
+                      <div class="menu-item__header">
+                        <span class="menu-item__name">Rare European Farmhouse Affinage</span>
+                        <span class="menu-item__leader"></span>
+                        <span class="course-pairing">Ch&acirc;teau d'Yquem 2015</span>
+                      </div>
+                      <p class="menu-item__desc">Artisanal cave-aged cheeses, fresh wild truffle honeycomb, warm walnut sourdough.</p>
+                    </li>
+                    <li class="menu-item menu-item--course">
+                      <span class="course-num">Course VII &bull; Zenith</span>
+                      <div class="menu-item__header">
+                        <span class="menu-item__name">The Gold Cloud &bull; Valrhona White Sphere</span>
+                        <span class="menu-item__leader"></span>
+                        <span class="course-pairing">Vintage Port 1985</span>
+                      </div>
+                      <p class="menu-item__desc">Tahitian vanilla bean mousse, golden blackberry compote, spun sugar halo.</p>
+                    </li>
+                    <li class="menu-item menu-item--course">
+                      <span class="course-num">Course VIII &bull; Cordial</span>
+                      <div class="menu-item__header">
+                        <span class="menu-item__name">Rare Grand Cru Mignardises &amp; Jamaican Blue Mountain</span>
+                        <span class="menu-item__leader"></span>
+                        <span class="course-pairing">Cognac Priv&eacute;</span>
+                      </div>
+                      <p class="menu-item__desc">Bespoke chocolate jewels, gold flaked macarons, siphon-brewed reserve coffee.</p>
+                    </li>
+                  </ul>
+                </div>
+
+                <!-- Course / Section 2: Special Caviar Service -->
+                <div class="menu-section">
+                  <h4 class="menu-section__heading">Sovereign Caviar Reserve &bull; Tableside Service</h4>
+                  <p class="menu-section__desc">The world's rarest sturgeon caviar, presented with frozen mother-of-pearl service.</p>
+                  
+                  <ul class="menu-items-list">
+                    <li class="menu-item">
+                      <div class="menu-item__header">
+                        <span class="menu-item__name">Imperial Beluga Special Reserve (50g Tin)</span>
+                        <span class="menu-item__leader"></span>
+                        <span class="menu-item__price">&#8369;28,000</span>
+                      </div>
+                      <p class="menu-item__desc">Warm buckwheat blinis, organic egg yolk &amp; white mimosa, cr&egrave;me fra&icirc;che, chilled Beluga Gold vodka carafe.</p>
+                      <span class="menu-item__tag">VIP Reserve</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <!-- Sovereign VIP Inclusions Band -->
+                <div class="heaven-inclusions-grid">
+                  <div class="heaven-inclusion-item">
+                    <strong>24/7 Dedicated Butler</strong>
+                    <span>Exclusive white-glove table service.</span>
+                  </div>
+                  <div class="heaven-inclusion-item">
+                    <strong>Private Sommelier</strong>
+                    <span>Tableside uncorking and pairing.</span>
+                  </div>
+                  <div class="heaven-inclusion-item">
+                    <strong>Private Elevator Access</strong>
+                    <span>Direct non-stop transit to sky salons.</span>
+                  </div>
+                  <div class="heaven-inclusion-item">
+                    <strong>Discreet Isolation</strong>
+                    <span>Full acoustic privacy for confidential parties.</span>
+                  </div>
+                </div>
+              </div>
+
+              <footer class="menu-card__footer">
+                <div class="menu-card__actions">
+                  <a class="button button--primary" href="mailto:vip@onyx.example?subject=Heaven%20VIP%20Resto%20Reservation%20Inquiry">Request Private VIP Dining at Heaven</a>
+                  <a class="button button--secondary" href="tel:+63280000000">Salon Priv&eacute; Liaison &bull; Direct</a>
+                </div>
+                <p class="menu-card__note">Heaven VIP Resto requires a minimum of 24 hours advance notice. Available exclusively to ONYX members and booked VIP suites.</p>
+              </footer>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- BOTTOM SECTION: Atmospheric Images & Photos Showcase (BAR, RESTO, HEAVEN VIP) -->
+      <section class="section dining-gallery-section" id="diningGallery" aria-labelledby="diningGalleryHeading">
+        <div class="section__header" style="margin-bottom: 28px;">
+          <p class="eyebrow">Visual Experience</p>
+          <h2 id="diningGalleryHeading">Atmospheres &amp; Culinary Artistry</h2>
+          <p class="dining-gallery-intro">
+            A photographic showcase exploring the ambient cocktail lounges of The Bar, the binchotan robata mastery of Prime Resto, and the celestial private dining salons of Heaven VIP.
+          </p>
+        </div>
+
+        <!-- Venue Photo Filter Pills -->
+        <div class="dining-photo-filters" role="tablist" aria-label="Filter Dining Photos">
+          <button type="button" class="dining-photo-filter-btn is-active" data-filter="all" role="tab" aria-selected="true">
+            All 3 Destinations
+          </button>
+          <button type="button" class="dining-photo-filter-btn" data-filter="bar" role="tab" aria-selected="false">
+            🍸 The Bar
+          </button>
+          <button type="button" class="dining-photo-filter-btn" data-filter="resto" role="tab" aria-selected="false">
+            🥩 The Resto
+          </button>
+          <button type="button" class="dining-photo-filter-btn" data-filter="heaven" role="tab" aria-selected="false">
+            👑 Heaven VIP
+          </button>
+        </div>
+
+        <!-- 9 Photo Showcase Cards (3 Bar, 3 Resto, 3 Heaven VIP) -->
+        <div class="dining-photo-grid" id="diningPhotoGrid">
+          <!-- 1. BAR Photo 1 -->
+          <article class="dining-photo-card" data-venue="bar">
+            <div class="dining-photo-card__media">
+              <img src="assets/dining/bar-lounge.jpg" alt="The Obsidian Bar - Velvet Cocktail Lounge Atmosphere" loading="lazy" />
+              <span class="dining-photo-badge dining-photo-badge--bar">BAR</span>
+            </div>
+            <div class="dining-photo-card__caption">
+              <h4>The Obsidian Cocktail Salon</h4>
+              <p>Low-lit velvet banquettes, smoked-oak acoustics, and rare vintage spirits.</p>
+            </div>
+          </article>
+
+          <!-- 2. BAR Photo 2 -->
+          <article class="dining-photo-card" data-venue="bar">
+            <div class="dining-photo-card__media">
+              <img src="assets/dining/bar-cocktail.jpg" alt="Bespoke Craft Mixology Cocktail in Hand-Blown Crystal" loading="lazy" />
+              <span class="dining-photo-badge dining-photo-badge--bar">BAR</span>
+            </div>
+            <div class="dining-photo-card__caption">
+              <h4>Bespoke Craft Mixology</h4>
+              <p>Smoked applewood infusions, artisanal syrups, and hand-carved crystal ice.</p>
+            </div>
+          </article>
+
+          <!-- 3. BAR Photo 3 -->
+          <article class="dining-photo-card" data-venue="bar">
+            <div class="dining-photo-card__media">
+              <img src="assets/dining/bar-atmosphere.jpg" alt="Velvet Lounge Nightlife & Live Jazz Bar" loading="lazy" />
+              <span class="dining-photo-badge dining-photo-badge--bar">BAR</span>
+            </div>
+            <div class="dining-photo-card__caption">
+              <h4>Velvet Evening Jazz Lounge</h4>
+              <p>Nightly live jazz performances paired with single malts and post-dinner cordials.</p>
+            </div>
+          </article>
+
+          <!-- 4. RESTO Photo 1 -->
+          <article class="dining-photo-card" data-venue="resto">
+            <div class="dining-photo-card__media">
+              <img src="assets/dining/resto-interior.jpg" alt="Prime 54 Main Fine Dining Room" loading="lazy" />
+              <span class="dining-photo-badge dining-photo-badge--resto">RESTO</span>
+            </div>
+            <div class="dining-photo-card__caption">
+              <h4>Prime 54 Dining Room</h4>
+              <p>Contemporary European-Japanese fine dining room with master sommelier cellar.</p>
+            </div>
+          </article>
+
+          <!-- 5. RESTO Photo 2 -->
+          <article class="dining-photo-card" data-venue="resto">
+            <div class="dining-photo-card__media">
+              <img src="assets/dining/resto-wagyu.jpg" alt="Binchotan Grilled Miyazaki A5 Wagyu Tenderloin" loading="lazy" />
+              <span class="dining-photo-badge dining-photo-badge--resto">RESTO</span>
+            </div>
+            <div class="dining-photo-card__caption">
+              <h4>Binchotan Charred A5 Wagyu</h4>
+              <p>Japanese A5 tenderloin seared over white oak charcoal with black garlic jus.</p>
+            </div>
+          </article>
+
+          <!-- 6. RESTO Photo 3 -->
+          <article class="dining-photo-card" data-venue="resto">
+            <div class="dining-photo-card__media">
+              <img src="assets/dining/resto-dish.jpg" alt="Architectural Plating and Gourmet Seafood" loading="lazy" />
+              <span class="dining-photo-badge dining-photo-badge--resto">RESTO</span>
+            </div>
+            <div class="dining-photo-card__caption">
+              <h4>Culinary Plating Artistry</h4>
+              <p>Hokkaido scallop crudo, King Crab gateau, and seasonal Michelin-grade creations.</p>
+            </div>
+          </article>
+
+          <!-- 7. HEAVEN Photo 1 -->
+          <article class="dining-photo-card" data-venue="heaven">
+            <div class="dining-photo-card__media">
+              <img src="assets/dining/heaven-vip-salon.jpg" alt="Heaven Sovereign VIP Private Dining Sky Salon" loading="lazy" />
+              <span class="dining-photo-badge dining-photo-badge--heaven">HEAVEN &bull; VIP</span>
+            </div>
+            <div class="dining-photo-card__caption">
+              <h4>Heaven Sovereign VIP Salon</h4>
+              <p>Levels 56–58 sky salon with private elevator, golden chandelier, and panoramic views.</p>
+            </div>
+          </article>
+
+          <!-- 8. HEAVEN Photo 2 -->
+          <article class="dining-photo-card" data-venue="heaven">
+            <div class="dining-photo-card__media">
+              <img src="assets/dining/heaven-degustation.jpg" alt="8-Course Sovereign Degustation Omakase Artistry" loading="lazy" />
+              <span class="dining-photo-badge dining-photo-badge--heaven">HEAVEN &bull; VIP</span>
+            </div>
+            <div class="dining-photo-card__caption">
+              <h4>8-Course Sovereign Degustation</h4>
+              <p>Caviar Genesis, Perigord truffles, blue lobster, and Kobe beef prepared tableside.</p>
+            </div>
+          </article>
+
+          <!-- 9. HEAVEN Photo 3 -->
+          <article class="dining-photo-card" data-venue="heaven">
+            <div class="dining-photo-card__media">
+              <img src="assets/dining/heaven-sommelier.jpg" alt="Tableside Master Sommelier Pouring Rare Vintage Champagne" loading="lazy" />
+              <span class="dining-photo-badge dining-photo-badge--heaven">HEAVEN &bull; VIP</span>
+            </div>
+            <div class="dining-photo-card__caption">
+              <h4>Tableside Master Sommelier</h4>
+              <p>Grand Cru vintage pairings, imperial decanter service, and secret cellar selections.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="spa" style="background: var(--linen); padding-block: 84px;">
+        <div class="section__header">
+          <p class="eyebrow">Restoration</p>
+          <h2>The Onyx Spa &amp; Wellness Sanctuary</h2>
+        </div>
+        <div class="grid-3col" style="margin-top: 36px;">
+          <div style="background: var(--ivory); padding: 32px; border-radius: 8px; border: 1px solid rgba(23,20,22,0.08);">
+            <h3 style="font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.6rem; color: var(--ink); margin: 0 0 10px;">Hydrotherapy Circuit</h3>
+            <p style="color: var(--smoke); line-height: 1.6; margin: 0 0 16px;">
+              Heated mineral plunge baths, cold immersion vitality pools, and Finnish cedar saunas designed
+              to revive circulation and release restorative calm.
+            </p>
+            <span class="badge">Included with suites</span>
+          </div>
+          <div style="background: var(--ivory); padding: 32px; border-radius: 8px; border: 1px solid rgba(23,20,22,0.08);">
+            <h3 style="font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.6rem; color: var(--ink); margin: 0 0 10px;">Signature Massages</h3>
+            <p style="color: var(--smoke); line-height: 1.6; margin: 0 0 16px;">
+              Deep tissue release, warm volcanic basalt stones, and custom botanical essential oil blends
+              tailored to your physiological posture.
+            </p>
+            <span class="badge">Private Treatment Rooms</span>
+          </div>
+          <div style="background: var(--ivory); padding: 32px; border-radius: 8px; border: 1px solid rgba(23,20,22,0.08);">
+            <h3 style="font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.6rem; color: var(--ink); margin: 0 0 10px;">Aesthetic Rituals</h3>
+            <p style="color: var(--smoke); line-height: 1.6; margin: 0 0 16px;">
+              Advanced collagen facials, cellular hydration therapies, and oxygen infusions delivered by
+              licensed aesthetic practitioners.
+            </p>
+            <span class="badge">By Appointment</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="contact-band">
+        <div>
+          <p class="eyebrow">Table &amp; Spa Inquiries</p>
+          <h2>Reserve your table or wellness appointment.</h2>
+        </div>
+        <div class="contact-actions">
+          <a class="button button--primary" href="mailto:dining@onyx.example">Email Culinary Concierge</a>
+          <a class="button button--secondary" href="tel:+63200000000">Call +63 (2) 8000-0000</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <a class="brand brand--footer" href="index.html">
+          <img src="assets/onyx-logo.png" alt="ONYX logo" />
+          <span>
+            <strong>ONYX</strong>
+            <small>Resort Hotel & Gaming</small>
+          </span>
+        </a>
+        <p>
+          License numbers, property registration details, and required regulatory seals should
+          be inserted after formal review and approval.
+        </p>
+      </div>
+      <div class="footer-links">
+        <a href="stay.html">Stay &amp; Suites</a>
+        <a href="dining.html">Dining &amp; Lounges</a>
+        <a href="casino.html">Regulated Gaming</a>
+        <a href="events.html">Meetings &amp; Events</a>
+        <a href="responsible.html">Responsible Gaming</a>
+        <a href="reserve.html">Reserve Your Stay</a>
+        <a href="https://www.pagcor.ph/regulatory/">PAGCOR Regulatory</a>
+        <a href="https://www.NPGH.ph">National Problem Gambling Helpline</a>
+      </div>
+      <p class="footer-notice">
+        Gaming for 21 years old and above only. Gambling can be addictive. Know when to stop.
+        NPGH Hotline: (02) 8248-9568.
+      </p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
