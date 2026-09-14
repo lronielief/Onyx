@@ -301,111 +301,336 @@ if (reservePageForm) {
 })();
 
 /* ==========================================================================
-   Hero Section 10-Second Highlights Animation Loop
-   Every 10 seconds:
-   1. The hero text smoothly vanishes on the left.
-   2. The card slides to the left and expands into FOUR luxury image cards.
-   3. The 4 cards show authentic images (Suites, Dining, Gaming, Concierge) with NO text.
-   4. Stays presented for ~3.8s, then smoothly slides and collapses back to normal.
-   5. Repeats continuously every 10 seconds in a seamless loop.
+   Hero Falling Casino Chips Simulation (Canvas Engine)
+   Renders 3D tumbling luxury ONYX casino chips falling down with physics
    ========================================================================== */
-(function initHeroHighlightsLoop() {
+function initHeroChipsCanvas(canvas, heroSection) {
+  if (!canvas || !heroSection) return null;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) return null;
+
+  let width = 0;
+  let height = 0;
+  let rafId = null;
+  let isRunning = false;
+
+  function resize() {
+    const rect = heroSection.getBoundingClientRect();
+    width = canvas.width = rect.width;
+    height = canvas.height = rect.height;
+  }
+  window.addEventListener("resize", resize);
+  resize();
+
+  // Pre-render 4 luxury casino chips to off-screen canvases
+  const chipCanvases = [];
+  const CHIP_SIZE = 120; // rendered at 120x120 for crisp Retina look
+  const chipConfigs = [
+    { rim: "#171416", stripe: "#f2d581", ring: "#d8bd7a", center: "#0d0b0e", text: "25,000", valColor: "#f2d581" },
+    { rim: "#3b0f15", stripe: "#f2d581", ring: "#d8bd7a", center: "#20080c", text: "5,000", valColor: "#ffffff" },
+    { rim: "#0f2619", stripe: "#d8bd7a", ring: "#f2d581", center: "#08170e", text: "10,000", valColor: "#ffffff" },
+    { rim: "#b88a29", stripe: "#171416", ring: "#f2d581", center: "#1a1511", text: "50,000", valColor: "#f2d581" }
+  ];
+
+  chipConfigs.forEach(cfg => {
+    const c = document.createElement("canvas");
+    c.width = CHIP_SIZE;
+    c.height = CHIP_SIZE;
+    const cCtx = c.getContext("2d");
+    const cx = CHIP_SIZE / 2;
+    const cy = CHIP_SIZE / 2;
+    const r = CHIP_SIZE / 2 - 4;
+
+    // 1. Outer base rim circle
+    cCtx.save();
+    cCtx.beginPath();
+    cCtx.arc(cx, cy, r, 0, Math.PI * 2);
+    cCtx.fillStyle = cfg.rim;
+    cCtx.fill();
+    cCtx.lineWidth = 2.5;
+    cCtx.strokeStyle = "rgba(255, 255, 255, 0.25)";
+    cCtx.stroke();
+
+    // 2. Eight radial edge inserts / stripes
+    cCtx.fillStyle = cfg.stripe;
+    for (let i = 0; i < 8; i++) {
+      const angle = (i * Math.PI * 2) / 8;
+      cCtx.save();
+      cCtx.translate(cx, cy);
+      cCtx.rotate(angle);
+      cCtx.fillRect(-7, -r, 14, 16);
+      cCtx.restore();
+    }
+
+    // 3. Inner concentric gold metallic ring
+    cCtx.beginPath();
+    cCtx.arc(cx, cy, r - 16, 0, Math.PI * 2);
+    cCtx.lineWidth = 3.5;
+    cCtx.strokeStyle = cfg.ring;
+    cCtx.stroke();
+
+    // 4. Center inlay medallion disc
+    cCtx.beginPath();
+    cCtx.arc(cx, cy, r - 22, 0, Math.PI * 2);
+    const radGrad = cCtx.createRadialGradient(cx - 6, cy - 6, 2, cx, cy, r - 22);
+    radGrad.addColorStop(0, cfg.center);
+    radGrad.addColorStop(1, "#050405");
+    cCtx.fillStyle = radGrad;
+    cCtx.fill();
+    cCtx.lineWidth = 1.5;
+    cCtx.strokeStyle = cfg.ring;
+    cCtx.stroke();
+
+    // 5. Brand text "ONYX" and denomination
+    cCtx.textAlign = "center";
+    cCtx.textBaseline = "middle";
+    cCtx.fillStyle = "#f2d581";
+    cCtx.font = "bold 13px 'Cormorant Garamond', Georgia, serif";
+    cCtx.fillText("ONYX", cx, cy - 14);
+
+    cCtx.fillStyle = cfg.valColor;
+    cCtx.font = "bold 15px 'Inter', sans-serif";
+    cCtx.fillText(cfg.text, cx, cy + 3);
+
+    cCtx.fillStyle = "rgba(216, 189, 122, 0.85)";
+    cCtx.font = "11px sans-serif";
+    cCtx.fillText("♠", cx, cy + 18);
+
+    cCtx.restore();
+    chipCanvases.push(c);
+  });
+
+  // Initialize falling chips
+  const CHIP_COUNT = 40;
+  const chips = [];
+
+  function spawnChip(randomY) {
+    const scale = Math.random() * 0.45 + 0.35; // size scale factor
+    return {
+      x: Math.random() * (width || 1000),
+      y: randomY ? Math.random() * (height || 600) : -(Math.random() * 200 + 70),
+      scale: scale,
+      vy: (Math.random() * 1.6 + 1.9) * (scale * 1.3),
+      vx: (Math.random() - 0.5) * 0.8,
+      angleZ: Math.random() * Math.PI * 2,
+      vAngleZ: (Math.random() - 0.5) * 0.035,
+      angleY: Math.random() * Math.PI * 2,
+      vAngleY: Math.random() * 0.045 + 0.02,
+      wobblePhase: Math.random() * Math.PI * 2,
+      wobbleSpeed: Math.random() * 0.03 + 0.015,
+      type: Math.floor(Math.random() * 4),
+      alpha: Math.random() * 0.3 + 0.7
+    };
+  }
+
+  function initChips() {
+    chips.length = 0;
+    for (let i = 0; i < CHIP_COUNT; i++) {
+      chips.push(spawnChip(true));
+    }
+  }
+
+  function loop() {
+    if (!isRunning) return;
+    ctx.clearRect(0, 0, width, height);
+
+    for (let i = 0; i < chips.length; i++) {
+      const chip = chips[i];
+
+      chip.y += chip.vy;
+      chip.x += chip.vx + Math.sin(chip.wobblePhase) * 0.6;
+      chip.wobblePhase += chip.wobbleSpeed;
+      chip.angleZ += chip.vAngleZ;
+      chip.angleY += chip.vAngleY;
+
+      // Recycle chip when fallen off screen
+      if (chip.y > height + 80) {
+        Object.assign(chip, spawnChip(false));
+      }
+
+      ctx.save();
+      ctx.translate(chip.x, chip.y);
+      ctx.scale(chip.scale, chip.scale);
+      ctx.rotate(chip.angleZ);
+
+      // 3D perspective tumble: scale horizontal axis by cos(angleY)
+      const flipScale = Math.cos(chip.angleY);
+      ctx.scale(flipScale, 1);
+      ctx.globalAlpha = chip.alpha;
+
+      // Draw chip sprite
+      ctx.drawImage(chipCanvases[chip.type], -CHIP_SIZE / 2, -CHIP_SIZE / 2);
+
+      // Specular sheen when near edge-on
+      if (Math.abs(flipScale) < 0.2) {
+        ctx.fillStyle = "rgba(242, 213, 129, 0.65)";
+        ctx.fillRect(-6, -CHIP_SIZE / 2, 12, CHIP_SIZE);
+      }
+
+      ctx.restore();
+    }
+
+    rafId = requestAnimationFrame(loop);
+  }
+
+  return {
+    start: () => {
+      if (isRunning) return;
+      isRunning = true;
+      resize();
+      initChips();
+      loop();
+    },
+    stop: () => {
+      isRunning = false;
+      if (rafId) cancelAnimationFrame(rafId);
+      ctx.clearRect(0, 0, width, height);
+    }
+  };
+}
+
+/* ==========================================================================
+   Hero Multi-Scene Animation Carousel (Overview, Highlights, Offers, Reserve)
+   Cycles smoothly through 4 scenes:
+   - Scene 0 (Overview): Normal luxury hero layout & 3D card.
+   - Scene 1 (Highlights): 4 luxury image cards slide left (pure images, no text).
+   - Scene 2 (Offers): Card glides left in flipped state, Offers appear on right.
+   - Scene 3 (Reserve Now): Casino chips rain down from top with big "RESERVE NOW" callout.
+   ========================================================================== */
+(function initHeroMultiSceneLoop() {
   const heroSection = document.querySelector("#heroSection");
   const heroContent = document.querySelector(".hero__content");
-  const heroCardsShowcase = document.querySelector("#heroCardsShowcase");
   const cardContainer = document.querySelector("#cardContainer");
+  const playingCard = document.querySelector("#playingCard");
+  const heroCardsShowcase = document.querySelector("#heroCardsShowcase");
+  const heroOffersShowcase = document.querySelector("#heroOffersShowcase");
+  const heroReserveShowcase = document.querySelector("#heroReserveShowcase");
+  const heroChipsCanvas = document.querySelector("#heroChipsCanvas");
+  const navButtons = document.querySelectorAll(".hero-anim-btn");
 
-  if (!heroSection || !heroContent || !heroCardsShowcase) return;
+  if (!heroSection || !heroContent) return;
 
-  let isUserInteracting = false;
-  let cycleTimeout = null;
-  let resetTimeout = null;
-  let touchTimeout = null;
+  const SCENES = [
+    { id: 0, name: "overview", duration: 7500 },
+    { id: 1, name: "highlights", duration: 5500 },
+    { id: 2, name: "offers", duration: 6500 },
+    { id: 3, name: "reserve", duration: 6000 }
+  ];
 
-  const CYCLE_INTERVAL = 10000;     // 10 seconds total loop
-  const VANISH_DELAY = 5800;        // At 5.8s, text vanishes and cards slide in
-  const HIGHLIGHTS_DURATION = 3800; // Remains expanded showing 4 image cards for 3.8s
+  let currentScene = 0;
+  let timerId = null;
+  let isPaused = false;
 
-  function flipToHighlights() {
-    if (isUserInteracting || document.hidden) return;
+  // Initialize falling chips canvas engine
+  const chipsAnimation = initHeroChipsCanvas(heroChipsCanvas, heroSection);
 
-    // 1. Text vanishes smoothly on the left
-    heroContent.classList.add("is-vanished");
+  function setScene(sceneIndex) {
+    currentScene = (sceneIndex + SCENES.length) % SCENES.length;
 
-    // 2. Card slides to the left and expands into 4 image cards (no text)
-    heroSection.classList.add("is-cards-active");
+    // Reset all scene classes
+    heroSection.classList.remove("is-cards-active", "is-offers-active", "is-reserve-active");
 
-    // 3. Return to normal after duration
-    resetTimeout = setTimeout(() => {
-      restoreNormal();
-    }, HIGHLIGHTS_DURATION);
+    if (currentScene === 0) {
+      // Scene 0: Overview (Normal State)
+      heroContent.classList.remove("is-vanished");
+      if (playingCard) playingCard.classList.remove("is-flipped");
+      if (chipsAnimation) chipsAnimation.stop();
+    } else if (currentScene === 1) {
+      // Scene 1: Highlights (4 image cards slide left across hero)
+      heroContent.classList.add("is-vanished");
+      heroSection.classList.add("is-cards-active");
+      if (playingCard) playingCard.classList.remove("is-flipped");
+      if (chipsAnimation) chipsAnimation.stop();
+    } else if (currentScene === 2) {
+      // Scene 2: Card glides left in flipped state, Offers on right
+      heroContent.classList.add("is-vanished");
+      heroSection.classList.add("is-offers-active");
+      if (playingCard) playingCard.classList.add("is-flipped");
+      if (chipsAnimation) chipsAnimation.stop();
+    } else if (currentScene === 3) {
+      // Scene 3: Chips falling down + Big "RESERVE NOW" callout
+      heroContent.classList.add("is-vanished");
+      heroSection.classList.add("is-reserve-active");
+      if (chipsAnimation) chipsAnimation.start();
+    }
+
+    // Update navigation indicator buttons
+    navButtons.forEach((btn, idx) => {
+      const isActive = idx === currentScene;
+      btn.classList.toggle("is-active", isActive);
+      btn.setAttribute("aria-selected", isActive ? "true" : "false");
+    });
   }
 
-  function restoreNormal() {
-    // 4 cards slide back together into single card
-    heroSection.classList.remove("is-cards-active");
+  function scheduleNext(customDelay) {
+    if (timerId) clearTimeout(timerId);
+    if (isPaused) return;
 
-    // Text returns to normal on the left
-    heroContent.classList.remove("is-vanished");
+    const ms = customDelay !== undefined ? customDelay : SCENES[currentScene].duration;
+    timerId = setTimeout(() => {
+      if (!isPaused) {
+        setScene(currentScene + 1);
+        scheduleNext();
+      }
+    }, ms);
   }
 
-  function startLoop() {
-    stopLoop();
-    cycleTimeout = setTimeout(function tick() {
-      flipToHighlights();
-      cycleTimeout = setTimeout(tick, CYCLE_INTERVAL);
-    }, VANISH_DELAY);
-  }
-
-  function stopLoop() {
-    if (cycleTimeout) clearTimeout(cycleTimeout);
-    if (resetTimeout) clearTimeout(resetTimeout);
-    if (touchTimeout) clearTimeout(touchTimeout);
-  }
-
-  // Pause loop if user hovers over hero content (e.g. clicking buttons) or the cards
-  heroContent.addEventListener("mouseenter", () => {
-    isUserInteracting = true;
-  });
-  heroContent.addEventListener("mouseleave", () => {
-    isUserInteracting = false;
+  // Handle manual navigation button clicks
+  navButtons.forEach((btn, idx) => {
+    btn.addEventListener("click", () => {
+      setScene(idx);
+      scheduleNext();
+    });
   });
 
-  heroCardsShowcase.addEventListener("mouseenter", () => {
-    isUserInteracting = true;
-  });
-  heroCardsShowcase.addEventListener("mouseleave", () => {
-    isUserInteracting = false;
+  // Pause cycle on hover over interactive showcase areas
+  const pauseElements = [
+    heroContent,
+    heroCardsShowcase,
+    heroOffersShowcase,
+    heroReserveShowcase,
+    cardContainer
+  ];
+
+  pauseElements.forEach(el => {
+    if (!el) return;
+    el.addEventListener("mouseenter", () => {
+      isPaused = true;
+      if (timerId) clearTimeout(timerId);
+    });
+    el.addEventListener("mouseleave", () => {
+      isPaused = false;
+      scheduleNext(4000);
+    });
   });
 
-  heroCardsShowcase.addEventListener("touchstart", () => {
-    isUserInteracting = true;
-    if (touchTimeout) clearTimeout(touchTimeout);
-    touchTimeout = setTimeout(() => {
-      isUserInteracting = false;
-    }, 6000);
+  // Mobile touch pause
+  heroSection.addEventListener("touchstart", () => {
+    isPaused = true;
+    if (timerId) clearTimeout(timerId);
   }, { passive: true });
 
-  if (cardContainer) {
-    cardContainer.addEventListener("mouseenter", () => {
-      isUserInteracting = true;
-    });
-    cardContainer.addEventListener("mouseleave", () => {
-      isUserInteracting = false;
-    });
-  }
+  heroSection.addEventListener("touchend", () => {
+    isPaused = false;
+    scheduleNext(4500);
+  }, { passive: true });
 
-  // Handle visibility changes so background tabs don't desynchronize
+  // Handle document visibility changes so background tabs don't desynchronize
   document.addEventListener("visibilitychange", () => {
     if (document.hidden) {
-      stopLoop();
-      restoreNormal();
+      isPaused = true;
+      if (timerId) clearTimeout(timerId);
+      if (chipsAnimation) chipsAnimation.stop();
     } else {
-      startLoop();
+      isPaused = false;
+      scheduleNext(2500);
+      if (currentScene === 3 && chipsAnimation) chipsAnimation.start();
     }
   });
 
-  startLoop();
+  // Initial boot
+  setScene(0);
+  scheduleNext();
 })();
 
 /* ==========================================================================
