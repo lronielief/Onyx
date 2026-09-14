@@ -301,8 +301,8 @@ if (reservePageForm) {
 })();
 
 /* ==========================================================================
-   Hero Falling Casino Chips Simulation (Canvas Engine)
-   Renders 3D tumbling luxury ONYX casino chips falling down with physics
+   Hero Falling Casino Chips Simulation (Chunky 3D Canvas Engine)
+   Renders heavy, chunky, thick 3D luxury ONYX casino chips tumbling down
    ========================================================================== */
 function initHeroChipsCanvas(canvas, heroSection) {
   if (!canvas || !heroSection) return null;
@@ -322,104 +322,133 @@ function initHeroChipsCanvas(canvas, heroSection) {
   window.addEventListener("resize", resize);
   resize();
 
-  // Pre-render 4 luxury casino chips to off-screen canvases
-  const chipCanvases = [];
-  const CHIP_SIZE = 120; // rendered at 120x120 for crisp Retina look
+  // Pre-render 4 luxury casino chips to off-screen canvases:
+  // Both front face AND thick textured rim cylinder edge
+  const chipFaceCanvases = [];
+  const chipEdgeCanvases = [];
+  const CHIP_SIZE = 140; // larger, ultra-crisp resolution
   const chipConfigs = [
-    { rim: "#171416", stripe: "#f2d581", ring: "#d8bd7a", center: "#0d0b0e", text: "25,000", valColor: "#f2d581" },
-    { rim: "#3b0f15", stripe: "#f2d581", ring: "#d8bd7a", center: "#20080c", text: "5,000", valColor: "#ffffff" },
-    { rim: "#0f2619", stripe: "#d8bd7a", ring: "#f2d581", center: "#08170e", text: "10,000", valColor: "#ffffff" },
-    { rim: "#b88a29", stripe: "#171416", ring: "#f2d581", center: "#1a1511", text: "50,000", valColor: "#f2d581" }
+    { rim: "#18141a", rimDark: "#0c0a0e", stripe: "#f2d581", ring: "#d8bd7a", center: "#100d14", text: "25,000", valColor: "#f2d581" },
+    { rim: "#441219", rimDark: "#23060b", stripe: "#f2d581", ring: "#d8bd7a", center: "#20080c", text: "5,000", valColor: "#ffffff" },
+    { rim: "#102c1e", rimDark: "#08170f", stripe: "#d8bd7a", ring: "#f2d581", center: "#08170e", text: "10,000", valColor: "#ffffff" },
+    { rim: "#c79631", rimDark: "#7a5814", stripe: "#171416", ring: "#f2d581", center: "#1c1712", text: "50,000", valColor: "#f2d581" }
   ];
 
   chipConfigs.forEach(cfg => {
-    const c = document.createElement("canvas");
-    c.width = CHIP_SIZE;
-    c.height = CHIP_SIZE;
-    const cCtx = c.getContext("2d");
+    // 1. FRONT FACE CANVAS
+    const fc = document.createElement("canvas");
+    fc.width = CHIP_SIZE;
+    fc.height = CHIP_SIZE;
+    const fCtx = fc.getContext("2d");
     const cx = CHIP_SIZE / 2;
     const cy = CHIP_SIZE / 2;
     const r = CHIP_SIZE / 2 - 4;
 
-    // 1. Outer base rim circle
-    cCtx.save();
-    cCtx.beginPath();
-    cCtx.arc(cx, cy, r, 0, Math.PI * 2);
-    cCtx.fillStyle = cfg.rim;
-    cCtx.fill();
-    cCtx.lineWidth = 2.5;
-    cCtx.strokeStyle = "rgba(255, 255, 255, 0.25)";
-    cCtx.stroke();
+    // Outer base rim circle with metallic gradient
+    fCtx.save();
+    fCtx.beginPath();
+    fCtx.arc(cx, cy, r, 0, Math.PI * 2);
+    fCtx.fillStyle = cfg.rim;
+    fCtx.fill();
+    fCtx.lineWidth = 3;
+    fCtx.strokeStyle = "rgba(255, 255, 255, 0.35)";
+    fCtx.stroke();
 
-    // 2. Eight radial edge inserts / stripes
-    cCtx.fillStyle = cfg.stripe;
+    // 8 radial edge inserts / stripes
+    fCtx.fillStyle = cfg.stripe;
     for (let i = 0; i < 8; i++) {
       const angle = (i * Math.PI * 2) / 8;
-      cCtx.save();
-      cCtx.translate(cx, cy);
-      cCtx.rotate(angle);
-      cCtx.fillRect(-7, -r, 14, 16);
-      cCtx.restore();
+      fCtx.save();
+      fCtx.translate(cx, cy);
+      fCtx.rotate(angle);
+      fCtx.fillRect(-9, -r, 18, 20);
+      fCtx.restore();
     }
 
-    // 3. Inner concentric gold metallic ring
-    cCtx.beginPath();
-    cCtx.arc(cx, cy, r - 16, 0, Math.PI * 2);
-    cCtx.lineWidth = 3.5;
-    cCtx.strokeStyle = cfg.ring;
-    cCtx.stroke();
+    // Inner concentric gold metallic ring
+    fCtx.beginPath();
+    fCtx.arc(cx, cy, r - 18, 0, Math.PI * 2);
+    fCtx.lineWidth = 4;
+    fCtx.strokeStyle = cfg.ring;
+    fCtx.stroke();
 
-    // 4. Center inlay medallion disc
-    cCtx.beginPath();
-    cCtx.arc(cx, cy, r - 22, 0, Math.PI * 2);
-    const radGrad = cCtx.createRadialGradient(cx - 6, cy - 6, 2, cx, cy, r - 22);
+    // Center inlay medallion disc
+    fCtx.beginPath();
+    fCtx.arc(cx, cy, r - 26, 0, Math.PI * 2);
+    const radGrad = fCtx.createRadialGradient(cx - 8, cy - 8, 3, cx, cy, r - 26);
     radGrad.addColorStop(0, cfg.center);
-    radGrad.addColorStop(1, "#050405");
-    cCtx.fillStyle = radGrad;
-    cCtx.fill();
-    cCtx.lineWidth = 1.5;
-    cCtx.strokeStyle = cfg.ring;
-    cCtx.stroke();
+    radGrad.addColorStop(1, "#030204");
+    fCtx.fillStyle = radGrad;
+    fCtx.fill();
+    fCtx.lineWidth = 2;
+    fCtx.strokeStyle = cfg.ring;
+    fCtx.stroke();
 
-    // 5. Brand text "ONYX" and denomination
-    cCtx.textAlign = "center";
-    cCtx.textBaseline = "middle";
-    cCtx.fillStyle = "#f2d581";
-    cCtx.font = "bold 13px 'Cormorant Garamond', Georgia, serif";
-    cCtx.fillText("ONYX", cx, cy - 14);
+    // Brand text "ONYX" and denomination
+    fCtx.textAlign = "center";
+    fCtx.textBaseline = "middle";
+    fCtx.fillStyle = "#f2d581";
+    fCtx.font = "bold 15px 'Cormorant Garamond', Georgia, serif";
+    fCtx.fillText("ONYX", cx, cy - 16);
 
-    cCtx.fillStyle = cfg.valColor;
-    cCtx.font = "bold 15px 'Inter', sans-serif";
-    cCtx.fillText(cfg.text, cx, cy + 3);
+    fCtx.fillStyle = cfg.valColor;
+    fCtx.font = "bold 18px 'Inter', sans-serif";
+    fCtx.fillText(cfg.text, cx, cy + 3);
 
-    cCtx.fillStyle = "rgba(216, 189, 122, 0.85)";
-    cCtx.font = "11px sans-serif";
-    cCtx.fillText("♠", cx, cy + 18);
+    fCtx.fillStyle = "rgba(216, 189, 122, 0.9)";
+    fCtx.font = "13px sans-serif";
+    fCtx.fillText("♠", cx, cy + 21);
 
-    cCtx.restore();
-    chipCanvases.push(c);
+    fCtx.restore();
+    chipFaceCanvases.push(fc);
+
+    // 2. EDGE CYLINDER CANVAS (used for extruded 3D thickness)
+    const ec = document.createElement("canvas");
+    ec.width = CHIP_SIZE;
+    ec.height = CHIP_SIZE;
+    const eCtx = ec.getContext("2d");
+
+    eCtx.save();
+    eCtx.beginPath();
+    eCtx.arc(cx, cy, r, 0, Math.PI * 2);
+    eCtx.fillStyle = cfg.rimDark;
+    eCtx.fill();
+
+    // Stripes on the edge
+    eCtx.fillStyle = cfg.stripe;
+    for (let i = 0; i < 8; i++) {
+      const angle = (i * Math.PI * 2) / 8;
+      eCtx.save();
+      eCtx.translate(cx, cy);
+      eCtx.rotate(angle);
+      eCtx.fillRect(-9, -r, 18, 12);
+      eCtx.restore();
+    }
+    eCtx.restore();
+    chipEdgeCanvases.push(ec);
   });
 
   // Initialize falling chips
-  const CHIP_COUNT = 40;
+  const CHIP_COUNT = 32;
   const chips = [];
 
   function spawnChip(randomY) {
-    const scale = Math.random() * 0.45 + 0.35; // size scale factor
+    // Substantial size: scale 0.65 to 1.15 (actual size ~90px to ~160px across!)
+    const scale = Math.random() * 0.45 + 0.65;
     return {
       x: Math.random() * (width || 1000),
-      y: randomY ? Math.random() * (height || 600) : -(Math.random() * 200 + 70),
+      y: randomY ? Math.random() * (height || 600) : -(Math.random() * 220 + 90),
       scale: scale,
-      vy: (Math.random() * 1.6 + 1.9) * (scale * 1.3),
-      vx: (Math.random() - 0.5) * 0.8,
+      vy: (Math.random() * 1.5 + 2.0) * (scale * 1.2),
+      vx: (Math.random() - 0.5) * 0.7,
       angleZ: Math.random() * Math.PI * 2,
-      vAngleZ: (Math.random() - 0.5) * 0.035,
+      vAngleZ: (Math.random() - 0.5) * 0.025,
       angleY: Math.random() * Math.PI * 2,
-      vAngleY: Math.random() * 0.045 + 0.02,
+      vAngleY: Math.random() * 0.035 + 0.015,
       wobblePhase: Math.random() * Math.PI * 2,
-      wobbleSpeed: Math.random() * 0.03 + 0.015,
+      wobbleSpeed: Math.random() * 0.025 + 0.012,
       type: Math.floor(Math.random() * 4),
-      alpha: Math.random() * 0.3 + 0.7
+      alpha: Math.random() * 0.2 + 0.8
     };
   }
 
@@ -438,35 +467,64 @@ function initHeroChipsCanvas(canvas, heroSection) {
       const chip = chips[i];
 
       chip.y += chip.vy;
-      chip.x += chip.vx + Math.sin(chip.wobblePhase) * 0.6;
+      chip.x += chip.vx + Math.sin(chip.wobblePhase) * 0.7;
       chip.wobblePhase += chip.wobbleSpeed;
       chip.angleZ += chip.vAngleZ;
       chip.angleY += chip.vAngleY;
 
       // Recycle chip when fallen off screen
-      if (chip.y > height + 80) {
+      if (chip.y > height + 120) {
         Object.assign(chip, spawnChip(false));
       }
 
+      const cosY = Math.cos(chip.angleY);
+      const sinY = Math.sin(chip.angleY);
+
+      // NEVER razor-thin: clamp minimum face width ratio to 0.28
+      const faceWidthScale = Math.max(0.28, Math.abs(cosY));
+
+      // Chunky physical thickness: 18px extruded 3D cylinder depth
+      const thicknessPx = 18 * chip.scale;
+      const edgeSteps = 7;
+
+      ctx.save();
+      ctx.globalAlpha = chip.alpha;
+
+      // 1. Draw chunky extruded 3D side edge slices
+      if (Math.abs(sinY) > 0.15) {
+        const edgeDir = Math.sign(sinY);
+        const maxOffset = edgeDir * thicknessPx * Math.abs(sinY);
+
+        for (let s = edgeSteps; s >= 1; s--) {
+          const t = s / edgeSteps;
+          const offX = maxOffset * t * Math.cos(chip.angleZ + Math.PI / 2);
+          const offY = maxOffset * t * Math.sin(chip.angleZ + Math.PI / 2);
+
+          ctx.save();
+          ctx.translate(chip.x + offX, chip.y + offY);
+          ctx.scale(chip.scale, chip.scale);
+          ctx.rotate(chip.angleZ);
+          ctx.scale(faceWidthScale, 1);
+          ctx.drawImage(chipEdgeCanvases[chip.type], -CHIP_SIZE / 2, -CHIP_SIZE / 2);
+          ctx.restore();
+        }
+      }
+
+      // 2. Draw front face of the chip
       ctx.save();
       ctx.translate(chip.x, chip.y);
       ctx.scale(chip.scale, chip.scale);
       ctx.rotate(chip.angleZ);
+      ctx.scale(faceWidthScale, 1);
+      ctx.drawImage(chipFaceCanvases[chip.type], -CHIP_SIZE / 2, -CHIP_SIZE / 2);
 
-      // 3D perspective tumble: scale horizontal axis by cos(angleY)
-      const flipScale = Math.cos(chip.angleY);
-      ctx.scale(flipScale, 1);
-      ctx.globalAlpha = chip.alpha;
-
-      // Draw chip sprite
-      ctx.drawImage(chipCanvases[chip.type], -CHIP_SIZE / 2, -CHIP_SIZE / 2);
-
-      // Specular sheen when near edge-on
-      if (Math.abs(flipScale) < 0.2) {
-        ctx.fillStyle = "rgba(242, 213, 129, 0.65)";
-        ctx.fillRect(-6, -CHIP_SIZE / 2, 12, CHIP_SIZE);
+      // Metallic rim specular sheen when edge-on
+      if (Math.abs(cosY) < 0.35) {
+        ctx.fillStyle = "rgba(242, 213, 129, 0.55)";
+        ctx.fillRect(-10, -CHIP_SIZE / 2, 20, CHIP_SIZE);
       }
 
+      ctx.restore();
       ctx.restore();
     }
 
@@ -490,12 +548,12 @@ function initHeroChipsCanvas(canvas, heroSection) {
 }
 
 /* ==========================================================================
-   Hero Multi-Scene Animation Carousel (Overview, Highlights, Offers, Reserve)
-   Cycles smoothly through 4 scenes:
-   - Scene 0 (Overview): Normal luxury hero layout & 3D card.
-   - Scene 1 (Highlights): 4 luxury image cards slide left (pure images, no text).
-   - Scene 2 (Offers): Card glides left in flipped state, Offers appear on right.
-   - Scene 3 (Reserve Now): Casino chips rain down from top with big "RESERVE NOW" callout.
+   Hero Multi-Scene Animation Carousel (Automatic Next-Next-Next Loop)
+   Cycles smoothly through 4 scenes automatically:
+   - Scene 0 (Overview): Classic luxury hero layout & interactive 3D card.
+   - Scene 1 (Highlights): 4 luxury image cards slide left (pure imagery, no text).
+   - Scene 2 (Offers): Card glides left in flipped state, Words-Only Offers on right.
+   - Scene 3 (Reserve Now): Chunky 3D chips rain down with big "RESERVE NOW" callout.
    ========================================================================== */
 (function initHeroMultiSceneLoop() {
   const heroSection = document.querySelector("#heroSection");
@@ -506,12 +564,11 @@ function initHeroChipsCanvas(canvas, heroSection) {
   const heroOffersShowcase = document.querySelector("#heroOffersShowcase");
   const heroReserveShowcase = document.querySelector("#heroReserveShowcase");
   const heroChipsCanvas = document.querySelector("#heroChipsCanvas");
-  const navButtons = document.querySelectorAll(".hero-anim-btn");
 
   if (!heroSection || !heroContent) return;
 
   const SCENES = [
-    { id: 0, name: "overview", duration: 7500 },
+    { id: 0, name: "overview", duration: 6500 },
     { id: 1, name: "highlights", duration: 5500 },
     { id: 2, name: "offers", duration: 6500 },
     { id: 3, name: "reserve", duration: 6000 }
@@ -521,7 +578,7 @@ function initHeroChipsCanvas(canvas, heroSection) {
   let timerId = null;
   let isPaused = false;
 
-  // Initialize falling chips canvas engine
+  // Initialize chunky 3D falling chips canvas engine
   const chipsAnimation = initHeroChipsCanvas(heroChipsCanvas, heroSection);
 
   function setScene(sceneIndex) {
@@ -542,48 +599,33 @@ function initHeroChipsCanvas(canvas, heroSection) {
       if (playingCard) playingCard.classList.remove("is-flipped");
       if (chipsAnimation) chipsAnimation.stop();
     } else if (currentScene === 2) {
-      // Scene 2: Card glides left in flipped state, Offers on right
+      // Scene 2: Card glides left in flipped state, Words-Only Offers on right
       heroContent.classList.add("is-vanished");
       heroSection.classList.add("is-offers-active");
       if (playingCard) playingCard.classList.add("is-flipped");
       if (chipsAnimation) chipsAnimation.stop();
     } else if (currentScene === 3) {
-      // Scene 3: Chips falling down + Big "RESERVE NOW" callout
+      // Scene 3: Chunky Chips falling down + Big "RESERVE NOW" callout
       heroContent.classList.add("is-vanished");
       heroSection.classList.add("is-reserve-active");
       if (chipsAnimation) chipsAnimation.start();
     }
-
-    // Update navigation indicator buttons
-    navButtons.forEach((btn, idx) => {
-      const isActive = idx === currentScene;
-      btn.classList.toggle("is-active", isActive);
-      btn.setAttribute("aria-selected", isActive ? "true" : "false");
-    });
   }
 
-  function scheduleNext(customDelay) {
+  function advanceNext() {
     if (timerId) clearTimeout(timerId);
     if (isPaused) return;
 
-    const ms = customDelay !== undefined ? customDelay : SCENES[currentScene].duration;
+    const ms = SCENES[currentScene].duration;
     timerId = setTimeout(() => {
       if (!isPaused) {
         setScene(currentScene + 1);
-        scheduleNext();
+        advanceNext();
       }
     }, ms);
   }
 
-  // Handle manual navigation button clicks
-  navButtons.forEach((btn, idx) => {
-    btn.addEventListener("click", () => {
-      setScene(idx);
-      scheduleNext();
-    });
-  });
-
-  // Pause cycle on hover over interactive showcase areas
+  // Temporary pause on hover over interactive showcase areas
   const pauseElements = [
     heroContent,
     heroCardsShowcase,
@@ -600,7 +642,7 @@ function initHeroChipsCanvas(canvas, heroSection) {
     });
     el.addEventListener("mouseleave", () => {
       isPaused = false;
-      scheduleNext(4000);
+      advanceNext();
     });
   });
 
@@ -612,7 +654,7 @@ function initHeroChipsCanvas(canvas, heroSection) {
 
   heroSection.addEventListener("touchend", () => {
     isPaused = false;
-    scheduleNext(4500);
+    advanceNext();
   }, { passive: true });
 
   // Handle document visibility changes so background tabs don't desynchronize
@@ -623,14 +665,14 @@ function initHeroChipsCanvas(canvas, heroSection) {
       if (chipsAnimation) chipsAnimation.stop();
     } else {
       isPaused = false;
-      scheduleNext(2500);
+      advanceNext();
       if (currentScene === 3 && chipsAnimation) chipsAnimation.start();
     }
   });
 
-  // Initial boot
+  // Initial boot: start automatically and loop continuously
   setScene(0);
-  scheduleNext();
+  advanceNext();
 })();
 
 /* ==========================================================================

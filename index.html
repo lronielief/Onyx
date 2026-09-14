@@ -158,50 +158,47 @@
         <!-- Falling Chips Canvas (Scene 3: Chips Falling Down) -->
         <canvas class="hero__chips-canvas" id="heroChipsCanvas" aria-hidden="true"></canvas>
 
-        <!-- Scene 2: Offers Showcase (Card slides left flipped, Offers appear on right) -->
+        <!-- Scene 2: Offers Showcase (Card slides left flipped, Words-Only Offers appear on right) -->
         <div class="hero-offers-showcase" id="heroOffersShowcase" aria-label="Exclusive Patron Offers Showcase">
           <div class="hero-offers-container">
             <div class="hero-offers-header">
               <h2 class="hero-offers-title">Exclusive Patron Offers</h2>
               <p class="hero-offers-subtitle">
-                Win extraordinary luxury prizes. Stay, dine, or play to earn draw tickets and patron privileges.
+                Active grand luxury seasonal drawings, automotive raffles, and bespoke patron privileges.
               </p>
             </div>
             <div class="hero-offers-grid">
-              <!-- Offer 1: Porsche Supercar -->
-              <a class="hero-offer-card" href="events.html" aria-label="Grand Luxury Raffle - Porsche 911 Turbo">
-                <div class="hero-offer-card__media">
-                  <img src="assets/promos/car.jpg" alt="Win a Porsche 911 Turbo Supercar" class="hero-offer-card__img" loading="lazy" />
+              <!-- Offer 1: Porsche Supercar (Words Only) -->
+              <a class="hero-offer-card hero-offer-card--text" href="events.html" aria-label="Grand Luxury Raffle - Porsche 911 Turbo">
+                <div class="hero-offer-card__header">
                   <span class="hero-offer-card__badge">Grand Luxury Raffle</span>
+                  <span class="hero-offer-card__term">Quarterly Draw</span>
                 </div>
-                <div class="hero-offer-card__content">
-                  <h3 class="hero-offer-card__title">Porsche 911 Turbo</h3>
-                  <p class="hero-offer-card__desc">Quarterly supercar draw for qualified suite stays, dining, and gaming.</p>
-                </div>
+                <h3 class="hero-offer-card__title">Porsche 911 Turbo</h3>
+                <p class="hero-offer-card__desc">Quarterly grand supercar draw. Earn entry tickets with every qualified suite reservation, fine dining seating, or gaming salon visit.</p>
+                <span class="hero-offer-card__link">Explore Privilege &rarr;</span>
               </a>
 
-              <!-- Offer 2: Ducati Superbike -->
-              <a class="hero-offer-card" href="events.html" aria-label="Quarterly Draw - Ducati Panigale V4">
-                <div class="hero-offer-card__media">
-                  <img src="assets/promos/bike.jpg" alt="Win a Ducati Panigale V4 Superbike" class="hero-offer-card__img" loading="lazy" />
+              <!-- Offer 2: Ducati Superbike (Words Only) -->
+              <a class="hero-offer-card hero-offer-card--text" href="events.html" aria-label="Quarterly Draw - Ducati Panigale V4">
+                <div class="hero-offer-card__header">
                   <span class="hero-offer-card__badge">Quarterly Draw</span>
+                  <span class="hero-offer-card__term">Active Season</span>
                 </div>
-                <div class="hero-offer-card__content">
-                  <h3 class="hero-offer-card__title">Ducati Panigale V4</h3>
-                  <p class="hero-offer-card__desc">High-roller superbike raffle open to all verified ONYX patrons.</p>
-                </div>
+                <h3 class="hero-offer-card__title">Ducati Panigale V4</h3>
+                <p class="hero-offer-card__desc">High-roller superbike raffle open to all verified ONYX patrons and registered rewards club members.</p>
+                <span class="hero-offer-card__link">Explore Privilege &rarr;</span>
               </a>
 
-              <!-- Offer 3: Patron Privilege -->
-              <a class="hero-offer-card" href="events.html" aria-label="Patron Privileges - Suite and Dining Credits">
-                <div class="hero-offer-card__media">
-                  <img src="assets/promos/cash-stack.jpg" alt="Patron Stays and Dining Privileges" class="hero-offer-card__img" loading="lazy" />
+              <!-- Offer 3: Patron Privilege (Words Only) -->
+              <a class="hero-offer-card hero-offer-card--text" href="events.html" aria-label="Patron Privileges - Suite & Dining Credits">
+                <div class="hero-offer-card__header">
                   <span class="hero-offer-card__badge">Patron Privilege</span>
+                  <span class="hero-offer-card__term">Member Tier</span>
                 </div>
-                <div class="hero-offer-card__content">
-                  <h3 class="hero-offer-card__title">Suite &amp; Dining Credits</h3>
-                  <p class="hero-offer-card__desc">Exclusive weekend upgrade credits and complimentary chef tasting pairings.</p>
-                </div>
+                <h3 class="hero-offer-card__title">Suite &amp; Dining Credits</h3>
+                <p class="hero-offer-card__desc">Exclusive weekend room upgrade credits, private cellar tasting pairings, and complimentary hydrotherapy spa access.</p>
+                <span class="hero-offer-card__link">Explore Privilege &rarr;</span>
               </a>
             </div>
             <div class="hero-offers-action">
@@ -226,26 +223,6 @@
             </div>
           </div>
         </div>
-
-        <!-- Hero Animation Scene Navigation -->
-        <nav class="hero-anim-nav" id="heroAnimNav" aria-label="Hero Scene Controls">
-          <button type="button" class="hero-anim-btn is-active" data-scene="0" aria-label="Overview scene">
-            <span class="hero-anim-btn__indicator"></span>
-            <span class="hero-anim-btn__text">Overview</span>
-          </button>
-          <button type="button" class="hero-anim-btn" data-scene="1" aria-label="Highlights scene">
-            <span class="hero-anim-btn__indicator"></span>
-            <span class="hero-anim-btn__text">Highlights</span>
-          </button>
-          <button type="button" class="hero-anim-btn" data-scene="2" aria-label="Offers scene">
-            <span class="hero-anim-btn__indicator"></span>
-            <span class="hero-anim-btn__text">Offers</span>
-          </button>
-          <button type="button" class="hero-anim-btn" data-scene="3" aria-label="Reserve scene">
-            <span class="hero-anim-btn__indicator"></span>
-            <span class="hero-anim-btn__text">Reserve</span>
-          </button>
-        </nav>
       </section>
 
       <section class="booking-band" id="booking" aria-label="Reservation inquiry">

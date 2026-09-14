@@ -766,10 +766,10 @@ select {
   transition: transform 0.65s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease;
 }
 
-/* Scene 2: Card glides left in flipped state */
+/* Scene 2: Card glides cleanly to the LEFT in flipped state */
 @media (min-width: 981px) {
-  .hero.is-offers-active #cardContainer {
-    transform: translate3d(calc(-100% - clamp(32px, 5vw, 64px)), 0, 0) scale(0.94);
+  .hero.is-offers-active .hero__stage {
+    transform: translate3d(calc(-100% - clamp(32px, 5vw, 64px)), 0, 0);
     opacity: 1;
     z-index: 5;
     pointer-events: auto;
@@ -781,16 +781,20 @@ select {
 }
 
 @media (max-width: 980px) {
-  .hero.is-offers-active #cardContainer {
+  .hero.is-offers-active .hero__stage {
     display: none;
   }
 }
 
 /* Scene 3: Card fades out for big RESERVE NOW */
-.hero.is-reserve-active #cardContainer {
+.hero.is-reserve-active .hero__stage {
   transform: translate3d(0, 30px, 0) scale(0.85);
   opacity: 0;
   pointer-events: none;
+}
+
+.hero__stage {
+  transition: transform 0.85s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.55s ease;
 }
 
 #cardContainer {
@@ -798,7 +802,7 @@ select {
 }
 
 /* ==========================================================================
-   Hero Scene 2: Offers Showcase (Card Left Flipped, Offers Right)
+   Hero Scene 2: Offers Showcase (Card Left Flipped, Words-Only Offers Right)
    ========================================================================== */
 .hero-offers-showcase {
   position: absolute;
@@ -821,11 +825,12 @@ select {
 }
 
 .hero-offers-container {
-  width: min(100%, 650px);
+  width: min(100%, 560px);
+  margin-left: auto;
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  transform: translate3d(60px, 0, 0);
+  gap: 14px;
+  transform: translate3d(50px, 0, 0);
   opacity: 0;
   transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.6s ease;
 }
@@ -837,7 +842,7 @@ select {
 
 .hero-offers-header .hero-offers-title {
   font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: clamp(1.9rem, 3.2vw, 2.7rem);
+  font-size: clamp(1.9rem, 3vw, 2.6rem);
   font-weight: 600;
   color: #ffffff;
   margin: 0 0 6px;
@@ -852,104 +857,112 @@ select {
 }
 
 .hero-offers-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
-.hero-offer-card {
-  background: rgba(18, 15, 20, 0.88);
-  backdrop-filter: blur(8px);
-  border: 1.5px solid rgba(216, 189, 122, 0.35);
-  border-radius: 10px;
-  overflow: hidden;
+.hero-offer-card--text {
+  background: rgba(18, 15, 20, 0.92);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(216, 189, 122, 0.28);
+  border-left: 3.5px solid var(--gold);
+  border-radius: 8px;
+  padding: 12px 18px;
   text-decoration: none;
   color: inherit;
   display: flex;
   flex-direction: column;
-  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.5);
+  gap: 4px;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
 }
 
-.hero-offer-card:hover,
-.hero-offer-card:focus-visible {
-  transform: translateY(-4px);
-  border-color: rgba(242, 213, 129, 0.85);
+.hero-offer-card--text:hover,
+.hero-offer-card--text:focus-visible {
+  transform: translateX(6px);
+  background: rgba(28, 23, 31, 0.96);
+  border-color: rgba(242, 213, 129, 0.8);
+  border-left-color: #f2d581;
   box-shadow:
-    0 16px 36px rgba(0, 0, 0, 0.7),
-    0 0 24px rgba(216, 189, 122, 0.28);
+    0 12px 30px rgba(0, 0, 0, 0.65),
+    0 0 20px rgba(216, 189, 122, 0.2);
 }
 
-.hero-offer-card__media {
-  position: relative;
-  height: 98px;
-  overflow: hidden;
-  background: #000;
-}
-
-.hero-offer-card__img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s ease;
-}
-
-.hero-offer-card:hover .hero-offer-card__img {
-  transform: scale(1.08);
+.hero-offer-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
 }
 
 .hero-offer-card__badge {
-  position: absolute;
-  top: 6px;
-  left: 6px;
-  font-size: 0.62rem;
+  font-size: 0.68rem;
   font-weight: 800;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  background: rgba(13, 11, 14, 0.88);
-  backdrop-filter: blur(4px);
   color: #f2d581;
-  padding: 3px 7px;
-  border-radius: 4px;
-  border: 1px solid rgba(216, 189, 122, 0.45);
 }
 
-.hero-offer-card__content {
-  padding: 10px 10px 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
+.hero-offer-card__term {
+  font-size: 0.72rem;
+  color: rgba(247, 243, 235, 0.55);
+  font-weight: 500;
 }
 
 .hero-offer-card__title {
   font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: 1.1rem;
+  font-size: 1.3rem;
   font-weight: 600;
   color: #ffffff;
   margin: 0;
-  line-height: 1.2;
+  line-height: 1.15;
 }
 
 .hero-offer-card__desc {
-  font-size: 0.73rem;
-  color: rgba(247, 243, 235, 0.72);
+  font-size: 0.8rem;
+  color: rgba(247, 243, 235, 0.75);
   margin: 0;
-  line-height: 1.38;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+  line-height: 1.45;
+}
+
+.hero-offer-card__link {
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--gold);
+  margin-top: 2px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.hero-offer-card--text:hover .hero-offer-card__link {
+  color: #f2d581;
+  transform: translateX(3px);
 }
 
 .hero-offers-action {
-  margin-top: 4px;
+  margin-top: 6px;
 }
 
 .hero-offers-action .button {
-  padding: 9px 20px;
-  font-size: 0.82rem;
-  font-weight: 700;
+  padding: 10px 24px;
+  font-size: 0.84rem;
+  font-weight: 800;
   white-space: nowrap;
+}
+
+@media (max-width: 980px) {
+  .hero-offers-showcase {
+    justify-content: center;
+    padding: 24px 16px;
+  }
+  .hero-offers-container {
+    width: 100%;
+    max-width: 580px;
+    margin-inline: auto;
+  }
 }
 
 /* ==========================================================================
@@ -1083,107 +1096,6 @@ select {
 .hero-reserve-actions .button--ghost {
   padding: 13px 28px;
   font-size: 0.92rem;
-}
-
-/* ==========================================================================
-   Hero Animation Scene Navigation (Overview, Highlights, Offers, Reserve)
-   ========================================================================== */
-.hero-anim-nav {
-  position: absolute;
-  bottom: 22px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 6;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 5px 8px;
-  background: rgba(14, 12, 16, 0.78);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(216, 189, 122, 0.28);
-  border-radius: 999px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-}
-
-.hero-anim-btn {
-  background: transparent;
-  border: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 6px 14px;
-  border-radius: 999px;
-  cursor: pointer;
-  color: rgba(247, 243, 235, 0.65);
-  font-family: "Inter", sans-serif;
-  font-size: 0.74rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  transition: all 0.25s ease;
-  user-select: none;
-}
-
-.hero-anim-btn:hover {
-  color: #ffffff;
-  background: rgba(255, 255, 255, 0.08);
-}
-
-.hero-anim-btn.is-active {
-  color: #171416;
-  background: linear-gradient(135deg, #f2d581, #d8bd7a);
-  font-weight: 800;
-  box-shadow: 0 2px 12px rgba(216, 189, 122, 0.45);
-}
-
-.hero-anim-btn__indicator {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: currentColor;
-  display: inline-block;
-}
-
-@media (max-width: 980px) {
-  .hero-offers-showcase {
-    justify-content: center;
-    padding: 24px 16px 64px;
-  }
-  .hero-offers-container {
-    max-width: 100%;
-    align-items: center;
-    text-align: center;
-  }
-  .hero-offers-grid {
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    width: 100%;
-  }
-}
-
-@media (max-width: 560px) {
-  .hero-offers-grid {
-    grid-template-columns: 1fr;
-    max-height: 280px;
-    overflow-y: auto;
-  }
-  .hero-offer-card {
-    flex-direction: row;
-    align-items: center;
-  }
-  .hero-offer-card__media {
-    width: 80px;
-    height: 70px;
-    flex-shrink: 0;
-  }
-  .hero-anim-btn__text {
-    display: none;
-  }
-  .hero-anim-btn {
-    padding: 8px;
-  }
-  .hero-anim-btn__indicator {
-    width: 8px;
-    height: 8px;
-  }
 }
 
 /* Light sheen / specular sweep across gold */
