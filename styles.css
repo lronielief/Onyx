@@ -153,6 +153,8 @@ select {
   align-items: center;
   gap: 12px;
   min-width: 0;
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
 .brand img {
@@ -6634,6 +6636,10 @@ a.feature-card:hover .feature-card__cta,
 .events-page-hero__content {
   max-width: 860px;
   margin: 0 auto;
+}
+
+.events-page-hero .eyebrow {
+  color: var(--pale-gold) !important;
 }
 
 .events-page-hero h1 {
