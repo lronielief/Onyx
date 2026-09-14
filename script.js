@@ -424,25 +424,25 @@ function initHeroChipsCanvas(canvas, heroSection) {
       x = Math.random() * (w * 0.30) + (w * 0.02);
       scale = Math.random() * 0.35 + 0.85; // 0.85 to 1.20 (~80px to ~115px)
       alpha = Math.random() * 0.15 + 0.85;
-      vy = (Math.random() * 1.0 + 2.8) * (scale * 1.05);
+      vy = (Math.random() * 0.9 + 2.6) * (scale * 1.05);
     } else if (laneType === "right") {
       // Right flank framing: 68% to 98% screen width
       x = Math.random() * (w * 0.30) + (w * 0.68);
       scale = Math.random() * 0.35 + 0.85; // 0.85 to 1.20
       alpha = Math.random() * 0.15 + 0.85;
-      vy = (Math.random() * 1.0 + 2.8) * (scale * 1.05);
+      vy = (Math.random() * 0.9 + 2.6) * (scale * 1.05);
     } else {
       // Ambient background depth layer: 30% to 70% width, smaller & soft
       x = Math.random() * (w * 0.40) + (w * 0.30);
       scale = Math.random() * 0.15 + 0.52; // 0.52 to 0.67
       alpha = Math.random() * 0.2 + 0.45;  // soft atmospheric presence
-      vy = (Math.random() * 0.6 + 1.8) * scale;
+      vy = (Math.random() * 0.5 + 1.8) * scale;
     }
 
-    // Staggered cascade entrance from top (smooth continuous rain)
+    // Smooth cascade entrance: staggered just above and entering viewport
     const startY = isFirstCascade
-      ? -(Math.random() * (h * 0.75) + 30)
-      : -(Math.random() * 180 + 90);
+      ? -(Math.random() * (h * 0.55) + 15)
+      : -(Math.random() * 160 + 80);
 
     return {
       x,
@@ -451,7 +451,7 @@ function initHeroChipsCanvas(canvas, heroSection) {
       scale,
       alpha,
       vy,
-      vx: (Math.random() - 0.5) * 0.3,
+      vx: (Math.random() - 0.5) * 0.25,
       pitch: Math.random() * Math.PI * 2,
       vPitch: Math.random() * 0.016 + 0.012,
       roll: Math.random() * Math.PI * 2,
@@ -474,15 +474,19 @@ function initHeroChipsCanvas(canvas, heroSection) {
     const T = 13 * chip.scale; // Thick, chunky 3D rim depth
     const cosT = Math.cos(chip.pitch);
     const sinT = Math.sin(chip.pitch);
-    const frontIsCloser = cosT >= 0;
+
+    // Continuous 3D coordinates (Zero-jump guarantee):
+    // Cap 1 (front face) is at +T/2 along face normal
+    // Cap 2 (back face) is at -T/2 along face normal
+    const y1 = (T / 2) * sinT;
+    const y2 = -(T / 2) * sinT;
+
+    const frontIsCap1 = cosT >= 0;
+    const yNear = frontIsCap1 ? y1 : y2;
+    const yFar = frontIsCap1 ? y2 : y1;
 
     const rx = R;
-    const ry = Math.max(1.8, Math.abs(cosT) * R);
-    const dy = sinT * T;
-
-    const yNear = frontIsCloser ? -dy / 2 : dy / 2;
-    const yFar = frontIsCloser ? dy / 2 : -dy / 2;
-    const rimIsDown = yFar > yNear;
+    const ry = Math.abs(cosT) * R;
 
     const cfg = chipConfigs[chip.type];
 
@@ -491,37 +495,18 @@ function initHeroChipsCanvas(canvas, heroSection) {
     ctx.rotate(chip.roll);
     ctx.globalAlpha = chip.alpha;
 
-    // Soft 3D contact shadow
-    ctx.save();
-    ctx.beginPath();
-    ctx.ellipse(0, Math.max(yNear, yFar) + 8 * chip.scale, rx * 1.05, ry * 1.05, 0, 0, Math.PI * 2);
-    ctx.fillStyle = "rgba(0, 0, 0, 0.32)";
-    ctx.fill();
-    ctx.restore();
-
-    // 1. Far Ellipse (Back of cylinder)
-    ctx.beginPath();
-    ctx.ellipse(0, yFar, rx, ry, 0, 0, Math.PI * 2);
-    ctx.fillStyle = cfg.rimDark;
-    ctx.fill();
-
-    // 2. Continuous Solid 3D Cylinder Rim Wall
-    if (Math.abs(yFar - yNear) > 0.4) {
+    // 1. Far Cap (Back rim boundary of cylinder)
+    if (ry > 0.5) {
       ctx.beginPath();
-      if (rimIsDown) {
-        ctx.moveTo(-rx, yNear);
-        ctx.lineTo(-rx, yFar);
-        ctx.ellipse(0, yFar, rx, ry, 0, Math.PI, 0, true);
-        ctx.lineTo(rx, yNear);
-        ctx.ellipse(0, yNear, rx, ry, 0, 0, Math.PI, false);
-      } else {
-        ctx.moveTo(-rx, yNear);
-        ctx.lineTo(-rx, yFar);
-        ctx.ellipse(0, yFar, rx, ry, 0, Math.PI, 0, false);
-        ctx.lineTo(rx, yNear);
-        ctx.ellipse(0, yNear, rx, ry, 0, 0, Math.PI, true);
-      }
-      ctx.closePath();
+      ctx.ellipse(0, yFar, rx, ry, 0, 0, Math.PI * 2);
+      ctx.fillStyle = cfg.rimDark;
+      ctx.fill();
+    }
+
+    // 2. Solid 3D Cylinder Rim Wall spanning between y1 and y2
+    const rimH = Math.abs(y1 - y2);
+    if (rimH > 0.4) {
+      const minY = Math.min(y1, y2);
 
       // Smooth metallic cylinder lighting gradient
       const rimGrad = ctx.createLinearGradient(-rx, 0, rx, 0);
@@ -530,58 +515,66 @@ function initHeroChipsCanvas(canvas, heroSection) {
       rimGrad.addColorStop(0.5, cfg.stripe);
       rimGrad.addColorStop(0.75, cfg.rim);
       rimGrad.addColorStop(1.0, cfg.rimDark);
+
+      ctx.beginPath();
+      ctx.rect(-rx, minY, rx * 2, rimH);
       ctx.fillStyle = rimGrad;
       ctx.fill();
 
-      // 3. Crisp Rim Stripes (Edge notches wrapping the cylinder)
+      // 3. Crisp Rim Stripes wrapping the cylinder rim
       for (let i = 0; i < 6; i++) {
         const stripeAngle = (i * Math.PI * 2) / 6 + chip.spin;
         const stripeX = Math.cos(stripeAngle) * rx;
         const stripeZ = Math.sin(stripeAngle);
 
-        if (stripeZ > -0.15) {
-          const w = (rx * 0.28) * Math.max(0.25, Math.abs(stripeZ));
-          ctx.save();
+        if (stripeZ > -0.1) {
+          const w = Math.max(2, (rx * 0.26) * Math.abs(stripeZ));
           ctx.beginPath();
-          if (rimIsDown) {
-            ctx.rect(stripeX - w / 2, Math.min(yNear, yFar), w, Math.abs(yFar - yNear) + ry * 0.4);
-          } else {
-            ctx.rect(stripeX - w / 2, Math.min(yNear, yFar) - ry * 0.4, w, Math.abs(yFar - yNear) + ry * 0.4);
-          }
+          ctx.rect(stripeX - w / 2, minY, w, rimH);
           ctx.fillStyle = cfg.stripe;
-          ctx.globalAlpha = chip.alpha * 0.95 * Math.max(0.35, stripeZ);
           ctx.fill();
-          ctx.restore();
         }
       }
     }
 
-    // 4. Near Face (High-DPI Chip Face)
-    ctx.save();
-    ctx.translate(0, yNear);
-    ctx.scale(1, ry / rx);
-    ctx.drawImage(chipFaceCanvases[chip.type], -rx, -rx, rx * 2, rx * 2);
-
-    // Specular sheen sweep when turning towards the light
-    if (Math.abs(cosT) > 0.15 && Math.abs(cosT) < 0.92) {
-      const sheenGrad = ctx.createLinearGradient(-rx, -rx, rx, rx);
-      sheenGrad.addColorStop(0, "rgba(255, 255, 255, 0)");
-      sheenGrad.addColorStop(0.48, "rgba(242, 213, 129, 0)");
-      sheenGrad.addColorStop(0.52, "rgba(255, 245, 210, 0.42)");
-      sheenGrad.addColorStop(0.56, "rgba(242, 213, 129, 0)");
-      sheenGrad.addColorStop(1, "rgba(255, 255, 255, 0)");
-      ctx.fillStyle = sheenGrad;
+    // 4. Near Face (Drawn on top of rim wall, naturally occluding it)
+    if (ry > 0.5) {
       ctx.beginPath();
-      ctx.arc(0, 0, rx, 0, Math.PI * 2);
+      ctx.ellipse(0, yNear, rx, ry, 0, 0, Math.PI * 2);
+      ctx.fillStyle = cfg.rim;
       ctx.fill();
+
+      // Smooth face appearance when turning from edge-on
+      const faceAlpha = Math.min(1, Math.max(0, (Math.abs(cosT) - 0.05) / 0.15));
+      if (faceAlpha > 0.01) {
+        ctx.save();
+        ctx.translate(0, yNear);
+        ctx.scale(1, ry / rx);
+        ctx.globalAlpha = chip.alpha * faceAlpha;
+        ctx.drawImage(chipFaceCanvases[chip.type], -rx, -rx, rx * 2, rx * 2);
+
+        // Specular sheen sweep when turning towards the light
+        if (Math.abs(cosT) > 0.15 && Math.abs(cosT) < 0.90) {
+          const sheenGrad = ctx.createLinearGradient(-rx, -rx, rx, rx);
+          sheenGrad.addColorStop(0, "rgba(255, 255, 255, 0)");
+          sheenGrad.addColorStop(0.48, "rgba(242, 213, 129, 0)");
+          sheenGrad.addColorStop(0.52, "rgba(255, 245, 210, 0.45)");
+          sheenGrad.addColorStop(0.56, "rgba(242, 213, 129, 0)");
+          sheenGrad.addColorStop(1, "rgba(255, 255, 255, 0)");
+          ctx.fillStyle = sheenGrad;
+          ctx.beginPath();
+          ctx.arc(0, 0, rx, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        ctx.restore();
+      }
     }
-    ctx.restore();
 
     ctx.restore();
   }
 
   function loop() {
-    if (!isRunning) return;
+    if (!isRunning && ctx.canvas.style.opacity === "0") return;
     ctx.clearRect(0, 0, width, height);
 
     for (let i = 0; i < chips.length; i++) {
@@ -601,21 +594,32 @@ function initHeroChipsCanvas(canvas, heroSection) {
       draw3DChip(chip);
     }
 
-    rafId = requestAnimationFrame(loop);
+    if (isRunning) {
+      rafId = requestAnimationFrame(loop);
+    }
   }
+
+  let fadeOutTimer = null;
 
   return {
     start: () => {
-      if (isRunning) return;
+      if (fadeOutTimer) clearTimeout(fadeOutTimer);
       isRunning = true;
       resize();
       initChips();
-      loop();
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(loop);
     },
     stop: () => {
       isRunning = false;
-      if (rafId) cancelAnimationFrame(rafId);
-      ctx.clearRect(0, 0, width, height);
+      // Allow the 0.65s CSS opacity transition to complete smoothly before clearing canvas
+      if (fadeOutTimer) clearTimeout(fadeOutTimer);
+      fadeOutTimer = setTimeout(() => {
+        if (!isRunning) {
+          if (rafId) cancelAnimationFrame(rafId);
+          ctx.clearRect(0, 0, width, height);
+        }
+      }, 700);
     }
   };
 }
