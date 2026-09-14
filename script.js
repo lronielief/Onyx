@@ -303,61 +303,49 @@ if (reservePageForm) {
 /* ==========================================================================
    Hero Section 10-Second Highlights Animation Loop
    Every 10 seconds:
-   1. The hero text smoothly vanishes (opacity 0, blur, slight lift).
-   2. The Ace card flips in 3D to reveal the Company Highlights.
-   3. The highlights stay featured for ~3.6s, cycling through pillar spotlights.
-   4. The card flips back to normal and the hero text returns to normal.
+   1. The hero text smoothly vanishes on the left.
+   2. The card slides to the left and expands into FOUR luxury image cards.
+   3. The 4 cards show authentic images (Suites, Dining, Gaming, Concierge) with NO text.
+   4. Stays presented for ~3.8s, then smoothly slides and collapses back to normal.
    5. Repeats continuously every 10 seconds in a seamless loop.
    ========================================================================== */
 (function initHeroHighlightsLoop() {
+  const heroSection = document.querySelector("#heroSection");
   const heroContent = document.querySelector(".hero__content");
-  const playingCard = document.querySelector("#playingCard");
+  const heroCardsShowcase = document.querySelector("#heroCardsShowcase");
   const cardContainer = document.querySelector("#cardContainer");
-  const heroStage = document.querySelector("#heroStage");
 
-  if (!heroContent || !playingCard) return;
+  if (!heroSection || !heroContent || !heroCardsShowcase) return;
 
-  const highlightItems = document.querySelectorAll(".card-highlight-item");
-  let currentHighlightIndex = 0;
   let isUserInteracting = false;
   let cycleTimeout = null;
   let resetTimeout = null;
   let touchTimeout = null;
 
   const CYCLE_INTERVAL = 10000;     // 10 seconds total loop
-  const VANISH_DELAY = 5800;        // At 5.8s, text vanishes and card flips
-  const HIGHLIGHTS_DURATION = 3600; // Remains flipped showing highlights for 3.6s
+  const VANISH_DELAY = 5800;        // At 5.8s, text vanishes and cards slide in
+  const HIGHLIGHTS_DURATION = 3800; // Remains expanded showing 4 image cards for 3.8s
 
   function flipToHighlights() {
     if (isUserInteracting || document.hidden) return;
 
-    // 1. Text vanishes smoothly
+    // 1. Text vanishes smoothly on the left
     heroContent.classList.add("is-vanished");
 
-    // 2. Card flips to show company highlights
-    playingCard.classList.add("is-flipped", "is-auto-flipped");
-    if (heroStage) heroStage.classList.add("has-flipped-card");
+    // 2. Card slides to the left and expands into 4 image cards (no text)
+    heroSection.classList.add("is-cards-active");
 
-    // 3. Highlight the active company pillar
-    if (highlightItems.length > 0) {
-      highlightItems.forEach((el, idx) => {
-        el.classList.toggle("is-active", idx === currentHighlightIndex);
-      });
-      currentHighlightIndex = (currentHighlightIndex + 1) % highlightItems.length;
-    }
-
-    // 4. Return to normal after duration
+    // 3. Return to normal after duration
     resetTimeout = setTimeout(() => {
       restoreNormal();
     }, HIGHLIGHTS_DURATION);
   }
 
   function restoreNormal() {
-    // Card flips back to normal
-    playingCard.classList.remove("is-flipped", "is-auto-flipped");
-    if (heroStage) heroStage.classList.remove("has-flipped-card");
+    // 4 cards slide back together into single card
+    heroSection.classList.remove("is-cards-active");
 
-    // Text returns to normal
+    // Text returns to normal on the left
     heroContent.classList.remove("is-vanished");
   }
 
@@ -375,13 +363,28 @@ if (reservePageForm) {
     if (touchTimeout) clearTimeout(touchTimeout);
   }
 
-  // Pause loop if user hovers over hero content (e.g. clicking buttons) or card
+  // Pause loop if user hovers over hero content (e.g. clicking buttons) or the cards
   heroContent.addEventListener("mouseenter", () => {
     isUserInteracting = true;
   });
   heroContent.addEventListener("mouseleave", () => {
     isUserInteracting = false;
   });
+
+  heroCardsShowcase.addEventListener("mouseenter", () => {
+    isUserInteracting = true;
+  });
+  heroCardsShowcase.addEventListener("mouseleave", () => {
+    isUserInteracting = false;
+  });
+
+  heroCardsShowcase.addEventListener("touchstart", () => {
+    isUserInteracting = true;
+    if (touchTimeout) clearTimeout(touchTimeout);
+    touchTimeout = setTimeout(() => {
+      isUserInteracting = false;
+    }, 6000);
+  }, { passive: true });
 
   if (cardContainer) {
     cardContainer.addEventListener("mouseenter", () => {
@@ -390,14 +393,6 @@ if (reservePageForm) {
     cardContainer.addEventListener("mouseleave", () => {
       isUserInteracting = false;
     });
-
-    cardContainer.addEventListener("touchstart", () => {
-      isUserInteracting = true;
-      if (touchTimeout) clearTimeout(touchTimeout);
-      touchTimeout = setTimeout(() => {
-        isUserInteracting = false;
-      }, 6000);
-    }, { passive: true });
   }
 
   // Handle visibility changes so background tabs don't desynchronize

@@ -96,8 +96,8 @@
                 </div>
               </div>
 
-              <!-- Card Front (Flipped Face: The Ace of ONYX & Company Highlights) -->
-              <div class="playing-card__face playing-card__face--front" aria-label="Interactive Ace of ONYX playing card showing resort highlights">
+              <!-- Card Front (Flipped Face: The Ace of Spades with ONYX Logo Center) -->
+              <div class="playing-card__face playing-card__face--front">
                 <div class="card-corner card-corner--tl">
                   <span class="card-corner__val">A</span>
                   <span class="card-corner__suit">&spades;</span>
@@ -107,62 +107,53 @@
                   <span class="card-corner__suit">&spades;</span>
                 </div>
 
-                <div class="card-front__body card-highlights-body">
-                  <div class="card-front__inner-frame card-highlights-frame">
-                    <!-- Highlights Header -->
-                    <div class="card-highlights-header">
-                      <img src="assets/onyx-logo.png" alt="ONYX emblem" class="card-highlights-emblem" />
-                      <div class="card-highlights-headings">
-                        <span class="card-highlights-kicker">Resort Highlights</span>
-                        <h2 class="card-highlights-title">World of ONYX</h2>
-                      </div>
-                    </div>
-
-                    <div class="card-highlights-divider" aria-hidden="true"></div>
-
-                    <!-- 4 Highlights of the Company -->
-                    <div class="card-highlights-list" role="list">
-                      <div class="card-highlight-item" role="listitem">
-                        <span class="card-highlight-pip" aria-hidden="true">&#9670;</span>
-                        <div class="card-highlight-text">
-                          <strong class="card-highlight-name">Suites &amp; Residences</strong>
-                          <span class="card-highlight-sub">188 Bespoke Sanctuaries</span>
-                        </div>
-                      </div>
-
-                      <div class="card-highlight-item" role="listitem">
-                        <span class="card-highlight-pip" aria-hidden="true">&#9670;</span>
-                        <div class="card-highlight-text">
-                          <strong class="card-highlight-name">Fine Dining &amp; Lounges</strong>
-                          <span class="card-highlight-sub">Prime 54 &amp; Kintsugi Omakase</span>
-                        </div>
-                      </div>
-
-                      <div class="card-highlight-item" role="listitem">
-                        <span class="card-highlight-pip" aria-hidden="true">&#9670;</span>
-                        <div class="card-highlight-text">
-                          <strong class="card-highlight-name">Regulated Salon Priv&eacute;</strong>
-                          <span class="card-highlight-sub">PAGCOR Certified Gaming</span>
-                        </div>
-                      </div>
-
-                      <div class="card-highlight-item" role="listitem">
-                        <span class="card-highlight-pip" aria-hidden="true">&#9670;</span>
-                        <div class="card-highlight-text">
-                          <strong class="card-highlight-name">VIP Concierge &amp; Fleet</strong>
-                          <span class="card-highlight-sub">Armored Maybach &bull; 24/7 Liaison</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <!-- Highlights Footer Seal -->
-                    <div class="card-highlights-footer">
-                      <span class="card-highlights-seal">5-Star Luxury &bull; Regulated</span>
+                <div class="card-front__body">
+                  <div class="card-front__inner-frame">
+                    <div class="card-front__logo-wrap">
+                      <img src="assets/onyx-logo.png" alt="ONYX Ace Logo" class="card-front__logo" />
+                      <div class="hero__logo-sheen" aria-hidden="true"></div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+
+        <!-- 4-Card Image Showcase: Slides to the left and expands into 4 cards (Pure Images, No Text) -->
+        <div class="hero-cards-showcase" id="heroCardsShowcase" aria-label="Resort Highlights Image Showcase">
+          <div class="hero-cards-track">
+            <!-- Card 1: Suites -->
+            <a class="hero-quad-card hero-quad-card--1" href="stay.html" aria-label="Suites &amp; Residences">
+              <div class="hero-quad-card__inner">
+                <img src="assets/experiences/suites.jpg" alt="Luxury Suites" class="hero-quad-card__img" loading="eager" />
+                <div class="hero-quad-card__sheen" aria-hidden="true"></div>
+              </div>
+            </a>
+
+            <!-- Card 2: Dining -->
+            <a class="hero-quad-card hero-quad-card--2" href="dining.html" aria-label="Fine Dining &amp; Lounges">
+              <div class="hero-quad-card__inner">
+                <img src="assets/experiences/dining.jpg" alt="Fine Dining" class="hero-quad-card__img" loading="eager" />
+                <div class="hero-quad-card__sheen" aria-hidden="true"></div>
+              </div>
+            </a>
+
+            <!-- Card 3: Gaming -->
+            <a class="hero-quad-card hero-quad-card--3" href="casino.html" aria-label="Regulated Gaming Salon">
+              <div class="hero-quad-card__inner">
+                <img src="assets/experiences/gaming.jpg" alt="Regulated Gaming Salon" class="hero-quad-card__img" loading="eager" />
+                <div class="hero-quad-card__sheen" aria-hidden="true"></div>
+              </div>
+            </a>
+
+            <!-- Card 4: Concierge -->
+            <a class="hero-quad-card hero-quad-card--4" href="reserve.html" aria-label="VIP Concierge &amp; Arrival">
+              <div class="hero-quad-card__inner">
+                <img src="assets/experiences/concierge.jpg" alt="VIP Concierge" class="hero-quad-card__img" loading="eager" />
+                <div class="hero-quad-card__sheen" aria-hidden="true"></div>
+              </div>
+            </a>
           </div>
         </div>
       </section>

@@ -577,157 +577,197 @@ select {
   justify-content: center;
 }
 
-/* --------------------------------------------------------------------------
-   Company Highlights on Flipped Card Face
-   -------------------------------------------------------------------------- */
-.card-highlights-body {
+.card-front__inner-frame {
   width: 100%;
   height: 100%;
-}
-
-.card-highlights-frame {
-  width: 100%;
-  height: 100%;
-  border: 1px solid rgba(199, 150, 49, 0.36);
+  border: 1px solid rgba(199, 150, 49, 0.32);
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: stretch;
-  padding: 16px 14px 12px;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px 16px;
   position: relative;
-  background: radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.96), rgba(246, 240, 228, 0.94));
-  box-sizing: border-box;
 }
 
-.card-highlights-frame::before {
+.card-front__inner-frame::before {
   position: absolute;
   inset: 4px;
-  border: 1px solid rgba(199, 150, 49, 0.2);
+  border: 1px solid rgba(199, 150, 49, 0.16);
   border-radius: 6px;
   content: "";
   pointer-events: none;
 }
 
-.card-highlights-header {
+.card-front__logo-wrap {
+  position: relative;
+  width: min(100%, 225px);
+  aspect-ratio: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  text-align: left;
-  padding-inline: 4px;
-}
-
-.card-highlights-emblem {
-  width: 32px;
-  height: 32px;
-  object-fit: contain;
-  filter: drop-shadow(0 2px 6px rgba(199, 150, 49, 0.4));
-  flex-shrink: 0;
-}
-
-.card-highlights-headings {
-  display: flex;
-  flex-direction: column;
-}
-
-.card-highlights-kicker {
-  font-size: 0.62rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-  color: var(--gold);
-  line-height: 1.1;
-}
-
-.card-highlights-title {
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: 1.18rem;
-  font-weight: 700;
-  color: var(--ink);
-  margin: 1px 0 0;
-  line-height: 1.1;
-  letter-spacing: 0.02em;
-}
-
-.card-highlights-divider {
-  width: 100%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(199, 150, 49, 0.45), transparent);
-  margin: 4px 0 6px;
-}
-
-.card-highlights-list {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  flex: 1;
-  justify-content: center;
-}
-
-.card-highlight-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 9px;
-  padding: 5px 8px;
-  border-radius: 7px;
-  background: rgba(23, 20, 22, 0.03);
-  border: 1px solid rgba(199, 150, 49, 0.18);
-  transition: background 0.35s ease, border-color 0.35s ease, transform 0.35s ease;
-}
-
-.card-highlight-item.is-active {
-  background: rgba(199, 150, 49, 0.14);
-  border-color: rgba(199, 150, 49, 0.75);
-  transform: translateX(3px);
-  box-shadow: 0 2px 8px rgba(199, 150, 49, 0.15);
-}
-
-.card-highlight-pip {
-  color: var(--gold);
-  font-size: 0.68rem;
-  margin-top: 2px;
-  line-height: 1;
-  flex-shrink: 0;
-}
-
-.card-highlight-text {
-  display: flex;
-  flex-direction: column;
-  gap: 1px;
-  line-height: 1.2;
-}
-
-.card-highlight-name {
-  font-size: 0.82rem;
-  font-weight: 700;
-  color: var(--ink);
-  letter-spacing: 0.01em;
-}
-
-.card-highlight-sub {
-  font-size: 0.68rem;
-  color: #4a4440;
-  font-weight: 500;
-  letter-spacing: 0.01em;
-}
-
-.card-highlights-footer {
-  margin-top: 6px;
-  display: flex;
-  justify-content: center;
-}
-
-.card-highlights-seal {
-  font-size: 0.62rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  color: var(--ink);
-  background: rgba(199, 150, 49, 0.14);
-  padding: 4px 12px;
+  overflow: hidden;
   border-radius: 12px;
-  border: 1px solid rgba(199, 150, 49, 0.42);
+}
+
+.card-front__logo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.3)) drop-shadow(0 0 18px rgba(199, 150, 49, 0.45));
+}
+
+/* ==========================================================================
+   Hero 4-Card Image Showcase (Slides Left & Deals 4 Image Cards - No Text)
+   ========================================================================== */
+.hero-cards-showcase {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(24px, 4vw, 56px);
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.55s ease, visibility 0.55s ease;
+}
+
+.hero.is-cards-active .hero-cards-showcase {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.hero-cards-track {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(14px, 2.2vw, 28px);
+  width: min(100%, 1180px);
+  perspective: 1400px;
+}
+
+.hero-quad-card {
+  position: relative;
+  flex: 1 1 0;
+  max-width: 250px;
+  min-width: 140px;
+  aspect-ratio: 1 / 1.45;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow:
+    0 25px 65px rgba(0, 0, 0, 0.75),
+    0 0 35px rgba(199, 150, 49, 0.22);
+  border: 2px solid rgba(216, 189, 122, 0.65);
+  background: #110e13;
+  text-decoration: none;
+  display: block;
+  user-select: none;
+  cursor: pointer;
+  /* Originates from the right, ready to slide to the left */
+  transform: translate3d(220px, 0, 0) scale(0.86);
+  opacity: 0;
+  transition:
+    transform 0.85s cubic-bezier(0.25, 1.25, 0.5, 1),
+    opacity 0.6s ease,
+    box-shadow 0.35s ease,
+    border-color 0.35s ease;
+  will-change: transform, opacity;
+}
+
+/* Staggered deal slide into the left and across the hero section */
+.hero.is-cards-active .hero-quad-card {
+  transform: translate3d(0, 0, 0) scale(1);
+  opacity: 1;
+}
+
+.hero.is-cards-active .hero-quad-card--1 {
+  transition-delay: 0.05s;
+}
+
+.hero.is-cards-active .hero-quad-card--2 {
+  transition-delay: 0.14s;
+}
+
+.hero.is-cards-active .hero-quad-card--3 {
+  transition-delay: 0.23s;
+}
+
+.hero.is-cards-active .hero-quad-card--4 {
+  transition-delay: 0.32s;
+}
+
+/* Luxury card hover effect */
+.hero-quad-card:hover,
+.hero-quad-card:focus-visible {
+  transform: translate3d(0, -12px, 0) scale(1.05) !important;
+  border-color: rgba(242, 213, 129, 0.95);
+  box-shadow:
+    0 35px 85px rgba(0, 0, 0, 0.88),
+    0 0 50px rgba(199, 150, 49, 0.5);
+  z-index: 5;
+}
+
+.hero-quad-card__inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 14px;
+}
+
+.hero-quad-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.75s ease;
+}
+
+.hero-quad-card:hover .hero-quad-card__img {
+  transform: scale(1.08);
+}
+
+.hero-quad-card__sheen {
+  position: absolute;
+  inset: -60% -80%;
+  background: linear-gradient(
+    65deg,
+    transparent 35%,
+    rgba(255, 255, 255, 0) 42%,
+    rgba(255, 245, 210, 0.35) 48%,
+    rgba(255, 255, 255, 0.7) 50%,
+    rgba(255, 245, 210, 0.35) 52%,
+    rgba(255, 255, 255, 0) 58%,
+    transparent 65%
+  );
+  transform: translateX(-120%) rotate(15deg);
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  animation: quadSheenSweep 5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes quadSheenSweep {
+  0%, 15% {
+    transform: translateX(-130%) rotate(15deg);
+  }
+  65%, 100% {
+    transform: translateX(140%) rotate(15deg);
+  }
+}
+
+/* Single resting card slide-left reaction */
+.hero.is-cards-active #cardContainer {
+  transform: translate3d(-90px, 0, 0) scale(0.9);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.65s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease;
+}
+
+#cardContainer {
+  transition: transform 0.65s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease;
 }
 
 /* Light sheen / specular sweep across gold */
@@ -4987,38 +5027,21 @@ a.feature-card:hover .feature-card__cta,
     height: 105px;
   }
 
-  .card-highlights-frame {
-    padding: 12px 10px 8px;
+  .hero-cards-showcase {
+    padding: 16px 12px;
   }
 
-  .card-highlights-emblem {
-    width: 26px;
-    height: 26px;
+  .hero-cards-track {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    max-width: 320px;
   }
 
-  .card-highlights-title {
-    font-size: 1.05rem;
-  }
-
-  .card-highlights-list {
-    gap: 4px;
-  }
-
-  .card-highlight-item {
-    padding: 4px 6px;
-  }
-
-  .card-highlight-name {
-    font-size: 0.74rem;
-  }
-
-  .card-highlight-sub {
-    font-size: 0.62rem;
-  }
-
-  .card-highlights-seal {
-    font-size: 0.58rem;
-    padding: 3px 8px;
+  .hero-quad-card {
+    max-width: none;
+    aspect-ratio: 1 / 1.35;
+    transform: translate3d(60px, 0, 0) scale(0.9);
   }
 
   .hero h1 {
