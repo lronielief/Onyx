@@ -637,7 +637,7 @@ function initHeroChipsCanvas(canvas, heroSection) {
   const heroContent = document.querySelector(".hero__content");
   const cardContainer = document.querySelector("#cardContainer");
   const playingCard = document.querySelector("#playingCard");
-  const heroCardsShowcase = document.querySelector("#heroCardsShowcase");
+  const heroBrandShowcase = document.querySelector("#heroBrandShowcase");
   const heroOffersShowcase = document.querySelector("#heroOffersShowcase");
   const heroReserveShowcase = document.querySelector("#heroReserveShowcase");
   const heroChipsCanvas = document.querySelector("#heroChipsCanvas");
@@ -646,9 +646,9 @@ function initHeroChipsCanvas(canvas, heroSection) {
 
   const SCENES = [
     { id: 0, name: "overview", duration: 6500 },
-    { id: 1, name: "highlights", duration: 5500 },
+    { id: 1, name: "brand", duration: 6000 },
     { id: 2, name: "offers", duration: 6500 },
-    { id: 3, name: "reserve", duration: 6000 }
+    { id: 3, name: "reserve", duration: 6500 }
   ];
 
   let currentScene = 0;
@@ -670,7 +670,7 @@ function initHeroChipsCanvas(canvas, heroSection) {
       if (playingCard) playingCard.classList.remove("is-flipped");
       if (chipsAnimation) chipsAnimation.stop();
     } else if (currentScene === 1) {
-      // Scene 1: Highlights (4 image cards slide left across hero)
+      // Scene 1: Cinematic ONYX Brand & Logo Advertising Showcase (WOW Effect)
       heroContent.classList.add("is-vanished");
       heroSection.classList.add("is-cards-active");
       if (playingCard) playingCard.classList.remove("is-flipped");
@@ -705,7 +705,7 @@ function initHeroChipsCanvas(canvas, heroSection) {
   // Temporary pause on hover over interactive showcase areas
   const pauseElements = [
     heroContent,
-    heroCardsShowcase,
+    heroBrandShowcase,
     heroOffersShowcase,
     heroReserveShowcase,
     cardContainer
@@ -1185,7 +1185,6 @@ function initHeroChipsCanvas(canvas, heroSection) {
   if (!stage || !pile || !dealtMat) return;
 
   const cards = Array.from(pile.querySelectorAll(".suite-card"));
-  const pills = Array.from(document.querySelectorAll(".suite-pill"));
   const dealBtn = document.getElementById("dealCardBtn");
   const returnBtn = document.getElementById("returnCardBtn");
   const statusEl = document.getElementById("suiteDeckStatus");
@@ -1331,19 +1330,6 @@ function initHeroChipsCanvas(canvas, heroSection) {
     return { dx: Math.round(dx), dy: Math.round(dy) };
   }
 
-  function updatePills() {
-    // If cards are dealt, highlight top of right stack; otherwise top of left stack
-    const highlightedIdx = rightStack.length > 0
-      ? rightStack[rightStack.length - 1]
-      : (leftStack.length > 0 ? leftStack[0] : -1);
-
-    pills.forEach((pill, idx) => {
-      const isActive = idx === highlightedIdx;
-      pill.classList.toggle("is-active", isActive);
-      pill.setAttribute("aria-selected", String(isActive));
-    });
-  }
-
   // Master layout renderer for both stacks
   function updateStacks() {
     // 1. Render Left Stack (Shuffled Deck)
@@ -1383,8 +1369,6 @@ function initHeroChipsCanvas(canvas, heroSection) {
     } else {
       dealtMat.classList.remove("has-card");
     }
-
-    updatePills();
 
     // 4. Status updates
     if (rightStack.length === 4) {
@@ -1656,24 +1640,6 @@ function initHeroChipsCanvas(canvas, heroSection) {
     } else {
       setStatus("No suites currently on table.");
     }
-  });
-
-  // Suite Quick-select Pills
-  pills.forEach((pill) => {
-    pill.addEventListener("click", () => {
-      const idx = parseInt(pill.getAttribute("data-index"), 10);
-      if (leftStack.includes(idx)) {
-        dealSpecificCard(idx);
-      } else if (rightStack.includes(idx)) {
-        // If it's already top of right stack, clicking returns it
-        if (rightStack[rightStack.length - 1] === idx) {
-          returnSpecificCard(idx);
-        } else {
-          // Bring it to the top of the right stack
-          dealSpecificCard(idx);
-        }
-      }
-    });
   });
 
   // Keyboard navigation on cards
