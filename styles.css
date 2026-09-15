@@ -6224,6 +6224,7 @@ a.feature-card:hover .feature-card__cta,
   display: flex;
   align-items: baseline;
   gap: 8px;
+  cursor: pointer;
 }
 
 .menu-item__name {
@@ -6240,6 +6241,7 @@ a.feature-card:hover .feature-card__cta,
   user-select: none;
 }
 
+.menu-item:hover .menu-item__name,
 .menu-item__name:hover,
 .menu-item__name:focus-visible {
   color: #f2d581;
@@ -6254,8 +6256,10 @@ a.feature-card:hover .feature-card__cta,
   transition: transform 0.25s ease, color 0.25s ease;
   flex-shrink: 0;
   vertical-align: middle;
+  pointer-events: none;
 }
 
+.menu-item:hover .menu-item__photo-icon,
 .menu-item__name:hover .menu-item__photo-icon,
 .menu-item__name:focus-visible .menu-item__photo-icon {
   color: #f2d581;
@@ -6641,19 +6645,21 @@ a.feature-card:hover .feature-card__cta,
 .dining-dish-modal {
   position: fixed;
   inset: 0;
-  z-index: 99999;
+  z-index: 100005;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: clamp(16px, 3vw, 32px);
   visibility: hidden;
   opacity: 0;
+  pointer-events: none;
   transition: opacity 0.35s ease, visibility 0.35s ease;
 }
 
 .dining-dish-modal.is-open {
   visibility: visible;
   opacity: 1;
+  pointer-events: auto;
 }
 
 .dining-dish-modal__backdrop {

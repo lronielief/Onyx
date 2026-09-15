@@ -2339,27 +2339,21 @@ function initHeroChipsCanvas(canvas, heroSection) {
    Opens high-resolution dish image presentation when any menu item is clicked
    ========================================================================== */
 (function initDiningDishModal() {
-  const modal = document.getElementById("diningDishModal");
-  const modalClose = document.getElementById("dishModalClose");
-  const modalBackdrop = document.getElementById("dishModalBackdrop");
-  const modalImg = document.getElementById("dishModalImg");
-  const modalVenueBadge = document.getElementById("dishModalVenueBadge");
-  const modalTitle = document.getElementById("dishModalTitle");
-  const modalPrice = document.getElementById("dishModalPrice");
-  const modalTag = document.getElementById("dishModalTag");
-  const modalDesc = document.getElementById("dishModalDesc");
-  const menuNames = Array.from(document.querySelectorAll(".menu-item__name"));
-
-  if (!modal || !menuNames.length) return;
+  function getModal() {
+    return document.getElementById("diningDishModal");
+  }
 
   function openDish(itemElem) {
+    const modal = getModal();
+    if (!modal) return;
+
     const parentItem = itemElem.closest(".menu-item");
     const parentCard = itemElem.closest(".dining-menu-card");
     const venueTitle = parentCard?.querySelector(".menu-card__title")?.textContent?.trim() || "ONYX Fine Dining";
 
     const imgSrc = itemElem.getAttribute("data-dish-img") || "assets/dining/dish-wagyu.jpg";
 
-    // Extract dish title without SVG icon
+    // Extract clean dish title
     const titleClone = itemElem.cloneNode(true);
     titleClone.querySelector(".menu-item__photo-icon")?.remove();
     const dishTitle = titleClone.textContent?.trim() || "Signature Selection";
@@ -2369,6 +2363,14 @@ function initHeroChipsCanvas(canvas, heroSection) {
     const tag = parentItem?.querySelector(".menu-item__tag")?.textContent?.trim() || "";
     const courseNum = parentItem?.querySelector(".course-num")?.textContent?.trim() || "";
     const coursePairing = parentItem?.querySelector(".course-pairing")?.textContent?.trim() || "";
+
+    const modalImg = modal.querySelector("#dishModalImg");
+    const modalVenueBadge = modal.querySelector("#dishModalVenueBadge");
+    const modalTitle = modal.querySelector("#dishModalTitle");
+    const modalPrice = modal.querySelector("#dishModalPrice");
+    const modalTag = modal.querySelector("#dishModalTag");
+    const modalDesc = modal.querySelector("#dishModalDesc");
+    const modalClose = modal.querySelector("#dishModalClose");
 
     if (modalImg) {
       modalImg.src = imgSrc;
@@ -2413,31 +2415,55 @@ function initHeroChipsCanvas(canvas, heroSection) {
   }
 
   function closeDish() {
+    const modal = getModal();
+    if (!modal) return;
     modal.classList.remove("is-open");
     modal.setAttribute("aria-hidden", "true");
     document.body.style.overflow = "";
   }
 
-  menuNames.forEach((nameElem) => {
-    nameElem.addEventListener("click", (e) => {
-      e.stopPropagation();
-      openDish(nameElem);
-    });
+  // Global document click delegation: catches clicks on dish names, headers, or icons
+  document.addEventListener("click", (e) => {
+    // 1. Close button or backdrop click
+    if (e.target.closest("#dishModalClose") || e.target.closest("#dishModalBackdrop")) {
+      e.preventDefault();
+      closeDish();
+      return;
+    }
 
-    nameElem.addEventListener("keydown", (e) => {
-      if (e.key === "Enter" || e.key === " ") {
+    // 2. Menu item click
+    const nameTarget = e.target.closest(".menu-item__name");
+    if (nameTarget) {
+      e.preventDefault();
+      openDish(nameTarget);
+      return;
+    }
+
+    const headerTarget = e.target.closest(".menu-item__header");
+    if (headerTarget) {
+      const nameElem = headerTarget.querySelector(".menu-item__name");
+      if (nameElem) {
         e.preventDefault();
         openDish(nameElem);
+        return;
       }
-    });
+    }
   });
 
-  modalClose?.addEventListener("click", closeDish);
-  modalBackdrop?.addEventListener("click", closeDish);
-
-  window.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && modal.classList.contains("is-open")) {
+  // Keyboard accessibility
+  document.addEventListener("keydown", (e) => {
+    const modal = getModal();
+    if (e.key === "Escape" && modal?.classList.contains("is-open")) {
       closeDish();
+      return;
+    }
+
+    if (e.key === "Enter" || e.key === " ") {
+      const activeName = document.activeElement?.closest?.(".menu-item__name");
+      if (activeName) {
+        e.preventDefault();
+        openDish(activeName);
+      }
     }
   });
 })();
