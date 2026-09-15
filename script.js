@@ -253,6 +253,16 @@ if (reservePageForm) {
     let tiltRafId = null;
 
     function updateTilt() {
+      if (
+        heroSection.classList.contains("is-cards-active") ||
+        heroSection.classList.contains("is-offers-active") ||
+        heroSection.classList.contains("is-reserve-active")
+      ) {
+        cardContainer.style.transform = "";
+        tiltRafId = null;
+        return;
+      }
+
       currentRotateX += (targetRotateX - currentRotateX) * 0.12;
       currentRotateY += (targetRotateY - currentRotateY) * 0.12;
 
@@ -266,6 +276,7 @@ if (reservePageForm) {
         tiltRafId = requestAnimationFrame(updateTilt);
       } else {
         tiltRafId = null;
+        cardContainer.style.transform = "";
       }
     }
 
@@ -637,7 +648,6 @@ function initHeroChipsCanvas(canvas, heroSection) {
   const heroContent = document.querySelector(".hero__content");
   const cardContainer = document.querySelector("#cardContainer");
   const playingCard = document.querySelector("#playingCard");
-  const heroBrandShowcase = document.querySelector("#heroBrandShowcase");
   const heroOffersShowcase = document.querySelector("#heroOffersShowcase");
   const heroReserveShowcase = document.querySelector("#heroReserveShowcase");
   const heroChipsCanvas = document.querySelector("#heroChipsCanvas");
@@ -663,6 +673,7 @@ function initHeroChipsCanvas(canvas, heroSection) {
 
     // Reset all scene classes
     heroSection.classList.remove("is-cards-active", "is-offers-active", "is-reserve-active");
+    if (cardContainer) cardContainer.style.transform = "";
 
     if (currentScene === 0) {
       // Scene 0: Overview (Normal State)
@@ -670,10 +681,10 @@ function initHeroChipsCanvas(canvas, heroSection) {
       if (playingCard) playingCard.classList.remove("is-flipped");
       if (chipsAnimation) chipsAnimation.stop();
     } else if (currentScene === 1) {
-      // Scene 1: Cinematic ONYX Brand & Logo Advertising Showcase (WOW Effect)
+      // Scene 1: The Chosen Card - Center-Stage 3D ONYX Logo Reveal
       heroContent.classList.add("is-vanished");
       heroSection.classList.add("is-cards-active");
-      if (playingCard) playingCard.classList.remove("is-flipped");
+      if (playingCard) playingCard.classList.add("is-flipped");
       if (chipsAnimation) chipsAnimation.stop();
     } else if (currentScene === 2) {
       // Scene 2: Card glides left in flipped state, Words-Only Offers on right
@@ -685,6 +696,7 @@ function initHeroChipsCanvas(canvas, heroSection) {
       // Scene 3: Chunky Chips falling down + Big "RESERVE NOW" callout
       heroContent.classList.add("is-vanished");
       heroSection.classList.add("is-reserve-active");
+      if (playingCard) playingCard.classList.remove("is-flipped");
       if (chipsAnimation) chipsAnimation.start();
     }
   }
@@ -705,7 +717,6 @@ function initHeroChipsCanvas(canvas, heroSection) {
   // Temporary pause on hover over interactive showcase areas
   const pauseElements = [
     heroContent,
-    heroBrandShowcase,
     heroOffersShowcase,
     heroReserveShowcase,
     cardContainer
