@@ -648,6 +648,7 @@ function initHeroChipsCanvas(canvas, heroSection) {
   const heroContent = document.querySelector(".hero__content");
   const cardContainer = document.querySelector("#cardContainer");
   const playingCard = document.querySelector("#playingCard");
+  const heroChosenOffers = document.querySelector("#heroChosenOffers");
   const heroOffersShowcase = document.querySelector("#heroOffersShowcase");
   const heroReserveShowcase = document.querySelector("#heroReserveShowcase");
   const heroChipsCanvas = document.querySelector("#heroChipsCanvas");
@@ -717,6 +718,7 @@ function initHeroChipsCanvas(canvas, heroSection) {
   // Temporary pause on hover over interactive showcase areas
   const pauseElements = [
     heroContent,
+    heroChosenOffers,
     heroOffersShowcase,
     heroReserveShowcase,
     cardContainer
