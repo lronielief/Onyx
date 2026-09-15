@@ -2335,6 +2335,114 @@ function initHeroChipsCanvas(canvas, heroSection) {
 })();
 
 /* ==========================================================================
+   Dining Page: Expanded Dish Image Lightbox Modal
+   Opens high-resolution dish image presentation when any menu item is clicked
+   ========================================================================== */
+(function initDiningDishModal() {
+  const modal = document.getElementById("diningDishModal");
+  const modalClose = document.getElementById("dishModalClose");
+  const modalBackdrop = document.getElementById("dishModalBackdrop");
+  const modalImg = document.getElementById("dishModalImg");
+  const modalVenueBadge = document.getElementById("dishModalVenueBadge");
+  const modalTitle = document.getElementById("dishModalTitle");
+  const modalPrice = document.getElementById("dishModalPrice");
+  const modalTag = document.getElementById("dishModalTag");
+  const modalDesc = document.getElementById("dishModalDesc");
+  const menuNames = Array.from(document.querySelectorAll(".menu-item__name"));
+
+  if (!modal || !menuNames.length) return;
+
+  function openDish(itemElem) {
+    const parentItem = itemElem.closest(".menu-item");
+    const parentCard = itemElem.closest(".dining-menu-card");
+    const venueTitle = parentCard?.querySelector(".menu-card__title")?.textContent?.trim() || "ONYX Fine Dining";
+
+    const imgSrc = itemElem.getAttribute("data-dish-img") || "assets/dining/dish-wagyu.jpg";
+
+    // Extract dish title without SVG icon
+    const titleClone = itemElem.cloneNode(true);
+    titleClone.querySelector(".menu-item__photo-icon")?.remove();
+    const dishTitle = titleClone.textContent?.trim() || "Signature Selection";
+
+    const price = parentItem?.querySelector(".menu-item__price")?.innerHTML || "";
+    const desc = parentItem?.querySelector(".menu-item__desc")?.textContent?.trim() || "";
+    const tag = parentItem?.querySelector(".menu-item__tag")?.textContent?.trim() || "";
+    const courseNum = parentItem?.querySelector(".course-num")?.textContent?.trim() || "";
+    const coursePairing = parentItem?.querySelector(".course-pairing")?.textContent?.trim() || "";
+
+    if (modalImg) {
+      modalImg.src = imgSrc;
+      modalImg.alt = dishTitle;
+    }
+    if (modalVenueBadge) {
+      modalVenueBadge.textContent = venueTitle;
+    }
+    if (modalTitle) {
+      modalTitle.textContent = dishTitle;
+    }
+    if (modalPrice) {
+      if (price) {
+        modalPrice.innerHTML = price;
+        modalPrice.style.display = "";
+      } else if (coursePairing) {
+        modalPrice.innerHTML = `<span style="font-size: 0.95rem; color: var(--gold); font-family: 'Inter', sans-serif; font-weight: 600;">Pairing: ${coursePairing}</span>`;
+        modalPrice.style.display = "";
+      } else {
+        modalPrice.style.display = "none";
+      }
+    }
+    if (modalTag) {
+      if (tag) {
+        modalTag.textContent = tag;
+        modalTag.style.display = "";
+      } else if (courseNum) {
+        modalTag.textContent = courseNum;
+        modalTag.style.display = "";
+      } else {
+        modalTag.style.display = "none";
+      }
+    }
+    if (modalDesc) {
+      modalDesc.textContent = desc;
+    }
+
+    modal.classList.add("is-open");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+    modalClose?.focus();
+  }
+
+  function closeDish() {
+    modal.classList.remove("is-open");
+    modal.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+  }
+
+  menuNames.forEach((nameElem) => {
+    nameElem.addEventListener("click", (e) => {
+      e.stopPropagation();
+      openDish(nameElem);
+    });
+
+    nameElem.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        openDish(nameElem);
+      }
+    });
+  });
+
+  modalClose?.addEventListener("click", closeDish);
+  modalBackdrop?.addEventListener("click", closeDish);
+
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && modal.classList.contains("is-open")) {
+      closeDish();
+    }
+  });
+})();
+
+/* ==========================================================================
    Gaming Page: Area Photo Lightbox Modal
    ========================================================================== */
 (function initGamingLightbox() {
